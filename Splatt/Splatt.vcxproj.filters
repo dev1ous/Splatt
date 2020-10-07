@@ -66,6 +66,12 @@
     <ClCompile Include="StateManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Aste_Enemies.cpp">
+      <Filter>Fichiers sources\Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="Aste_asteroids.cpp">
+      <Filter>Fichiers sources\Asteroid</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.hpp">
@@ -73,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="Tools.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Aste_Enemies.h">
+      <Filter>Fichiers d%27en-tête\Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="Aste_asteroids.h">
+      <Filter>Fichiers d%27en-tête\Asteroid</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

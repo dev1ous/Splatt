@@ -1,4 +1,5 @@
 #include "Tools.hpp"
+#include "StateManager.hpp"
 
 Times MainTime;
 
@@ -38,10 +39,6 @@ float Angle_calc(sf::Vector2f pointA, sf::Vector2f pointB)
 
 
 
-
-
-
-
 void LaunchArguments(int argc, char** argv)
 {
 	int i = 0;
@@ -49,7 +46,13 @@ void LaunchArguments(int argc, char** argv)
 	while (argv[++i])
 	{
 		std::cout << argv[i] << std::endl;
+
+		if (std::string(argv[i]) == "-asteroid")
+		{
+			state = State::ASTEROID;
+		}
 	}
+
 }
 
 void ProgramEnd()

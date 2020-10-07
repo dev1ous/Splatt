@@ -46,7 +46,7 @@ void UpdateManager()
 void DisplayManager()
 {
 	// Clear the Window
-	App.clear(sf::Color::Color(100, 100, 100));
+	App.clear(sf::Color::Black);
 
 	switch (state)
 	{
