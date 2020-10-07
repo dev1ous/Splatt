@@ -30,6 +30,10 @@ void Aste_Enemies::RemoveLife()
 	m_life--;
 }
 
+Aste_Enemies::Aste_Enemies()
+{
+}
+
 Aste_Enemies::Aste_Enemies(sf::Vector2f position, sf::Vector2f velocity, int life)
 	: m_pos(position), m_velocity(velocity), m_life(life)
 {

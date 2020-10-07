@@ -55,6 +55,12 @@
     <Filter Include="Fichiers d%27en-tête\Tron">
       <UniqueIdentifier>{18980b8f-afe8-4155-9fe0-51c14bf2e478}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Asteroid\Aste_Enemies">
+      <UniqueIdentifier>{7fa2f481-5a88-4b65-b62d-0d106bf9dcd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Asteroid\Aste_Enemies">
+      <UniqueIdentifier>{67ca7a77-0754-4049-86cb-39a44c525a41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -66,10 +72,19 @@
     <ClCompile Include="StateManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Aste_Enemies.cpp">
-      <Filter>Fichiers sources\Asteroid</Filter>
+    <ClCompile Include="Aste_Asteroid.cpp">
+      <Filter>Fichiers sources\Asteroid\Aste_Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Aste_asteroids.cpp">
+    <ClCompile Include="Aste_BigSaucer.cpp">
+      <Filter>Fichiers sources\Asteroid\Aste_Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Aste_Enemies.cpp">
+      <Filter>Fichiers sources\Asteroid\Aste_Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Aste_SmallSaucer.cpp">
+      <Filter>Fichiers sources\Asteroid\Aste_Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Aste_Player.cpp">
       <Filter>Fichiers sources\Asteroid</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,10 +95,19 @@
     <ClInclude Include="Tools.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Aste_Enemies.h">
-      <Filter>Fichiers d%27en-tête\Asteroid</Filter>
+    <ClInclude Include="Aste_Asteroid.h">
+      <Filter>Fichiers d%27en-tête\Asteroid\Aste_Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Aste_asteroids.h">
+    <ClInclude Include="Aste_BigSaucer.h">
+      <Filter>Fichiers d%27en-tête\Asteroid\Aste_Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Aste_Enemies.h">
+      <Filter>Fichiers d%27en-tête\Asteroid\Aste_Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Aste_SmallSaucer.h">
+      <Filter>Fichiers d%27en-tête\Asteroid\Aste_Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Aste_Player.h">
       <Filter>Fichiers d%27en-tête\Asteroid</Filter>
     </ClInclude>
   </ItemGroup>

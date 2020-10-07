@@ -15,7 +15,9 @@ protected:
 	void setPosition(sf::Vector2f);
 	void setVelocity(sf::Vector2f);
 	void RemoveLife();
+
 public:
+	Aste_Enemies();
 	Aste_Enemies(sf::Vector2f position, sf::Vector2f velocity, int life);
 	~Aste_Enemies();
 };
