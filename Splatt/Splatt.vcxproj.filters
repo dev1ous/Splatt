@@ -87,6 +87,12 @@
     <ClCompile Include="Aste_Player.cpp">
       <Filter>Fichiers sources\Asteroid</Filter>
     </ClCompile>
+    <ClCompile Include="Aste_Manager.cpp">
+      <Filter>Fichiers sources\Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="Aste_Shoot.cpp">
+      <Filter>Fichiers sources\Asteroid</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.hpp">
@@ -108,6 +114,12 @@
       <Filter>Fichiers d%27en-tête\Asteroid\Aste_Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Aste_Player.h">
+      <Filter>Fichiers d%27en-tête\Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="Aste_Manager.h">
+      <Filter>Fichiers d%27en-tête\Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="Aste_Shoot.h">
       <Filter>Fichiers d%27en-tête\Asteroid</Filter>
     </ClInclude>
   </ItemGroup>

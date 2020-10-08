@@ -6,23 +6,28 @@ class Aste_Enemies
 	sf::Vector2f m_pos;
 	sf::Vector2f m_velocity;
 	int m_life;
+	float m_rotation;
 
 protected:
-	sf::Vector2f getPosition() const;
 	sf::Vector2f getVelocity() const;
-	int getLife() const;
 
 	void setPosition(sf::Vector2f);
 	void setVelocity(sf::Vector2f);
-	void RemoveLife();
 
 public:
 	Aste_Enemies();
-	Aste_Enemies(sf::Vector2f position, sf::Vector2f velocity, int life);
+	Aste_Enemies(sf::Vector2f position, float rotation, int life);
 	~Aste_Enemies();
+
+	void Kill() { m_life = 0; };
+	sf::Vector2f getPosition() const;
+	int getLife() const;
+	virtual void RemoveLife();
+	virtual void Update() = 0;
+	virtual void Draw() = 0;
 };
 
-
+extern std::vector<Aste_Enemies*> EnemiesList;
 
 /*
 Asteroïd
@@ -66,7 +71,12 @@ Asteroïd
  - Earn a live every 10'000
 
 - Enemies Mecanique (asteroid)
- - Divide on death
+ - Divide on death 
+ pv :
+  3          2          1
+ (grand -> 2moyen -> 4petit)
+ (moyen -> 2petit)
+ (petit = disparition)
 
 - Enemies Mecanique (saucer)
  - small shoot at random "slowly"

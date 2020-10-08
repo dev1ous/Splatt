@@ -1,5 +1,7 @@
 #include "Aste_Enemies.h"
 
+std::vector<Aste_Enemies*> EnemiesList;
+
 sf::Vector2f Aste_Enemies::getPosition() const
 {
 	return m_pos;
@@ -34,9 +36,13 @@ Aste_Enemies::Aste_Enemies()
 {
 }
 
-Aste_Enemies::Aste_Enemies(sf::Vector2f position, sf::Vector2f velocity, int life)
-	: m_pos(position), m_velocity(velocity), m_life(life)
+Aste_Enemies::Aste_Enemies(sf::Vector2f position, float rotation, int life)
+	: m_pos(position), m_rotation(rotation), m_life(life)
 {
+	float radiant = (m_rotation - 90) * (pi / 180);
+	m_velocity.x = cos(radiant) * 200;
+	m_velocity.y = sin(radiant) * 200;
+
 }
 
 Aste_Enemies::~Aste_Enemies()

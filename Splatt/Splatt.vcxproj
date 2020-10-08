@@ -162,7 +162,9 @@
     <ClCompile Include="Aste_Asteroid.cpp" />
     <ClCompile Include="Aste_BigSaucer.cpp" />
     <ClCompile Include="Aste_Enemies.cpp" />
+    <ClCompile Include="Aste_Manager.cpp" />
     <ClCompile Include="Aste_Player.cpp" />
+    <ClCompile Include="Aste_Shoot.cpp" />
     <ClCompile Include="Aste_SmallSaucer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="StateManager.cpp" />
@@ -172,7 +174,9 @@
     <ClInclude Include="Aste_Asteroid.h" />
     <ClInclude Include="Aste_BigSaucer.h" />
     <ClInclude Include="Aste_Enemies.h" />
+    <ClInclude Include="Aste_Manager.h" />
     <ClInclude Include="Aste_Player.h" />
+    <ClInclude Include="Aste_Shoot.h" />
     <ClInclude Include="Aste_SmallSaucer.h" />
     <ClInclude Include="StateManager.hpp" />
     <ClInclude Include="Tools.hpp" />

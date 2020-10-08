@@ -1,7 +1,7 @@
 #include "StateManager.hpp"
+#include "Aste_Manager.h"
 
 State state = State::MENU;
-
 
 void EventsManager()
 {
@@ -31,6 +31,7 @@ void UpdateManager()
 	case State::LUNAR_LANDER:
 		break;
 	case State::ASTEROID:
+		Aste_Update();
 		break;
 	case State::TETRIS:
 		break;
@@ -61,6 +62,7 @@ void DisplayManager()
 	case State::LUNAR_LANDER:
 		break;
 	case State::ASTEROID:
+		Aste_Display();
 		break;
 	case State::TETRIS:
 		break;
