@@ -1,5 +1,6 @@
 .vs/
 Splatt/Debug/
+Splatt/x64/
 *.exe
 *.ilk
 *.pdb
