@@ -123,6 +123,9 @@
     <ClCompile Include="Texture_SpriteManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="lunar_landingZone.cpp">
+      <Filter>Fichiers sources\Lunar Lander</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.hpp">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="Texture_SpriteManager.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="lunar_landingZone.h">
+      <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
