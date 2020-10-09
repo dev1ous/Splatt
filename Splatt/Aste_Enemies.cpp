@@ -29,7 +29,7 @@ void Aste_Enemies::setVelocity(sf::Vector2f velocity)
 
 void Aste_Enemies::RemoveLife()
 {
-	m_life--;
+	m_life = 0;
 }
 
 Aste_Enemies::Aste_Enemies()

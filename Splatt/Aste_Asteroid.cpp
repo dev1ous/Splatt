@@ -16,7 +16,10 @@ void Aste_Asteroid::RemoveLife()
 {
 	if (getLife() > 1)
 	{
-		// create 2
+		float newVelocity1(frandom(0,360));
+		float newVelocity2(frandom(0, 360));
+		EnemiesList.push_back(new Aste_Asteroid(getPosition(), newVelocity1, getLife() -1));
+		EnemiesList.push_back(new Aste_Asteroid(getPosition(), newVelocity2, getLife() -1));
 	}
 	Kill();
 }

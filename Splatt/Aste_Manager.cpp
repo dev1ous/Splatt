@@ -5,24 +5,18 @@
 #include "Aste_Asteroid.h"
 
 Aste_Player aste_player;
-Aste_Asteroid ast1(sf::Vector2f(10,10), 0, 3);
-Aste_Asteroid ast3(sf::Vector2f(1800, 1000), 42, 1);
-Aste_Asteroid ast2(sf::Vector2f(1800, 10), 173, 2);
-Aste_Asteroid ast4(sf::Vector2f(10, 1000), 260, 3);
-
 
 void Aste_Update()
 {
 	static bool one = false;
 	if (!one)
 	{
-		EnemiesList.push_back(&ast1);
-		EnemiesList.push_back(&ast2);
-		EnemiesList.push_back(&ast3);
-		EnemiesList.push_back(&ast4);
+		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(10, 10), 0, 3));
+		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(1800, 1000), 42, 1));
+		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(1800, 10), 173, 2));
+		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(10, 1000), 260, 3));
 		one = true;
-	}
-
+	} 
 
 
 	aste_player.Update();
@@ -47,9 +41,8 @@ void Aste_Update()
 	{
 		if (ActualEnemie->getLife() <= 0)
 		{
-			Aste_Enemies* tmpRemove = ActualEnemie;
+			delete ActualEnemie;
 			EnemiesList.erase(EnemiesList.begin() + i);
-			std::cout << tmpRemove->getLife() << std::endl;
 		}
 		else
 			i++;
@@ -90,7 +83,6 @@ void Aste_Display()
 		CShoot.setPosition(ActualShoot.getPosition());
 		App.draw(CShoot);
 	}
-
 
 	// enemies
 	for (Aste_Enemies* ActualEnemie : EnemiesList)

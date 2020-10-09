@@ -6,6 +6,7 @@ sf::Event event;
 
 int main(int argc, char** argv)
 {
+	srand(time(NULL));
 	LaunchArguments(argc, argv);
 
 	while (App.isOpen())

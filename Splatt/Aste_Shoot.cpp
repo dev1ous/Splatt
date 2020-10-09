@@ -79,6 +79,7 @@ void Aste_Shoot::Update()
 			{
 				m_dead = true;
 				ActualEnemie->RemoveLife();
+				break;
 			}
 		}
 	}
