@@ -93,6 +93,12 @@
     <ClCompile Include="Aste_Shoot.cpp">
       <Filter>Fichiers sources\Asteroid</Filter>
     </ClCompile>
+    <ClCompile Include="Lunar_manager.cpp">
+      <Filter>Fichiers sources\Lunar Lander</Filter>
+    </ClCompile>
+    <ClCompile Include="Lunar_player.cpp">
+      <Filter>Fichiers sources\Lunar Lander</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.hpp">
@@ -124,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Lunar_player.h">
+      <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
+    </ClInclude>
+    <ClInclude Include="Lunar_manager.h">
+      <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
