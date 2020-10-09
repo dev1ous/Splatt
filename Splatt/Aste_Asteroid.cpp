@@ -1,4 +1,5 @@
 #include "Aste_Asteroid.h"
+#include "Aste_Player.h"
 #include "Texture_SpriteManager.hpp"
 
 Aste_Asteroid::Aste_Asteroid()
@@ -15,12 +16,19 @@ Aste_Asteroid::~Aste_Asteroid()
 
 void Aste_Asteroid::RemoveLife()
 {
+	if (getLife() == 3)
+		aste_player->AddScore(20);
+	else if (getLife() == 2)
+		aste_player->AddScore(50);
+	else if (getLife() == 1)
+		aste_player->AddScore(100);
+
 	if (getLife() > 1)
 	{
-		float newVelocity1(frandom(0,360));
-		float newVelocity2(frandom(0, 360));
-		EnemiesList.push_back(new Aste_Asteroid(getPosition(), newVelocity1, getLife() -1));
-		EnemiesList.push_back(new Aste_Asteroid(getPosition(), newVelocity2, getLife() -1));
+		float rotate1(frandom(0,360));
+		float rotate2(frandom(0, 360));
+		EnemiesList.push_back(new Aste_Asteroid(getPosition(), rotate1, getLife() -1));
+		EnemiesList.push_back(new Aste_Asteroid(getPosition(), rotate2, getLife() -1));
 	}
 	Kill();
 }
@@ -42,7 +50,22 @@ void Aste_Asteroid::Update()
 
 void Aste_Asteroid::Draw()
 {	
-	getSprite("Asteroid").setTextureRect(sf::IntRect(0,0,30,30));
+	getSprite("Asteroid").setTextureRect(sf::IntRect(0,0,60,60));
+	
+	switch (getLife())
+	{
+	case 3:
+		getSprite("Asteroid").setScale(1.f, 1.f);
+		break;
+	case 2:
+		getSprite("Asteroid").setScale(0.666f, 0.666f);
+		break;
+	case 1:
+		getSprite("Asteroid").setScale(0.333f, 0.333f);
+		break;
+	default:
+		break;
+	}
 	getSprite("Asteroid").setOrigin(getSprite("Asteroid").getGlobalBounds().width / 2, getSprite("Asteroid").getGlobalBounds().width / 2);
 	getSprite("Asteroid").setPosition(getPosition());
 

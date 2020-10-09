@@ -16,10 +16,16 @@ public:
 
 	sf::Vector2f getPosition() const;
 	float getRotation() const;
+	int getScore() const { return m_score; }
+	int getLives() const { return m_lives; }
 
+	void AddScore(int);
+	void ResetScore();
 	void RotateClockWise();
 	void RotateConterClockWise();
 	void MoveForward();
 	void Update();
 	void Shoot();
 };
+
+extern Aste_Player* aste_player;

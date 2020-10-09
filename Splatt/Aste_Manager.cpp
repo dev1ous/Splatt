@@ -67,11 +67,6 @@ void Aste_Update()
 
 void Aste_Display()
 {
-	// player
-	//sf::Texture texturePlayer;
-	//texturePlayer.loadFromFile("../Ressources/astePlayer.png");
-	//sf::Sprite Splayer(texturePlayer);
-
 	getSprite("astePlayer").setOrigin(getSprite("astePlayer").getGlobalBounds().width / 2, getSprite("astePlayer").getGlobalBounds().height / 2);
 	getSprite("astePlayer").setPosition(aste_player->getPosition());
 	getSprite("astePlayer").setRotation(aste_player->getRotation());
@@ -89,7 +84,17 @@ void Aste_Display()
 
 	// enemies
 	for (Aste_Enemies* ActualEnemie : EnemiesList)
-	{
 		ActualEnemie->Draw();
-	}
+	
+
+	// Hud
+	sf::Text Tscore("", Font, 30);
+	Tscore.setString(std::to_string(aste_player->getScore()));
+	App.draw(Tscore);
+
+	Tscore.setPosition(0, Tscore.getGlobalBounds().height + 10);
+	Tscore.setString(std::to_string(aste_player->getLives() - 1));
+	App.draw(Tscore);
+
+	// debug infos
 }

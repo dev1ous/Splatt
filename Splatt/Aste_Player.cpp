@@ -1,5 +1,6 @@
 #include "Aste_Player.h"
 #include "Aste_Shoot.h"
+#include "Aste_Enemies.h"
 
 Aste_Player::Aste_Player()
 {
@@ -23,6 +24,18 @@ sf::Vector2f Aste_Player::getPosition() const
 float Aste_Player::getRotation() const
 {
 	return m_rotation;
+}
+
+void Aste_Player::AddScore(int toAdd)
+{
+	if ((m_score + toAdd) % 10000 < m_score % 10000)
+		m_lives++;
+	m_score += toAdd;
+}
+
+void Aste_Player::ResetScore()
+{
+	m_score = 0;
 }
 
 void Aste_Player::RotateClockWise()
@@ -62,6 +75,16 @@ void Aste_Player::Update()
 		m_position.y = 1080 + 15;
 	else if (m_position.y > 1080 + 15)
 		m_position.y = -15;
+
+	//for (Aste_Enemies* ActualEnemie : EnemiesList)
+	//{
+	//	int ennemie_rad = ActualEnemie->getLife() * 10;
+	//	if (Circle_Collision(m_position, ActualEnemie->getPosition(), 30, ennemie_rad))
+	//	{
+	//		ActualEnemie->RemoveLife();
+	//		break;
+	//	}
+	//}
 }
 
 void Aste_Player::Shoot()
