@@ -122,5 +122,8 @@
     <ClInclude Include="Aste_Shoot.h">
       <Filter>Fichiers d%27en-tête\Asteroid</Filter>
     </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

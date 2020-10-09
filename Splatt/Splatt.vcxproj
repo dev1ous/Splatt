@@ -178,6 +178,7 @@
     <ClInclude Include="Aste_Player.h" />
     <ClInclude Include="Aste_Shoot.h" />
     <ClInclude Include="Aste_SmallSaucer.h" />
+    <ClInclude Include="pch.h" />
     <ClInclude Include="StateManager.hpp" />
     <ClInclude Include="Tools.hpp" />
   </ItemGroup>
