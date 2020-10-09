@@ -16,6 +16,8 @@ void EventsManager()
 
 void UpdateManager()
 {
+	Lunar_manager l_manager;
+
 	//restart of the clock (time per frame)
 	MainTime.RestartClock();
 
@@ -30,7 +32,7 @@ void UpdateManager()
 	case State::PACMAN:
 		break;
 	case State::LUNAR_LANDER:
-		Lunar_update();
+		l_manager.Lunar_update();
 		break;
 	case State::ASTEROID:
 		Aste_Update();
