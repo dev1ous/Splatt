@@ -1,16 +1,20 @@
 #include "Aste_Manager.h"
-
+#include "RessourcesManager.hpp"
+#include "Texture_SpriteManager.hpp"
 #include "Aste_Player.h"
 #include "Aste_Shoot.h"
 #include "Aste_Asteroid.h"
 
-Aste_Player aste_player;
+Aste_Player* aste_player;
 
 void Aste_Update()
 {
 	static bool one = false;
 	if (!one)
 	{
+		RessourcesLoad("../Ressources/Asteroid/");
+		LoadSprite(State::ASTEROID);
+		aste_player = new Aste_Player();
 		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(10, 10), 0, 3));
 		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(1800, 1000), 42, 1));
 		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(1800, 10), 173, 2));
@@ -19,7 +23,7 @@ void Aste_Update()
 	} 
 
 
-	aste_player.Update();
+	aste_player->Update();
 
 	for (Aste_Enemies* ActualEnemie : EnemiesList)
 	{
@@ -49,30 +53,29 @@ void Aste_Update()
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		aste_player.RotateClockWise();
+		aste_player->RotateClockWise();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-		aste_player.RotateConterClockWise();
+		aste_player->RotateConterClockWise();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-		aste_player.MoveForward();
+		aste_player->MoveForward();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		aste_player.Shoot();
+		aste_player->Shoot();
 }
 
 void Aste_Display()
 {
 	// player
-	sf::Texture texturePlayer;
-	texturePlayer.loadFromFile("../Ressources/astePlayer.png");
-	sf::Sprite Splayer(texturePlayer);
+	//sf::Texture texturePlayer;
+	//texturePlayer.loadFromFile("../Ressources/astePlayer.png");
+	//sf::Sprite Splayer(texturePlayer);
 
-	Splayer.setOrigin(Splayer.getGlobalBounds().width / 2, Splayer.getGlobalBounds().height / 2);
-	Splayer.setPosition(aste_player.getPosition());
-	Splayer.setRotation(aste_player.getRotation());
-	App.draw(Splayer);
-
+	getSprite("astePlayer").setOrigin(getSprite("astePlayer").getGlobalBounds().width / 2, getSprite("astePlayer").getGlobalBounds().height / 2);
+	getSprite("astePlayer").setPosition(aste_player->getPosition());
+	getSprite("astePlayer").setRotation(aste_player->getRotation());
+	App.draw(getSprite("astePlayer"));
 
 	// shoots
 	sf::CircleShape CShoot(3);

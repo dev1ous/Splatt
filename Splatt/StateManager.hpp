@@ -12,6 +12,7 @@
 enum class State
 {
 	RTNULL,
+	ALL,
 	MENU,
 	SPACE_INVADER,
 	PACMAN,

@@ -1,4 +1,5 @@
 #include "Aste_Asteroid.h"
+#include "Texture_SpriteManager.hpp"
 
 Aste_Asteroid::Aste_Asteroid()
 {
@@ -40,11 +41,10 @@ void Aste_Asteroid::Update()
 }
 
 void Aste_Asteroid::Draw()
-{
-	sf::CircleShape CAsteroid(getLife() * 10);
+{	
+	getSprite("Asteroid").setTextureRect(sf::IntRect(0,0,30,30));
+	getSprite("Asteroid").setOrigin(getSprite("Asteroid").getGlobalBounds().width / 2, getSprite("Asteroid").getGlobalBounds().width / 2);
+	getSprite("Asteroid").setPosition(getPosition());
 
-	CAsteroid.setOrigin(CAsteroid.getRadius(), CAsteroid.getRadius());
-	CAsteroid.setPosition(getPosition());
-
-	App.draw(CAsteroid);
+	App.draw(getSprite("Asteroid"));
 }
