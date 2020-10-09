@@ -11,7 +11,7 @@
 
 extern sf::RenderWindow App;
 extern sf::Event event;
-
+extern sf::Font Font;
 
 /////////////
 /// \brief Class for Time

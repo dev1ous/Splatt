@@ -8,6 +8,7 @@ int main(int argc, char** argv)
 {
 	srand(time(NULL));
 	LaunchArguments(argc, argv);
+	Font.loadFromFile("../Ressources/times.ttf");
 
 	while (App.isOpen())
 	{
