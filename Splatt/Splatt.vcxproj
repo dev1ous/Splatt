@@ -176,6 +176,10 @@
     <ClCompile Include="Pac_Personnage.cpp" />
     <ClCompile Include="Perso_Pacman.cpp" />
     <ClCompile Include="RessourcesManager.cpp" />
+    <ClCompile Include="Si_Ennemi.cpp" />
+    <ClCompile Include="SI_Joueur.cpp" />
+    <ClCompile Include="SI_Perso.cpp" />
+    <ClCompile Include="SI_Tir.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Texture_SpriteManager.cpp" />
@@ -199,6 +203,10 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Perso_Pacman.h" />
     <ClInclude Include="RessourcesManager.hpp" />
+    <ClInclude Include="Si_Ennemi.h" />
+    <ClInclude Include="SI_Joueur.h" />
+    <ClInclude Include="SI_Perso.h" />
+    <ClInclude Include="SI_Tir.h" />
     <ClInclude Include="SoundManager.hpp" />
     <ClInclude Include="StateManager.hpp" />
     <ClInclude Include="Texture_SpriteManager.hpp" />
