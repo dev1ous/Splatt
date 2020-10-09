@@ -1,5 +1,6 @@
 #include "StateManager.hpp"
 #include "Aste_Manager.h"
+#include "Lunar_manager.h"
 
 State state = State::MENU;
 
@@ -29,6 +30,7 @@ void UpdateManager()
 	case State::PACMAN:
 		break;
 	case State::LUNAR_LANDER:
+		Lunar_update();
 		break;
 	case State::ASTEROID:
 		Aste_Update();
