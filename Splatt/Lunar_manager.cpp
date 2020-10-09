@@ -1,9 +1,17 @@
 #include "Lunar_manager.h"
 
-void Lunar_update()
+Lunar_manager::Lunar_manager()
 {
 }
 
-void Lunar_display()
+void Lunar_manager::Lunar_update()
+{
+}
+
+void Lunar_manager::Lunar_display()
+{
+}
+
+Lunar_manager::~Lunar_manager()
 {
 }

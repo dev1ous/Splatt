@@ -1,6 +1,15 @@
 #pragma once
 
-void Lunar_update();
-void Lunar_display();
+class Lunar_manager
+{
+public:
+	Lunar_manager();
+	void Lunar_update();
+	void Lunar_display();
+	~Lunar_manager();
+
+};
+
+
 
 
