@@ -50,6 +50,8 @@ void UpdateManager()
 
 void DisplayManager()
 {
+	Lunar_manager l_manager;
+
 	// Clear the Window
 	App.clear(sf::Color::Black);
 
@@ -64,6 +66,7 @@ void DisplayManager()
 	case State::PACMAN:
 		break;
 	case State::LUNAR_LANDER:
+		l_manager.Lunar_display();
 		break;
 	case State::ASTEROID:
 		Aste_Display();
