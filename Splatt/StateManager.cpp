@@ -66,7 +66,7 @@ void DisplayManager()
 	case State::PACMAN:
 		break;
 	case State::LUNAR_LANDER:
-		l_manager.Lunar_display();
+		l_manager.Lunar_display(App);
 		break;
 	case State::ASTEROID:
 		Aste_Display();
