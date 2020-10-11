@@ -11,6 +11,7 @@ protected:
 	Vector2f mPosition;
 	Vector2f mVelocity;
 	float mAngle;
+	bool mEngineOn;
 
 
 public:
@@ -22,6 +23,7 @@ public:
 	void MoveRight();
 	void MoveLeft();
 	void Inpulse();
+	bool IsLanding();
 
 #pragma endregion
 

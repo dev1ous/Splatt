@@ -7,16 +7,16 @@ Lander::Lander(RenderWindow& _window)
 
 	mSprite.setTexture(mTexture);
 	mSprite.setScale(Vector2f(2.0f, 2.0f));
-	
+
 	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
 	mVelocity = Vector2f(0, 0);
 	mAngle = 0;
+	mEngineOn = false;
 
 	mSprite.setPosition(mPosition);
 	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
-
-	
+	mSprite.setRotation(mAngle);
 }
 
 #pragma region "Lander_update"
@@ -48,16 +48,26 @@ void Lander::MoveLeft()
 
 void Lander::Inpulse()
 {
-	float Timer = 0;
-	
-	Timer += MainTime.GetTimeDeltaF();
-
 	if (Keyboard::isKeyPressed(Keyboard::Up))
 	{
+		mEngineOn = true;
+
 		mVelocity.y -= .2f * MainTime.GetTimeDeltaF();
 		mSprite.setTextureRect(IntRect(mTexture.getSize().x / 3, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	}
 
+	if (mEngineOn && !Keyboard::isKeyPressed(Keyboard::Up))
+	{
+		mEngineOn = false;
+
+		mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
+	}
+}
+
+bool Lander::IsLanding()
+{
+
+	return true;
 }
 
 #pragma endregion
