@@ -67,10 +67,7 @@ void Aste_Update()
 
 void Aste_Display()
 {
-	getSprite("astePlayer").setOrigin(getSprite("astePlayer").getGlobalBounds().width / 2, getSprite("astePlayer").getGlobalBounds().height / 2);
-	getSprite("astePlayer").setPosition(aste_player->getPosition());
-	getSprite("astePlayer").setRotation(aste_player->getRotation());
-	App.draw(getSprite("astePlayer"));
+	aste_player->Draw();
 
 	// shoots
 	sf::CircleShape CShoot(3);
@@ -96,5 +93,10 @@ void Aste_Display()
 	Tscore.setString(std::to_string(aste_player->getLives() - 1));
 	App.draw(Tscore);
 
+
 	// debug infos
+	for (Aste_Enemies* ActualEnemie : EnemiesList)
+		ActualEnemie->DrawDebug();
+
+	aste_player->DrawDebug();
 }
