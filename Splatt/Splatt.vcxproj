@@ -166,6 +166,8 @@
     <ClCompile Include="Aste_Player.cpp" />
     <ClCompile Include="Aste_Shoot.cpp" />
     <ClCompile Include="Aste_SmallSaucer.cpp" />
+    <ClCompile Include="Lunar_ground.cpp" />
+    <ClCompile Include="Lunar_GroundContainer.cpp" />
     <ClCompile Include="lunar_landingZone.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Lunar_manager.cpp" />
@@ -193,6 +195,8 @@
     <ClInclude Include="Aste_Player.h" />
     <ClInclude Include="Aste_Shoot.h" />
     <ClInclude Include="Aste_SmallSaucer.h" />
+    <ClInclude Include="Lunar_ground.h" />
+    <ClInclude Include="Lunar_GroundContainer.h" />
     <ClInclude Include="lunar_landingZone.h" />
     <ClInclude Include="Lunar_manager.h" />
     <ClInclude Include="Lunar_player.h" />

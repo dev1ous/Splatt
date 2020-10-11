@@ -138,6 +138,12 @@
     <ClCompile Include="SI_Tir.cpp">
       <Filter>Fichiers sources\Space Invader</Filter>
     </ClCompile>
+    <ClCompile Include="Lunar_ground.cpp">
+      <Filter>Fichiers sources\Lunar Lander</Filter>
+    </ClCompile>
+    <ClCompile Include="Lunar_GroundContainer.cpp">
+      <Filter>Fichiers sources\Lunar Lander</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.hpp">
@@ -214,6 +220,12 @@
     </ClInclude>
     <ClInclude Include="SI_Perso.h">
       <Filter>Fichiers d%27en-tête\Space Invader</Filter>
+    </ClInclude>
+    <ClInclude Include="Lunar_ground.h">
+      <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
+    </ClInclude>
+    <ClInclude Include="Lunar_GroundContainer.h">
+      <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
