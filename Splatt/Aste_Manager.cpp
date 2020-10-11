@@ -4,6 +4,7 @@
 #include "Aste_Player.h"
 #include "Aste_Shoot.h"
 #include "Aste_Asteroid.h"
+#include "Aste_SmallSaucer.h"
 
 Aste_Player* aste_player;
 
@@ -19,6 +20,8 @@ void Aste_Update()
 		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(1800, 1000), 42, 1));
 		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(1800, 10), 173, 2));
 		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(10, 1000), 260, 3));
+
+		EnemiesList.push_back(new Aste_SmallSaucer(sf::Vector2f(200, 500), 200, 2));
 		one = true;
 	} 
 

@@ -3,10 +3,16 @@
 
 class Aste_SmallSaucer : public Aste_Enemies
 {
-	float shoot_timer;
+	float m_shoot_timer;
 
 public:
 	Aste_SmallSaucer();
+	Aste_SmallSaucer(sf::Vector2f position, float rotation, int life);
 	~Aste_SmallSaucer();
+
+	virtual void RemoveLife();
+	virtual void Update();
+	virtual void Draw();
+	virtual void DrawDebug();
 };
 
