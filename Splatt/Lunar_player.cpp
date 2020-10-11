@@ -1,4 +1,5 @@
 #include "Lunar_player.h"
+#include "Lunar_ground.h"
 
 Lander::Lander(RenderWindow& _window)
 {
@@ -62,6 +63,26 @@ void Lander::Inpulse()
 
 		mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	}
+}
+
+bool Lander::CollideTop()
+{
+	return false;
+}
+
+bool Lander::CollideBot()
+{
+	return false;
+}
+
+bool Lander::CollideLeft()
+{
+	return false;
+}
+
+bool Lander::CollideRight()
+{
+	return false;
 }
 
 bool Lander::IsLanding()

@@ -5,7 +5,7 @@
 
 class GroundContainer
 {
-	vector<Ground> mContainer;
+	vector<int> mContainer;
 
 public:
 	GroundContainer(RenderWindow& _window);

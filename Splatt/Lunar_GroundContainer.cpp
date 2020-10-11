@@ -1,19 +1,20 @@
 #include "Lunar_GroundContainer.h"
 
-Ground myGround;
-
 GroundContainer::GroundContainer(RenderWindow &_window)
 {
 	for (int i = 0; i <= _window.getSize().x / 45; i++)
-		mContainer.push_back(myGround);
-
-	Display(_window);
+		mContainer.push_back(1);
 }
 
 void GroundContainer::Display(RenderWindow& _window)
 {
+	Ground myGround;
+
 	for (int i = 0; i <= _window.getSize().x / 45; i++)
-		_window.draw(mContainer.at(i));
+	{
+		if (mContainer[i] == 1)
+			_window.draw(myGround.GetSprite());
+	}
 }
 
 GroundContainer::~GroundContainer()
