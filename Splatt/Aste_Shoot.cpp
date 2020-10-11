@@ -65,7 +65,7 @@ void Aste_Shoot::Update()
 	else if (m_pos.y > 1080 + 15)
 		m_pos.y = -15;
 
-	if (m_distance >= 1000.f)
+	if (m_distance >= 1100.f)
 		m_dead = true;
 
 

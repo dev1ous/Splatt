@@ -50,8 +50,11 @@ void Aste_Asteroid::Update()
 
 void Aste_Asteroid::Draw()
 {	
+	getSprite("Asteroid").setScale(1.f, 1.f);
 	getSprite("Asteroid").setTextureRect(sf::IntRect(0,0,60,60));
-	
+	getSprite("Asteroid").setOrigin(getSprite("Asteroid").getGlobalBounds().width / 2, getSprite("Asteroid").getGlobalBounds().height / 2);
+	getSprite("Asteroid").setPosition(getPosition());
+
 	switch (getLife())
 	{
 	case 3:
@@ -63,11 +66,30 @@ void Aste_Asteroid::Draw()
 	case 1:
 		getSprite("Asteroid").setScale(0.333f, 0.333f);
 		break;
+
 	default:
+		getSprite("Asteroid").setScale(1.f, 1.f);
 		break;
 	}
-	getSprite("Asteroid").setOrigin(getSprite("Asteroid").getGlobalBounds().width / 2, getSprite("Asteroid").getGlobalBounds().width / 2);
-	getSprite("Asteroid").setPosition(getPosition());
 
 	App.draw(getSprite("Asteroid"));
+}
+
+void Aste_Asteroid::DrawDebug()
+{
+	sf::CircleShape Colision(getLife() * 10);
+	Colision.setOrigin(Colision.getRadius(), Colision.getRadius());
+	Colision.setPosition(getPosition());
+	
+	Colision.setFillColor(sf::Color::Transparent);
+	Colision.setOutlineThickness(1);
+	Colision.setOutlineColor(sf::Color::Red);
+	App.draw(Colision);
+
+
+	sf::RectangleShape Dir(sf::Vector2f(1, Colision.getRadius()));
+	Dir.setPosition(getPosition());
+	float angle = (double)Angle_calc(getPosition(), getPosition() + getVelocity()) * 180 / pi;
+	Dir.setRotation(angle - 90);
+	App.draw(Dir);
 }

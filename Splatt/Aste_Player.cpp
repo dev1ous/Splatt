@@ -1,6 +1,7 @@
 #include "Aste_Player.h"
 #include "Aste_Shoot.h"
 #include "Aste_Enemies.h"
+#include "Texture_SpriteManager.hpp"
 
 Aste_Player::Aste_Player()
 {
@@ -58,6 +59,14 @@ void Aste_Player::MoveForward()
 	m_velocity.y = sin(radiant) * 200;
 }
 
+void Aste_Player::DeathReset()
+{
+	m_position = sf::Vector2f(1920 / 2, 1080 / 2);
+	m_velocity = sf::Vector2f(0, 0);
+	m_rotation = 0.0f;
+	m_fireTimer = 0.f;
+}
+
 void Aste_Player::Update()
 {
 	m_fireTimer += MainTime.GetTimeDeltaF();
@@ -65,6 +74,12 @@ void Aste_Player::Update()
 	
 	m_velocity.x /= 1 + 0.4 * MainTime.GetTimeDeltaF();
 	m_velocity.y /= 1 + 0.4 * MainTime.GetTimeDeltaF();
+
+	if ((m_velocity.x < 10 && m_velocity.x > -10) && (m_velocity.y < 10 && m_velocity.y > -10))
+	{
+		m_velocity.x = 0;
+		m_velocity.y = 0;
+	}
 
 	if (m_position.x < -15)
 		m_position.x = 1920 + 15;
@@ -76,15 +91,34 @@ void Aste_Player::Update()
 	else if (m_position.y > 1080 + 15)
 		m_position.y = -15;
 
-	//for (Aste_Enemies* ActualEnemie : EnemiesList)
-	//{
-	//	int ennemie_rad = ActualEnemie->getLife() * 10;
-	//	if (Circle_Collision(m_position, ActualEnemie->getPosition(), 30, ennemie_rad))
-	//	{
-	//		ActualEnemie->RemoveLife();
-	//		break;
-	//	}
-	//}
+	for (Aste_Enemies* ActualEnemie : EnemiesList)
+	{
+		int ennemie_rad = ActualEnemie->getLife() * 10;
+		if (Circle_Collision(m_position, ActualEnemie->getPosition(), getSprite("astePlayer").getLocalBounds().width / 2, ennemie_rad))
+		{
+
+			if (m_lives > 1)
+			{
+				ActualEnemie->RemoveLife();
+				m_lives--;
+				DeathReset();
+			}
+			else
+			{
+				// death
+			}
+			break;
+		}
+	}
+}
+
+void Aste_Player::Draw()
+{
+	getSprite("astePlayer").setRotation(0);
+	getSprite("astePlayer").setOrigin(getSprite("astePlayer").getGlobalBounds().width / 2, getSprite("astePlayer").getGlobalBounds().height / 2);
+	getSprite("astePlayer").setPosition(aste_player->getPosition());
+	getSprite("astePlayer").setRotation(aste_player->getRotation());
+	App.draw(getSprite("astePlayer"));
 }
 
 void Aste_Player::Shoot()
@@ -94,4 +128,23 @@ void Aste_Player::Shoot()
 		m_fireTimer = 0;
 		Aste_ShootList.push_back(Aste_Shoot(getPosition(), m_rotation, true));
 	}
+}
+
+void Aste_Player::DrawDebug()
+{
+	sf::CircleShape Colision(getSprite("astePlayer").getLocalBounds().width / 2);
+	Colision.setOrigin(Colision.getRadius(), Colision.getRadius());
+	Colision.setPosition(getPosition());
+
+	Colision.setFillColor(sf::Color::Transparent);
+	Colision.setOutlineThickness(1);
+	Colision.setOutlineColor(sf::Color::Red);
+	App.draw(Colision);
+
+
+	sf::RectangleShape Dir(sf::Vector2f(1, Colision.getRadius()));
+	Dir.setPosition(getPosition());
+	float angle = (double)Angle_calc(m_position, m_position + m_velocity) * 180 / pi;
+	Dir.setRotation(angle - 90);
+	App.draw(Dir);
 }

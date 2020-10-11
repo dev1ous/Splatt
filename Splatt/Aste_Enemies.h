@@ -25,6 +25,7 @@ public:
 	virtual void RemoveLife();
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
+	virtual void DrawDebug() = 0;
 };
 
 extern std::vector<Aste_Enemies*> EnemiesList;

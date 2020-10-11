@@ -24,8 +24,11 @@ public:
 	void RotateClockWise();
 	void RotateConterClockWise();
 	void MoveForward();
+	void DeathReset();
 	void Update();
+	void Draw();
 	void Shoot();
+	void DrawDebug();
 };
 
 extern Aste_Player* aste_player;
