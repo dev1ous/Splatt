@@ -10,10 +10,10 @@ Lander::Lander(RenderWindow& _window)
 	
 	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
 	mVelocity = Vector2f(0, 0);
-	mAngle = -90;
+	mAngle = 0;
 
 	mSprite.setPosition(mPosition);
-	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().y / 3, mTexture.getSize().x));
+	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
 
 	
@@ -23,29 +23,41 @@ Lander::Lander(RenderWindow& _window)
 
 void Lander::Update()
 {
+	mVelocity.y += .1f * MainTime.GetTimeDeltaF();
+
 	MoveRight();
 	MoveLeft();
 	Inpulse();
 
-	//mPosition = mVelocity;
+	mPosition += mVelocity;
+	mSprite.setPosition(mPosition);
+
 }
 
 void Lander::MoveRight()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Right))
-		mVelocity.x += .5f * MainTime.GetTimeDeltaF();
+		mVelocity.x += .1f * MainTime.GetTimeDeltaF();
 }
 
 void Lander::MoveLeft()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Left))
-		mVelocity.x -= .5f * MainTime.GetTimeDeltaF();
+		mVelocity.x -= .1f * MainTime.GetTimeDeltaF();
 }
 
 void Lander::Inpulse()
 {
+	float Timer = 0;
+	
+	Timer += MainTime.GetTimeDeltaF();
+
 	if (Keyboard::isKeyPressed(Keyboard::Up))
-		mVelocity.y -= .5f * MainTime.GetTimeDeltaF();
+	{
+		mVelocity.y -= .2f * MainTime.GetTimeDeltaF();
+		mSprite.setTextureRect(IntRect(mTexture.getSize().x / 3, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
+	}
+
 }
 
 #pragma endregion

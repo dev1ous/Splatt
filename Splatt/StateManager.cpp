@@ -4,6 +4,8 @@
 
 State state = State::MENU;
 
+Lunar_manager* l_manager = new Lunar_manager;
+
 void EventsManager()
 {
 	while (App.pollEvent(event))
@@ -16,8 +18,6 @@ void EventsManager()
 
 void UpdateManager()
 {
-	Lunar_manager l_manager;
-
 	//restart of the clock (time per frame)
 	MainTime.RestartClock();
 
@@ -32,7 +32,7 @@ void UpdateManager()
 	case State::PACMAN:
 		break;
 	case State::LUNAR_LANDER:
-		l_manager.Lunar_update();
+		l_manager->Lunar_update();
 		break;
 	case State::ASTEROID:
 		Aste_Update();
@@ -50,8 +50,6 @@ void UpdateManager()
 
 void DisplayManager()
 {
-	Lunar_manager l_manager;
-
 	// Clear the Window
 	App.clear(sf::Color::Black);
 
@@ -66,7 +64,7 @@ void DisplayManager()
 	case State::PACMAN:
 		break;
 	case State::LUNAR_LANDER:
-		l_manager.Lunar_display(App);
+		l_manager->Lunar_display(App);
 		break;
 	case State::ASTEROID:
 		Aste_Display();

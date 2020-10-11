@@ -4,7 +4,7 @@ Lander* player;
 
 Lunar_manager::Lunar_manager()
 {
-	Lander *player = new Lander(App);
+	player = new Lander(App);
 }
 
 void Lunar_manager::Lunar_update()
