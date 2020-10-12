@@ -27,8 +27,10 @@ void GroundContainer::Fill(RenderWindow& _window)
 
 void GroundContainer::Update(Lander& _myplayer)
 {
-	if(IsCollide(_myplayer))
+	if (IsCollide(_myplayer))
+	{		
 		//player.explode
+	}
 }
 
 bool GroundContainer::IsCollide(Lander& _myplayer)
