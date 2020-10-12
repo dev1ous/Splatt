@@ -171,6 +171,9 @@
     <ClCompile Include="Si_Manager.cpp">
       <Filter>Fichiers sources\Space Invader</Filter>
     </ClCompile>
+    <ClCompile Include="Lunar_stone.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.hpp">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="Si_Manager.h">
       <Filter>Fichiers d%27en-tête\Space Invader</Filter>
+    </ClInclude>
+    <ClInclude Include="Lunar_stone.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -169,6 +169,7 @@
     <ClCompile Include="Lunar_ground.cpp" />
     <ClCompile Include="Lunar_GroundContainer.cpp" />
     <ClCompile Include="lunar_landingZone.cpp" />
+    <ClCompile Include="Lunar_stone.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Lunar_manager.cpp" />
     <ClCompile Include="Lunar_player.cpp" />
@@ -207,6 +208,7 @@
     <ClInclude Include="lunar_landingZone.h" />
     <ClInclude Include="Lunar_manager.h" />
     <ClInclude Include="Lunar_player.h" />
+    <ClInclude Include="Lunar_stone.h" />
     <ClInclude Include="Pac_Bonus.h" />
     <ClInclude Include="Pac_Fantomes.h" />
     <ClInclude Include="Pac_Gum.h" />
