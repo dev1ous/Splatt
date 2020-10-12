@@ -65,26 +65,6 @@ void Lander::Inpulse()
 	}
 }
 
-bool Lander::CollideTop()
-{
-	return false;
-}
-
-bool Lander::CollideBot()
-{
-	return false;
-}
-
-bool Lander::CollideLeft()
-{
-	return false;
-}
-
-bool Lander::CollideRight()
-{
-	return false;
-}
-
 bool Lander::IsLanding()
 {
 

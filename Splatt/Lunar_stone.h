@@ -3,7 +3,8 @@
 
 class Stone : public Ground
 {
+
 	Stone();
-	~Stone()
+	~Stone();
 };
 

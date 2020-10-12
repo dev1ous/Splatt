@@ -1,5 +1,9 @@
 #pragma once
-class lunar_landingZone
+#include "Lunar_ground.h"
+
+class LandingZone : public Ground
 {
+	LandingZone();
+	~LandingZone();
 };
 

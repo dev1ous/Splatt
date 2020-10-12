@@ -23,10 +23,6 @@ public:
 	void MoveRight();
 	void MoveLeft();
 	void Inpulse();
-	bool CollideTop();
-	bool CollideBot();
-	bool CollideLeft();
-	bool CollideRight();
 	bool IsLanding();
 
 #pragma endregion

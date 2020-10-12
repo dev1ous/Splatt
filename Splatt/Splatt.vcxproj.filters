@@ -172,7 +172,7 @@
       <Filter>Fichiers sources\Space Invader</Filter>
     </ClCompile>
     <ClCompile Include="Lunar_stone.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Lunar Lander</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,7 +279,7 @@
       <Filter>Fichiers d%27en-tête\Space Invader</Filter>
     </ClInclude>
     <ClInclude Include="Lunar_stone.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
