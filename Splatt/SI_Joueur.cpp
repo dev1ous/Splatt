@@ -35,6 +35,11 @@ bool SI_Joueur::Get_Tir()
 	return Tir;
 }
 
+void SI_Joueur::Set_Numero(int _numero)
+{
+	Numero_Joueur = _numero;
+}
+
 void SI_Joueur::Set_Droite(bool _bool)
 {
 	Droite = _bool;

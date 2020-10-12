@@ -5,6 +5,7 @@ class SI_Joueur : public SI_Perso
 {
 private :
 	int Numero_Joueur;
+	float Timer;
 	bool Droite;
 	bool Gauche;
 	bool Tir;
@@ -18,6 +19,7 @@ public :
 	bool Get_Gauche();
 	bool Get_Tir();
 
+	void Set_Numero(int _numero);
 	void Set_Droite(bool _bool);
 	void Set_Gauche(bool _bool);
 	void Set_Tir(bool _bool);
