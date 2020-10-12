@@ -1,8 +1,16 @@
 #pragma once
 #include "Tools.hpp"
 
+enum class EnemiesType
+{
+	Asteroids,
+	Small_Saucer,
+	Big_Saucer,
+};
+
 class Aste_Enemies
 {
+	EnemiesType m_type;
 	sf::Vector2f m_pos;
 	sf::Vector2f m_velocity;
 	int m_life;
@@ -16,11 +24,12 @@ protected:
 
 public:
 	Aste_Enemies();
-	Aste_Enemies(sf::Vector2f position, float rotation, int life);
+	Aste_Enemies(EnemiesType type, sf::Vector2f position, float rotation, int life);
 	~Aste_Enemies();
 
 	void Kill() { m_life = 0; };
 	sf::Vector2f getPosition() const;
+	EnemiesType getType() const { return m_type; }
 	int getLife() const;
 	virtual void RemoveLife();
 	virtual void Update() = 0;
@@ -72,16 +81,11 @@ Asteroïd
  - Earn a live every 10'000 (Done)
 
 - Enemies Mecanique (asteroid)
- - Divide on death (Done)
- pv :
-  3          2          1
- (grand -> 2moyen -> 4petit)
- (moyen -> 2petit)
- (petit = disparition)
+ - Divide on death			(Done)
 
 - Enemies Mecanique (saucer)
- - can die when hit a asteroid
- - small shoot at random "slowly" (Done)
- - big shoot at player "rapidely"
+ - can die when hit a asteroid			(Done)
+ - small shoot at player "rapidely"		(Done)
+ - big shoot at random "slowly"			(Done)
  - big don't appears after 40'000 points
 */

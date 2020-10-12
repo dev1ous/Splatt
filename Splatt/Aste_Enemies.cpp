@@ -36,8 +36,8 @@ Aste_Enemies::Aste_Enemies()
 {
 }
 
-Aste_Enemies::Aste_Enemies(sf::Vector2f position, float rotation, int life)
-	: m_pos(position), m_rotation(rotation), m_life(life)
+Aste_Enemies::Aste_Enemies(EnemiesType type, sf::Vector2f position, float rotation, int life)
+	: m_type(type), m_pos(position), m_rotation(rotation), m_life(life)
 {
 	float radiant = (m_rotation - 90) * (pi / 180);
 	m_velocity.x = cos(radiant) * 200;

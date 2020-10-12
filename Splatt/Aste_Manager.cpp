@@ -7,25 +7,31 @@
 #include "Aste_SmallSaucer.h"
 #include "Aste_BigSaucer.h"
 
-Aste_Player* aste_player;
+Aste_Player* aste_player = new Aste_Player();
+
+int Round = 0;
+bool RoundPass = true;
+
 
 void Aste_Update()
 {
-	static bool one = false;
-	if (!one)
+	// + 2 asteroid every round (Done)
+	// + 1 saucer every 10 sec ~
+	// reset saucer spawn timer when finish a round
+	// saucer timer spawn don't increase when 1 is alive
+	
+	if (EnemiesList.size() == 0)
+		RoundPass = true;
+
+	if (RoundPass)
 	{
-		aste_player = new Aste_Player();
-		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(10, 10), 0, 3));
-		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(1800, 1000), 42, 1));
-		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(1800, 10), 173, 2));
-		EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(10, 1000), 260, 3));
-
-		EnemiesList.push_back(new Aste_SmallSaucer(sf::Vector2f(200, 500), 200));
-		EnemiesList.push_back(new Aste_BigSaucer(sf::Vector2f(1200, 500), 300));
-
-		one = true;
-	} 
-
+		RoundPass = false;
+		Round++;
+		for (int i = 0; i < Round * 2 + 2; i++)
+		{
+			EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(irandom(50, 1870), irandom(50, 1030)), frandom(0, 360), 3));
+		}
+	}
 
 	aste_player->Update();
 
@@ -51,6 +57,7 @@ void Aste_Update()
 		{
 			delete ActualEnemie;
 			EnemiesList.erase(EnemiesList.begin() + i);
+			break;
 		}
 		else
 			i++;

@@ -8,7 +8,7 @@ Aste_SmallSaucer::Aste_SmallSaucer()
 	m_shoot_timer = 0;
 }
 
-Aste_SmallSaucer::Aste_SmallSaucer(sf::Vector2f position, float rotation) : Aste_Enemies(position, rotation, 1)
+Aste_SmallSaucer::Aste_SmallSaucer(sf::Vector2f position, float rotation) : Aste_Enemies(EnemiesType::Small_Saucer, position, rotation, 1)
 {
 	m_shoot_timer = 0;
 }
@@ -44,10 +44,30 @@ void Aste_SmallSaucer::Update()
 		float rotation = Angle_calc(aste_player->getPosition(), getPosition()) * 180 / pi;
 		Aste_ShootList.push_back(Aste_Shoot(getPosition(), rotation - 90, false));
 	}
+
+	for (Aste_Enemies* ActualEnemie : EnemiesList)
+	{
+		if (ActualEnemie->getType() == EnemiesType::Asteroids)
+		{
+			int ennemie_rad = ActualEnemie->getLife() * 10;
+			if (Circle_Collision(getPosition(), ActualEnemie->getPosition(), getLife() * 10, ennemie_rad))
+			{
+				ActualEnemie->RemoveLife();
+				RemoveLife();
+				break;
+			}
+		}
+	}
 }
 
 void Aste_SmallSaucer::Draw()
 {
+	getSprite("alien").setScale(1.f, 1.f);
+	getSprite("alien").setOrigin(getSprite("alien").getGlobalBounds().width / 2, getSprite("alien").getGlobalBounds().height / 2);
+	getSprite("alien").setPosition(getPosition());
+	getSprite("alien").setScale(0.5f, 0.5f);
+
+	App.draw(getSprite("alien"));
 }
 
 void Aste_SmallSaucer::DrawDebug()

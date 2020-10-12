@@ -122,6 +122,7 @@ void Aste_Player::Draw()
 	getSprite("astePlayer").setOrigin(getSprite("astePlayer").getGlobalBounds().width / 2, getSprite("astePlayer").getGlobalBounds().height / 2);
 	getSprite("astePlayer").setPosition(aste_player->getPosition());
 	getSprite("astePlayer").setRotation(aste_player->getRotation());
+
 	App.draw(getSprite("astePlayer"));
 }
 

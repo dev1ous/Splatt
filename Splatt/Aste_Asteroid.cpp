@@ -6,7 +6,7 @@ Aste_Asteroid::Aste_Asteroid()
 {
 }
 
-Aste_Asteroid::Aste_Asteroid(sf::Vector2f position, float rotation, int life) : Aste_Enemies(position, rotation, life)
+Aste_Asteroid::Aste_Asteroid(sf::Vector2f position, float rotation, int life) : Aste_Enemies(EnemiesType::Asteroids ,position, rotation, life)
 {
 }
 

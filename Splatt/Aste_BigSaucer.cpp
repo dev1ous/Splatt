@@ -1,13 +1,14 @@
 #include "Aste_BigSaucer.h"
 #include "Aste_Player.h"
 #include "Aste_Shoot.h"
+#include "Texture_SpriteManager.hpp"
 
 Aste_BigSaucer::Aste_BigSaucer()
 {
 	m_shoot_timer = 0;
 }
 
-Aste_BigSaucer::Aste_BigSaucer(sf::Vector2f position, float rotation) : Aste_Enemies(position, rotation, 2)
+Aste_BigSaucer::Aste_BigSaucer(sf::Vector2f position, float rotation) : Aste_Enemies(EnemiesType::Big_Saucer, position, rotation, 2)
 {
 	m_shoot_timer = 0;
 }
@@ -43,10 +44,29 @@ void Aste_BigSaucer::Update()
 
 		Aste_ShootList.push_back(Aste_Shoot(getPosition(), frandom(0, 360), false));
 	}
+
+	for (Aste_Enemies* ActualEnemie : EnemiesList)
+	{
+		if (ActualEnemie->getType() == EnemiesType::Asteroids)
+		{
+			int ennemie_rad = ActualEnemie->getLife() * 10;
+			if (Circle_Collision(getPosition(), ActualEnemie->getPosition(), getLife() * 10, ennemie_rad))
+			{				
+				ActualEnemie->RemoveLife();
+				RemoveLife();
+				break;
+			}
+		}
+	}
 }
 
 void Aste_BigSaucer::Draw()
 {
+	getSprite("alien").setScale(1.f, 1.f);
+	getSprite("alien").setOrigin(getSprite("alien").getGlobalBounds().width / 2, getSprite("alien").getGlobalBounds().height / 2);
+	getSprite("alien").setPosition(getPosition());
+
+	App.draw(getSprite("alien"));
 }
 
 void Aste_BigSaucer::DrawDebug()
