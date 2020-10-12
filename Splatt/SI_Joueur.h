@@ -29,6 +29,6 @@ public :
 	
 	void Draw();
 };
-extern vector <SI_Joueur> V_joueur;
+extern vector <SI_Joueur*> V_joueur;
 
 int Nombre_Joueur = 1;

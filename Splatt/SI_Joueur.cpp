@@ -77,6 +77,7 @@ void SI_Joueur::Set_Tir(bool _bool)
 
 void SI_Joueur::Draw()
 {
+
 	if (Numero_Joueur == 1)
 	{
 		getSprite("Perso1").setOrigin(getSprite("Perso1").getGlobalBounds().width / 2, getSprite("Perso1").getGlobalBounds().height / 2);
