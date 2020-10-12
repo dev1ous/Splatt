@@ -2,6 +2,13 @@
 
 Ground::Ground()
 {
+	if (!mTexture.loadFromFile("../ressources/Lunar_lander/LunarGround.png"))
+		exit(EXIT_FAILURE);
+
+	mSprite.setTexture(mTexture);
+	mSprite.setScale(Vector2f(.1f, .1f));
+	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x, mTexture.getSize().y));
+	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
 }
 
 Ground::Ground(float _posX, float _posY)
@@ -10,7 +17,6 @@ Ground::Ground(float _posX, float _posY)
 		exit(EXIT_FAILURE);
 
 	mSprite.setTexture(mTexture);
-	mSprite.setScale(Vector2f(.5f, .5f));
 
 	mPosition.x = _posX;
 	mPosition.y = _posY;
@@ -37,12 +43,12 @@ float Ground::GetPosY()
 
 float Ground::GetHeight()
 {
-	return mSize.x;
+	return mSprite.getGlobalBounds().height;
 }
 
 float Ground::GetWidth()
 {
-	return mSize.y;
+	return mSprite.getGlobalBounds().width;
 }
 
 Ground::~Ground()
