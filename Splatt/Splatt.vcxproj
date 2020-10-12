@@ -184,6 +184,12 @@
     <ClCompile Include="SI_Tir.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Tetris_Block.cpp" />
+    <ClCompile Include="Tetris_Manager.cpp" />
+    <ClCompile Include="Tetris_Menu.cpp" />
+    <ClCompile Include="Tetris_player.cpp" />
+    <ClCompile Include="Tetris_Program.cpp" />
+    <ClCompile Include="Tetris_Score.cpp" />
     <ClCompile Include="Texture_SpriteManager.cpp" />
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>
@@ -213,6 +219,12 @@
     <ClInclude Include="SI_Tir.h" />
     <ClInclude Include="SoundManager.hpp" />
     <ClInclude Include="StateManager.hpp" />
+    <ClInclude Include="Tetris_Block.h" />
+    <ClInclude Include="Tetris_Manager.h" />
+    <ClInclude Include="Tetris_Menu.h" />
+    <ClInclude Include="Tetris_player.h" />
+    <ClInclude Include="Tetris_Program.h" />
+    <ClInclude Include="Tetris_Score.h" />
     <ClInclude Include="Texture_SpriteManager.hpp" />
     <ClInclude Include="Tools.hpp" />
   </ItemGroup>
