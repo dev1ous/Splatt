@@ -12,6 +12,7 @@ int main(int argc, char** argv)
 	Font.loadFromFile("../Ressources/times.ttf");
 
 	RessourcesLoad("../Ressources/Asteroid/");
+	RessourcesLoad("../Ressources/Space Invaders/");
 	LaunchArguments(argc, argv);
 
 	while (App.isOpen())

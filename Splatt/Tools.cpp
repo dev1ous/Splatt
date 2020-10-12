@@ -49,11 +49,11 @@ void LaunchArguments(int argc, char** argv)
 		std::cout << argv[i] << std::endl;
 
 		if (std::string(argv[i]) == "-asteroid")
-		{
 			ChangeState(State::ASTEROID);
-		}
 		else if(std::string(argv[i]) == "-Lunar")
-			state = State::LUNAR_LANDER;
+			ChangeState(State::LUNAR_LANDER);
+		else if(std::string(argv[i]) == "-SpaceI")
+			ChangeState(State::SPACE_INVADER);
 	}
 
 }
