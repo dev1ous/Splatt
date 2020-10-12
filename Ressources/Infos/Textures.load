@@ -1,3 +1,9 @@
 astePlayer | Asteroid
 Asteroid | Asteroid
 lunarPlayer | All
+Perso1 | SpaceInvaders
+Perso2 | SpaceInvaders
+Ennemi1 | SpaceInvaders
+Ennemi2 | SpaceInvaders
+Ennemi3 | SpaceInvaders
+Ennemi4 | SpaceInvaders

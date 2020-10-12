@@ -168,6 +168,9 @@
     <ClCompile Include="Si_Ennemi.cpp">
       <Filter>Fichiers sources\Space Invader\Ennemis</Filter>
     </ClCompile>
+    <ClCompile Include="Si_Manager.cpp">
+      <Filter>Fichiers sources\Space Invader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.hpp">
@@ -268,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="Si_Ennemi.h">
       <Filter>Fichiers d%27en-tête\Space Invader\Ennemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Si_Manager.h">
+      <Filter>Fichiers d%27en-tête\Space Invader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -105,6 +105,11 @@ void RessourcesLoad(std::string path)
 								tmpRessource.state = State::MENU;
 								RessourcesList.push_back(tmpRessource);
 							}
+							if (ActiveStage == "SpaceInvaders")
+							{
+								tmpRessource.state = State::SPACE_INVADER;
+								RessourcesList.push_back(tmpRessource);
+							}
 							if (ActiveStage == "Asteroid")
 							{
 								tmpRessource.state = State::ASTEROID;

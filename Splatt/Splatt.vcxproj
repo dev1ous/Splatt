@@ -180,6 +180,7 @@
     <ClCompile Include="RessourcesManager.cpp" />
     <ClCompile Include="Si_Ennemi.cpp" />
     <ClCompile Include="SI_Joueur.cpp" />
+    <ClCompile Include="Si_Manager.cpp" />
     <ClCompile Include="SI_Perso.cpp" />
     <ClCompile Include="SI_Tir.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="RessourcesManager.hpp" />
     <ClInclude Include="Si_Ennemi.h" />
     <ClInclude Include="SI_Joueur.h" />
+    <ClInclude Include="Si_Manager.h" />
     <ClInclude Include="SI_Perso.h" />
     <ClInclude Include="SI_Tir.h" />
     <ClInclude Include="SoundManager.hpp" />

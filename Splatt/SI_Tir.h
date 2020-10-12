@@ -1,6 +1,5 @@
 #pragma once
-#include "Tools.hpp"
-#include "pch.h"
+#include "Si_Manager.h"
 
 class SI_Tir
 {
