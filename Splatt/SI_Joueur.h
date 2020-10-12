@@ -29,6 +29,7 @@ public :
 	
 	void Draw();
 };
+
 extern vector <SI_Joueur*> V_joueur;
 
-int Nombre_Joueur = 1;
+static int Nombre_Joueur = 2;

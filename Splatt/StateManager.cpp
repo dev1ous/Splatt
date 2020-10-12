@@ -40,6 +40,7 @@ void UpdateManager()
 	case State::MENU:
 		break;
 	case State::SPACE_INVADER:
+		SI_Update();
 		break;
 	case State::PACMAN:
 		break;
@@ -72,6 +73,7 @@ void DisplayManager()
 	case State::MENU:
 		break;
 	case State::SPACE_INVADER:
+		SI_Display();
 		break;
 	case State::PACMAN:
 		break;

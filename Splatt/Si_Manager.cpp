@@ -2,6 +2,8 @@
 #include "SI_Perso.h"
 #include "SI_Joueur.h"
 
+vector <SI_Joueur*> V_joueur;
+
 void SI_Update()
 {
 	static bool one_pass = false;
@@ -14,5 +16,6 @@ void SI_Update()
 
 void SI_Display()
 {
-	FullDraw_Perso(V_joueur);
+	for (SI_Joueur* Actual_Joueur : V_joueur)
+		FullDraw_Perso(*Actual_Joueur);
 }
