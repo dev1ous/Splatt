@@ -4,6 +4,7 @@
 #include "SI_Manager.h"
 #include "SoundManager.hpp"
 #include "Texture_SpriteManager.hpp"
+
 State state = State::MENU;
 
 Lunar_manager* l_manager = new Lunar_manager;

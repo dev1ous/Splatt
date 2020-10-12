@@ -272,14 +272,14 @@
     <ClInclude Include="Tetris_Block.h">
       <Filter>Fichiers d%27en-tête\Tetris</Filter>
     </ClInclude>
-    <ClInclude Include="Si_Ennemi.h">
-      <Filter>Fichiers d%27en-tête\Space Invader\Ennemis</Filter>
-    </ClInclude>
     <ClInclude Include="Si_Manager.h">
       <Filter>Fichiers d%27en-tête\Space Invader</Filter>
     </ClInclude>
     <ClInclude Include="Lunar_stone.h">
       <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
+    </ClInclude>
+    <ClInclude Include="SI_Ennemi.h">
+      <Filter>Fichiers d%27en-tête\Space Invader\Ennemis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@ SI_Joueur::SI_Joueur()
 	Droite = false;
 	Gauche = false;
 	Tir = false;
+	life = 1;
 	Timer = 0;
 }
 
@@ -30,11 +31,6 @@ int SI_Joueur::Get_Numero()
 	return Numero_Joueur;
 }
 
-float SI_Joueur::Get_Timer()
-{
-	return Timer;
-}
-
 bool SI_Joueur::Get_Droite()
 {
 	return Droite;
@@ -55,11 +51,6 @@ void SI_Joueur::Set_Numero(int _numero)
 	Numero_Joueur = _numero;
 }
 
-void SI_Joueur::Set_Timer(float _timer)
-{
-	Timer = _timer;
-}
-
 void SI_Joueur::Set_Droite(bool _bool)
 {
 	Droite = _bool;
@@ -75,19 +66,49 @@ void SI_Joueur::Set_Tir(bool _bool)
 	Tir = _bool;
 }
 
+void SI_Joueur::Update()
+{
+	Timer += MainTime.GetTimeDeltaF();
+
+	if (Get_Numero() == 1)
+	{
+		if (Keyboard::isKeyPressed(Keyboard::Q) && Position.x - getSprite("Perso1").getGlobalBounds().width / 2 > 0)
+			Set_Gauche(true);
+		else
+			Set_Gauche(false);
+
+		if (Keyboard::isKeyPressed(Keyboard::D) && Position.x + getSprite("Perso1").getGlobalBounds().width / 2 < 1920)
+			Set_Droite(true);
+		else
+			Set_Droite(false);
+	}
+
+	if (Get_Numero() == 2)
+	{
+		if (Keyboard::isKeyPressed(Keyboard::Left) && Position.x - getSprite("Perso2").getGlobalBounds().width / 2 > 0)
+			Set_Gauche(true);
+		else
+			Set_Gauche(false);
+
+		if (Keyboard::isKeyPressed(Keyboard::Right) && Position.x + getSprite("Perso2").getGlobalBounds().width / 2 < 1920)
+			Set_Droite(true);
+		else
+			Set_Droite(false);
+	}
+
+	if (Droite)
+		Position.x += 200 * MainTime.GetTimeDeltaF();
+	if (Gauche)
+		Position.x -= 200 * MainTime.GetTimeDeltaF();
+}
+
 void SI_Joueur::Draw()
 {
+	string Sprite_Name = "Perso";
 
-	if (Numero_Joueur == 1)
-	{
-		getSprite("Perso1").setOrigin(getSprite("Perso1").getGlobalBounds().width / 2, getSprite("Perso1").getGlobalBounds().height / 2);
-		getSprite("Perso1").setPosition(Position);
-		App.draw(getSprite("Perso1"));
-	}
-	if (Numero_Joueur == 2)
-	{
-		getSprite("Perso2").setOrigin(getSprite("Perso2").getGlobalBounds().width / 2, getSprite("Perso2").getGlobalBounds().height / 2);
-		getSprite("Perso2").setPosition(Position);
-		App.draw(getSprite("Perso2"));
-	}
+	Sprite_Name += to_string(Numero_Joueur);
+	getSprite(Sprite_Name).setOrigin(getSprite(Sprite_Name).getGlobalBounds().width / 2, getSprite(Sprite_Name).getGlobalBounds().height / 2);
+	getSprite(Sprite_Name).setPosition(Position);
+	App.draw(getSprite(Sprite_Name));
+	
 }

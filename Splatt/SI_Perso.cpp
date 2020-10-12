@@ -7,6 +7,7 @@ SI_Perso::SI_Perso()
     Origine.x = 0;
     Origine.y = 0;
     life = 1;
+    Timer = 0;
 }
 
 SI_Perso::~SI_Perso()
@@ -21,6 +22,11 @@ Vector2f SI_Perso::Get_Position()
 Vector2f SI_Perso::Get_Origin()
 {
     return Origine;
+}
+
+float SI_Perso::Get_Timer()
+{
+    return Timer;
 }
 
 int SI_Perso::Get_Life()
@@ -38,17 +44,22 @@ void SI_Perso::Set_Origin(Vector2f _origine)
     Origine = _origine;
 }
 
+void SI_Perso::Set_Timer(float _timer)
+{
+    Timer = _timer;
+}
+
 void SI_Perso::Set_Life(int _life)
 {
     life = _life;
 }
 
-void SI_Perso::Draw()
+void FullDraw_Perso(SI_Perso& _p)
 {
-
+    _p.Draw();
 }
 
-void FullDraw_Perso(SI_Perso& P)
+void FullUpdate(SI_Perso& _p)
 {
-    P.Draw();
+    _p.Update();
 }

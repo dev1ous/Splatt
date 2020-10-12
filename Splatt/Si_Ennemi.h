@@ -1,16 +1,18 @@
 #pragma once
 #include "SI_Perso.h"
 
-class Si_Ennemi : public SI_Perso
+class SI_Ennemi : public SI_Perso
 {
 protected :
+	int Type;
 	bool Droite;
 	bool Gauche;
 	bool Tir;
 
 public :
-	Si_Ennemi();
-	~Si_Ennemi();
+	SI_Ennemi();
+	SI_Ennemi(Vector2f _position, int _type);
+	~SI_Ennemi();
 
 	bool Get_Droite();
 	bool Get_Gauche();
@@ -19,6 +21,11 @@ public :
 	void Set_Droite(bool _bool);
 	void Set_Gauche(bool _bool);
 	void Set_Tir(bool _bool);
+
+	void Update();
+	void Draw();
 };
 
-int Nombre_Ennemis = 0;
+extern vector <SI_Ennemi*> EnnemyList;
+
+static int Nombre_Ennemis = 0;
