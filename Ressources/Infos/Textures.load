@@ -2,6 +2,7 @@ astePlayer | Asteroid
 Asteroid | Asteroid
 alien | Asteroid
 lunarPlayer | All
+PersoBase | SpaceInvaders
 Perso1 | SpaceInvaders
 Perso2 | SpaceInvaders
 Ennemi1 | SpaceInvaders

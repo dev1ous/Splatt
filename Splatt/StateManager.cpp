@@ -1,7 +1,7 @@
 #include "StateManager.hpp"
 #include "Aste_Manager.h"
 #include "Lunar_manager.h"
-
+#include "SI_Manager.h"
 #include "SoundManager.hpp"
 #include "Texture_SpriteManager.hpp"
 State state = State::MENU;

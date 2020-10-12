@@ -1,5 +1,5 @@
 #pragma once
-#include "Si_Manager.h"
+#include "SI_Manager.h"
 
 class SI_Perso
 {
@@ -19,4 +19,7 @@ public :
 	void Set_Position(Vector2f _position);
 	void Set_Origin(Vector2f _origine);
 	void Set_Life(int _life);
+	virtual void Draw();
 };
+
+void FullDraw_Perso(SI_Perso& P);

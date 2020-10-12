@@ -42,3 +42,15 @@ void SI_Perso::Set_Life(int _life)
 {
     life = _life;
 }
+
+void SI_Perso::Draw()
+{
+     getSprite("PersoBase").setOrigin(getSprite("PersoBase").getGlobalBounds().width / 2, getSprite("PersoBase").getGlobalBounds().height / 2);
+     getSprite("PersoBase").setPosition(Position);
+     App.draw(getSprite("PersoBase"));
+}
+
+void FullDraw_Perso(SI_Perso& P)
+{
+    P.Draw();
+}

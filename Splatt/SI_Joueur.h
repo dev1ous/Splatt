@@ -12,7 +12,7 @@ private :
 
 public :
 	SI_Joueur();
-	SI_Joueur(Vector2f _position);
+	SI_Joueur(Vector2f _position, int _numerojoueur);
 	~SI_Joueur();
 
 	int Get_Numero();
@@ -26,6 +26,9 @@ public :
 	void Set_Droite(bool _bool);
 	void Set_Gauche(bool _bool);
 	void Set_Tir(bool _bool);
+	
+	void Draw();
 };
+extern vector <SI_Joueur> V_joueur;
 
-int Nombre_Joueur;
+int Nombre_Joueur = 1;
