@@ -1,5 +1,9 @@
 #include "Lunar_ground.h"
 
+Ground::Ground()
+{
+}
+
 Ground::Ground(float _posX, float _posY)
 {
 	if (!mTexture.loadFromFile("../ressources/Lunar_lander/LunarGround.png"))

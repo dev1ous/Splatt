@@ -9,6 +9,7 @@ class GroundContainer
 
 public:
 	GroundContainer(RenderWindow& _window);
+	void Fill(RenderWindow& _window);
 	void Display(RenderWindow& _window);
 	~GroundContainer();
 
