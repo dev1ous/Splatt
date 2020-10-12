@@ -2,7 +2,7 @@
 #include "Lunar_GroundContainer.h"
 
 Lander* player;
-GroundContainer* myContainer;
+GroundContainer *myContainer;
 
 Lunar_manager::Lunar_manager()
 {

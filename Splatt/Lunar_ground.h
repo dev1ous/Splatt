@@ -6,7 +6,6 @@ protected:
 
 	Texture mTexture;
 	Sprite mSprite;
-	Vector2f mSize;
 	Vector2f mPosition;
 
 public:
