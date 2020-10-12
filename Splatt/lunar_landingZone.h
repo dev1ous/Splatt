@@ -3,6 +3,8 @@
 
 class LandingZone : public Ground
 {
+
+public:
 	LandingZone();
 	~LandingZone();
 };

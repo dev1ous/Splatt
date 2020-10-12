@@ -12,7 +12,8 @@ public:
 	GroundContainer();
 	GroundContainer(RenderWindow& _window);
 	void Fill(RenderWindow& _window);
-	//void Update(Lander& _player);
+	void Update(Lander &_myplayer);
+	bool IsCollide(Lander &_myplayer);
 	void Display(RenderWindow& _window);
 	~GroundContainer();
 

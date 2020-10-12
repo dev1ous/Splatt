@@ -3,8 +3,11 @@
 
 class Stone : public Ground
 {
+protected:
 
+public:
 	Stone();
+	Stone(float _posX, float _posY);
 	~Stone();
 };
 

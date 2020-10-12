@@ -13,7 +13,7 @@ Lunar_manager::Lunar_manager()
 void Lunar_manager::Lunar_update()
 {
 	player->Update();
-	//myContainer->Update(*player);
+	myContainer->Update(*player);
 }
 
 void Lunar_manager::Lunar_display(RenderWindow& _window)

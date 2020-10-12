@@ -1,42 +1,54 @@
 #include "Lunar_GroundContainer.h"
+#include "Lunar_stone.h"
 
 GroundContainer::GroundContainer()
 {
 }
 
-GroundContainer::GroundContainer(RenderWindow &_window)
+GroundContainer::GroundContainer(RenderWindow& _window)
 {
 	Fill(_window);
 }
 
 void GroundContainer::Fill(RenderWindow& _window)
 {
+	Stone myStone;
 	vector<int> tmp;
-	Ground myGround;
 
-	for (int i = 0; i <= _window.getSize().x / 45; i++)
+	for (int i = 0; i < _window.getSize().x / 45; i++)
 		tmp.push_back(1);
 
-	for (int i = 0; i <= _window.getSize().x / 45; i++)
+	for (int x = 0; x < tmp.size(); x++)
 	{
-		if (tmp[i] == 1)
-			mContainer.push_back(Ground(myGround.GetWidth() * i + i, _window.getSize().y - myGround.GetHeight() / 2));
+		if (tmp[x] == 1)
+			mContainer.push_back(Stone(myStone.GetWidth() * x, _window.getSize().y - myStone.GetHeight()));
 	}
 }
 
-//void GroundContainer::Update(Lander& _player)
-//{
-//	Ground myGround;
-//
-//	for (int i = 0; i <= mContainer.size() - 1; i++)
-//	{
-//		if(mContainer[i].GetClass() == myGround.GetClass())
-//	}
-//}
+void GroundContainer::Update(Lander& _myplayer)
+{
+	if(IsCollide(_myplayer))
+		//player.explode
+}
+
+bool GroundContainer::IsCollide(Lander& _myplayer)
+{
+	Ground myGround;
+
+	for (int x = 0; x < mContainer.size(); x++)
+	{
+		if (mContainer[x].GetClass() == myGround.GetClass())
+			return true;
+		else
+			return false;
+	}
+}
+
+
 
 void GroundContainer::Display(RenderWindow& _window)
 {
-	for (int i = 0; i <= mContainer.size() - 1; i++)
+	for (int i = 0; i < mContainer.size(); i++)
 		_window.draw(mContainer[i].GetSprite());
 }
 

@@ -28,6 +28,8 @@ public:
 #pragma endregion
 
 	void Display(RenderWindow& _window);
+
+	void Explode();
 	~Lander();
 	
 };

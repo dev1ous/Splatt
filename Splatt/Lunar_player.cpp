@@ -24,7 +24,7 @@ Lander::Lander(RenderWindow& _window)
 
 void Lander::Update()
 {
-	mVelocity.y += .1f * MainTime.GetTimeDeltaF();
+	mVelocity.y += .2f * MainTime.GetTimeDeltaF();
 
 	MoveRight();
 	MoveLeft();
@@ -38,13 +38,13 @@ void Lander::Update()
 void Lander::MoveRight()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Right))
-		mVelocity.x += .1f * MainTime.GetTimeDeltaF();
+		mVelocity.x += .5f * MainTime.GetTimeDeltaF();
 }
 
 void Lander::MoveLeft()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Left))
-		mVelocity.x -= .1f * MainTime.GetTimeDeltaF();
+		mVelocity.x -= .5f * MainTime.GetTimeDeltaF();
 }
 
 void Lander::Inpulse()
@@ -53,7 +53,7 @@ void Lander::Inpulse()
 	{
 		mEngineOn = true;
 
-		mVelocity.y -= .2f * MainTime.GetTimeDeltaF();
+		mVelocity.y -= .5f * MainTime.GetTimeDeltaF();
 		mSprite.setTextureRect(IntRect(mTexture.getSize().x / 3, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	}
 
@@ -78,6 +78,15 @@ void Lander::Display(RenderWindow& _window)
 	_window.draw(mSprite);
 }
 
+void Lander::Explode()
+{
+	this->~Lander();
+
+	//Explode sprite
+
+}
+
 Lander::~Lander()
 {
+	delete this;
 }
