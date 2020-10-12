@@ -52,19 +52,23 @@ void Aste_Player::RotateConterClockWise()
 void Aste_Player::MoveForward()
 {
 	float radiant = (m_rotation - 90) * (pi / 180);
-	m_position.x += cos(radiant) * (200 * MainTime.GetTimeDeltaF());
-	m_position.y += sin(radiant) * (200 * MainTime.GetTimeDeltaF());
 
-	m_velocity.x = cos(radiant) * 200;
-	m_velocity.y = sin(radiant) * 200;
+	m_velocity.x += cos(radiant) * 300 * MainTime.GetTimeDeltaF();
+	m_velocity.y += sin(radiant) * 300 * MainTime.GetTimeDeltaF();
+	
 }
 
 void Aste_Player::DeathReset()
 {
-	m_position = sf::Vector2f(1920 / 2, 1080 / 2);
-	m_velocity = sf::Vector2f(0, 0);
-	m_rotation = 0.0f;
-	m_fireTimer = 0.f;
+	if (m_lives > 1)
+	{
+		m_lives--;
+
+		m_position = sf::Vector2f(1920 / 2, 1080 / 2);
+		m_velocity = sf::Vector2f(0, 0);
+		m_rotation = 0.0f;
+		m_fireTimer = 0.f;
+	}
 }
 
 void Aste_Player::Update()
@@ -75,7 +79,7 @@ void Aste_Player::Update()
 	m_velocity.x /= 1 + 0.4 * MainTime.GetTimeDeltaF();
 	m_velocity.y /= 1 + 0.4 * MainTime.GetTimeDeltaF();
 
-	if ((m_velocity.x < 10 && m_velocity.x > -10) && (m_velocity.y < 10 && m_velocity.y > -10))
+	if ((m_velocity.x < 0.001f && m_velocity.x > -0.001f) && (m_velocity.y < 0.001f && m_velocity.y > -0.001f))
 	{
 		m_velocity.x = 0;
 		m_velocity.y = 0;
@@ -100,7 +104,7 @@ void Aste_Player::Update()
 			if (m_lives > 1)
 			{
 				ActualEnemie->RemoveLife();
-				m_lives--;
+				
 				DeathReset();
 			}
 			else

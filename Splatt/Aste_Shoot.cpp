@@ -1,5 +1,7 @@
 #include "Aste_Shoot.h"
 #include "Aste_Enemies.h"
+#include "Aste_Player.h"
+#include "Texture_SpriteManager.hpp"
 
 std::vector<Aste_Shoot> Aste_ShootList;
 
@@ -71,15 +73,27 @@ void Aste_Shoot::Update()
 
 	if (!m_dead)
 	{
-		// balle ennemie
-		for (Aste_Enemies* ActualEnemie : EnemiesList)
+		// balle joueur -> enemies
+		if (m_isPlayer)
 		{
-			int ennemie_rad = ActualEnemie->getLife() * 10;
-			if (Circle_Collision(m_pos, ActualEnemie->getPosition(), 3, ennemie_rad))
+			for (Aste_Enemies* ActualEnemie : EnemiesList)
+			{
+				int ennemie_rad = ActualEnemie->getLife() * 10;
+				if (Circle_Collision(m_pos, ActualEnemie->getPosition(), 3, ennemie_rad))
+				{
+					m_dead = true;
+					ActualEnemie->RemoveLife();
+					break;
+				}
+			}
+		}
+		// balle enemies -> joueur
+		else
+		{
+			if (Circle_Collision(m_pos, aste_player->getPosition(), 3, getSprite("astePlayer").getLocalBounds().width / 2))
 			{
 				m_dead = true;
-				ActualEnemie->RemoveLife();
-				break;
+				aste_player->DeathReset();
 			}
 		}
 	}

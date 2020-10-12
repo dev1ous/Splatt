@@ -7,7 +7,7 @@ class Aste_SmallSaucer : public Aste_Enemies
 
 public:
 	Aste_SmallSaucer();
-	Aste_SmallSaucer(sf::Vector2f position, float rotation, int life);
+	Aste_SmallSaucer(sf::Vector2f position, float rotation);
 	~Aste_SmallSaucer();
 
 	virtual void RemoveLife();

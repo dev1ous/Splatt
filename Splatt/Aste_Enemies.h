@@ -62,17 +62,17 @@ Asteroïd
 
 
 - World Mecanique
- - switch of right side to left when left screen
+ - switch of right side to left when left screen (Done)
 
 - Player Mecanique
- - Shoot
- - Move
- - Velocity reduction
- - Start with 3 lives
- - Earn a live every 10'000
+ - Shoot					(Done)
+ - Move						(Done)
+ - Velocity reduction		(Done)
+ - Start with 3 lives		(Done)
+ - Earn a live every 10'000 (Done)
 
 - Enemies Mecanique (asteroid)
- - Divide on death 
+ - Divide on death (Done)
  pv :
   3          2          1
  (grand -> 2moyen -> 4petit)
@@ -80,7 +80,8 @@ Asteroïd
  (petit = disparition)
 
 - Enemies Mecanique (saucer)
- - small shoot at random "slowly"
+ - can die when hit a asteroid
+ - small shoot at random "slowly" (Done)
  - big shoot at player "rapidely"
  - big don't appears after 40'000 points
 */
