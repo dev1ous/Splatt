@@ -2,6 +2,8 @@
 #include "Aste_Manager.h"
 #include "Lunar_manager.h"
 
+#include "SoundManager.hpp"
+#include "Texture_SpriteManager.hpp"
 State state = State::MENU;
 
 Lunar_manager* l_manager = new Lunar_manager;
@@ -15,6 +17,16 @@ void EventsManager()
 	}
 }
 
+void ChangeState(State NextState)
+{
+	RemoveAllSounds();
+	RemoveAllSprites();
+
+	state = NextState;
+
+	LoadSounds(NextState);
+	LoadSprite(NextState);
+}
 
 void UpdateManager()
 {

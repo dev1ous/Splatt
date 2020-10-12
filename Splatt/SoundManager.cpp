@@ -1,6 +1,6 @@
 #include "SoundManager.hpp"
 
-std::list<Sound> SoundList;
+std::list<SSound> SoundList;
 std::list<Musics*> MusicList;
 int MusicMultip = 50;
 int SoundMultip = 30;
@@ -13,7 +13,7 @@ void LoadSounds(State _state)
 		{
 			if (ActualRessource.type == RessourceType::SOUNDFX)
 			{
-				SoundList.push_back(Sound(ActualRessource.name, ActualRessource.state, ActualRessource.path, ActualRessource.soundmultiplier));
+				SoundList.push_back(SSound(ActualRessource.name, ActualRessource.state, ActualRessource.path, ActualRessource.soundmultiplier));
 			}
 			else if (ActualRessource.type == RessourceType::MUSIC)
 			{
@@ -28,7 +28,7 @@ void LoadSounds(State _state)
 
 sf::Sound& getSound(std::string Name)
 {
-	for (Sound& ActualSound : SoundList)
+	for (SSound& ActualSound : SoundList)
 	{
 		if (ActualSound.getName() == Name)
 		{
@@ -54,7 +54,7 @@ void RemoveStateSounds(State _state)
 	while (Removed)
 	{
 		Removed = false;
-		for (Sound& ActualSound : SoundList)
+		for (SSound& ActualSound : SoundList)
 		{
 			if (ActualSound.getState() == _state && _state != State::ALL)
 			{
@@ -84,7 +84,7 @@ void RemoveAllSounds()
 	while (Removed)
 	{
 		Removed = false;
-		for (Sound& ActualSound : SoundList)
+		for (SSound& ActualSound : SoundList)
 		{
 			if (ActualSound.getState() != State::ALL)
 			{

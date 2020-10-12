@@ -4,11 +4,11 @@
 #include "RessourcesManager.hpp"
 
 
-class Sprite
+class SSprite
 {
 public:
-	Sprite() { m_state = State::RTNULL; };
-	Sprite(std::string Name, State _state, std::string Path)
+	SSprite() { m_state = State::RTNULL; };
+	SSprite(std::string Name, State _state, std::string Path)
 	{
 		m_name = Name;
 		m_state = _state;
@@ -22,7 +22,7 @@ public:
 			std::cout << "ERROR: Sprite : " << m_name << " didn't load" << std::endl;
 		}
 	};
-	~Sprite() {};
+	~SSprite() {};
 	void init(std::string Name, State _state, std::string Path) 
 	{
 		m_name = Name;
@@ -43,8 +43,8 @@ public:
 	sf::Sprite& getSprite() { return m_sprite; };
 	sf::Texture& getTexture() { return m_texture; };
 
-	bool operator == (const Sprite& s) const { return m_name == s.m_name && m_state == s.m_state; };
-	bool operator != (const Sprite& s) const { return !operator==(s); };
+	bool operator == (const SSprite& s) const { return m_name == s.m_name && m_state == s.m_state; };
+	bool operator != (const SSprite& s) const { return !operator==(s); };
 
 private:
 	std::string m_name;
@@ -55,7 +55,7 @@ private:
 };
 
 
-extern std::list<Sprite*> SpriteList;
+extern std::list<SSprite*> SpriteList;
 
 void LoadSprite(State _state);
 sf::Sprite& getSprite(std::string Name);

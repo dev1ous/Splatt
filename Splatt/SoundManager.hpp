@@ -6,10 +6,10 @@
 extern int MusicMultip;
 extern int SoundMultip;
 
-class Sound
+class SSound
 {
 public:
-	Sound(std::string Name, State _state, std::string Path, float VolumeMultiplier)
+	SSound(std::string Name, State _state, std::string Path, float VolumeMultiplier)
 	{
 		m_name = Name;
 		m_state = _state;
@@ -24,7 +24,7 @@ public:
 			std::cout << "ERROR: sounds : " << m_name << " didn't load" << std::endl;
 		}
 	};
-	~Sound() {};
+	~SSound() {};
 
 	std::string getName() const { return m_name; };
 	State getState() const { return m_state; };
@@ -37,8 +37,8 @@ public:
 			m_sound.setBuffer(m_Buffer);
 	};
 
-	bool operator == (const Sound& s) const { return m_name == s.m_name && m_state == s.m_state; };
-	bool operator != (const Sound& s) const { return !operator==(s); };
+	bool operator == (const SSound& s) const { return m_name == s.m_name && m_state == s.m_state; };
+	bool operator != (const SSound& s) const { return !operator==(s); };
 
 private:
 	std::string m_name;
@@ -51,7 +51,7 @@ private:
 };
 
 
-extern std::list<Sound> SoundList;
+extern std::list<SSound> SoundList;
 
 
 void LoadSounds(State _state);

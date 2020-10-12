@@ -1,6 +1,6 @@
 #include "Texture_SpriteManager.hpp"
 
-std::list<Sprite*> SpriteList;
+std::list<SSprite*> SpriteList;
 
 void LoadSprite(State _state)
 {
@@ -11,7 +11,7 @@ void LoadSprite(State _state)
 			if (ActualRessource.type == RessourceType::TEXTURE)
 			{
 		
-				Sprite* tmp = new Sprite;
+				SSprite* tmp = new SSprite;
 				tmp->init(ActualRessource.name, ActualRessource.state, ActualRessource.path);
 
 				SpriteList.push_back(tmp);
@@ -24,7 +24,7 @@ void LoadSprite(State _state)
 
 sf::Sprite& getSprite(std::string Name)
 {
-	for (Sprite* ActualSprite : SpriteList)
+	for (SSprite* ActualSprite : SpriteList)
 	{
 		if (ActualSprite->getName() == Name)
 		{
@@ -37,7 +37,7 @@ sf::Sprite& getSprite(std::string Name)
 
 sf::Texture& getTexture(std::string Name)
 {	
-	for (Sprite* ActualSprite : SpriteList)
+	for (SSprite* ActualSprite : SpriteList)
 	{
 		if (ActualSprite->getName() == Name)
 		{
@@ -53,7 +53,7 @@ void RemoveStateSprites(State _state)
 	while (Removed)
 	{
 		Removed = false;
-		for (Sprite* ActualSprite : SpriteList)
+		for (SSprite* ActualSprite : SpriteList)
 		{
 			if (ActualSprite->getState() == _state && _state != State::ALL)
 			{
@@ -72,7 +72,7 @@ void RemoveAllSprites()
 	while (Removed)
 	{
 		Removed = false;
-		for (Sprite* ActualSprite : SpriteList)
+		for (SSprite* ActualSprite : SpriteList)
 		{
 			if (ActualSprite->getState() != State::ALL)
 			{

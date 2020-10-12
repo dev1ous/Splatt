@@ -26,6 +26,8 @@ extern State state;
 
 void EventsManager();
 
+void ChangeState(State NextState);
+
 /////////////
 /// \brief Managements of updates based on state
 /// \param Windows
