@@ -1,28 +1,57 @@
 #include "SI_Joueur.h"
 #include "SI_Tir.h"
 
-vector <SI_Tir*> Tir_Joueur;
+vector <SI_Tir> Tir_Joueur;
 
 SI_Joueur::SI_Joueur()
 {
 	life = 1;
 	Numero_Joueur = 1;
+	taille = 20;
+
+	Limite_Tir = 0;
+	Nombre_Tir = 0;
+
+	Special_Jaune = 0;
+	Special_Bleu = 0;
+	Special_Violet = 0;
+	Special_Vert = 0;
+
 	Droite = false;
 	Gauche = false;
 	Tir = false;
-	life = 1;
 	Timer = 0;
 }
 
-SI_Joueur::SI_Joueur(Vector2f _position, int _numerojoueur)
+SI_Joueur::SI_Joueur(Vector2f _position, int _numerojoueur, Color _color)
 {
 	life = 1;
 	Numero_Joueur = _numerojoueur;
+	Couleur = _color;
+
+	taille = 0;
+
+	Limite_Tir = 1;
+	Nombre_Tir = 0;
+
+	Special_Jaune = 0;
+	Special_Bleu = 0;
+	Special_Violet = 0;
+	Special_Vert = 0;
+
 	Droite = false;
 	Gauche = false;
 	Tir = false;
 	Timer = 0;
 	Position = _position;
+
+	if (Numero_Joueur == 1)
+		Special.setPosition(20, 20);
+	if (Numero_Joueur == 2)
+		Special.setPosition(1900, 20);
+
+	Special.setOutlineColor(Color::White);
+	Special.setOutlineThickness(1);
 }
 
 SI_Joueur::~SI_Joueur()
@@ -34,19 +63,39 @@ int SI_Joueur::Get_Numero()
 	return Numero_Joueur;
 }
 
-bool SI_Joueur::Get_Droite()
+int SI_Joueur::Get_NombreTir()
 {
-	return Droite;
+	return Nombre_Tir;
 }
 
-bool SI_Joueur::Get_Gauche()
+int SI_Joueur::Get_Limit()
 {
-	return Gauche;
+	return Limite_Tir;
 }
 
-bool SI_Joueur::Get_Tir()
+Color SI_Joueur::Get_Color()
 {
-	return Tir;
+	return Couleur;
+}
+
+int SI_Joueur::Get_Special_Jaune()
+{
+	return Special_Jaune;
+}
+
+int SI_Joueur::Get_Special_Bleu()
+{
+	return Special_Bleu;
+}
+
+int SI_Joueur::Get_Special_Violet()
+{
+	return Special_Violet;
+}
+
+int SI_Joueur::Get_Special_Vert()
+{
+	return Special_Vert;
 }
 
 void SI_Joueur::Set_Numero(int _numero)
@@ -54,19 +103,36 @@ void SI_Joueur::Set_Numero(int _numero)
 	Numero_Joueur = _numero;
 }
 
-void SI_Joueur::Set_Droite(bool _bool)
+void SI_Joueur::Set_NombreTir(int _NbTir)
 {
-	Droite = _bool;
+	Nombre_Tir = _NbTir;
+	if (Nombre_Tir < 0)
+		Nombre_Tir = 0;
 }
 
-void SI_Joueur::Set_Gauche(bool _bool)
+void SI_Joueur::Set_Limit(int _limit)
 {
-	Gauche = _bool;
+	Limite_Tir = _limit;
 }
 
-void SI_Joueur::Set_Tir(bool _bool)
+void SI_Joueur::Set_Special_Jaune(int _special)
 {
-	Tir = _bool;
+	Special_Jaune = _special;
+}
+
+void SI_Joueur::Set_Special_Bleu(int _special)
+{
+	Special_Bleu = _special;
+}
+
+void SI_Joueur::Set_Special_Violet(int _special)
+{
+	Special_Violet = _special;
+}
+
+void SI_Joueur::Set_Special_Vert(int _special)
+{
+	Special_Vert = _special;
 }
 
 void SI_Joueur::Update()
@@ -85,9 +151,10 @@ void SI_Joueur::Update()
 		else
 			Set_Droite(false);
 
-		if (Keyboard::isKeyPressed(Keyboard::Space) && Timer > 0.5f)
+		if (Keyboard::isKeyPressed(Keyboard::Space) && Timer > 0.5f && Nombre_Tir < Limite_Tir)
 		{
 			Set_Tir(true);
+			Nombre_Tir++;
 			Timer = 0;
 		}
 		else
@@ -106,13 +173,16 @@ void SI_Joueur::Update()
 		else
 			Set_Droite(false);
 
-		if (Keyboard::isKeyPressed(Keyboard::Numpad0) && Timer > 0.5f)
+		if (Keyboard::isKeyPressed(Keyboard::Numpad0) && Timer > 0.5f && Nombre_Tir < Limite_Tir)
 		{
 			Set_Tir(true);
+			Nombre_Tir++;
 			Timer = 0;
 		}
 		else
 			Set_Tir(false);
+
+		Special.setScale(Vector2f(-1.f, 1.f));
 	}
 
 	if (Droite)
@@ -121,10 +191,28 @@ void SI_Joueur::Update()
 		Position.x -= 200 * MainTime.GetTimeDeltaF();
 	if (Tir)
 	{
-		if (Get_Numero() == 1)
-			Tir_Joueur.push_back(new SI_Tir(Color::Red, Position));
-		if (Get_Numero() == 2)
-			Tir_Joueur.push_back(new SI_Tir(Color::Blue, Position));
+		Tir_Joueur.push_back(SI_Tir(Couleur, Position));
+	}
+
+	if (Special_Jaune > 0)
+	{
+		Special.setFillColor(Color::Yellow);
+		Special.setSize(Vector2f(22 * Special_Jaune, 10));
+	}
+	if (Special_Bleu > 0)
+	{
+		Special.setFillColor(Color::Blue);
+		Special.setSize(Vector2f(20 * Special_Bleu, 10));
+	}
+	if (Special_Violet > 0)
+	{
+		Special.setFillColor(Color::Magenta);
+		Special.setSize(Vector2f(20 * Special_Violet, 10));
+	}
+	if (Special_Vert > 0)
+	{
+		Special.setFillColor(Color::Green);
+		Special.setSize(Vector2f(20 * Special_Vert, 10));
 	}
 }
 
@@ -137,4 +225,5 @@ void SI_Joueur::Draw()
 	getSprite(Sprite_Name).setPosition(Position);
 	App.draw(getSprite(Sprite_Name));
 	
+	App.draw(Special);
 }

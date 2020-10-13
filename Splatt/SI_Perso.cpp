@@ -34,6 +34,21 @@ int SI_Perso::Get_Life()
     return life;
 }
 
+bool SI_Perso::Get_Droite()
+{
+    return Droite;
+}
+
+bool SI_Perso::Get_Gauche()
+{
+    return Gauche;
+}
+
+bool SI_Perso::Get_Tir()
+{
+    return Tir;
+}
+
 void SI_Perso::Set_Position(Vector2f _position)
 {
     Position = _position;
@@ -52,6 +67,21 @@ void SI_Perso::Set_Timer(float _timer)
 void SI_Perso::Set_Life(int _life)
 {
     life = _life;
+}
+
+void SI_Perso::Set_Droite(bool _bool)
+{
+    Droite = _bool;
+}
+
+void SI_Perso::Set_Gauche(bool _bool)
+{
+    Gauche = _bool;
+}
+
+void SI_Perso::Set_Tir(bool _bool)
+{
+    Tir = _bool;
 }
 
 void FullDraw_Perso(SI_Perso& _p)

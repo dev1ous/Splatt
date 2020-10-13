@@ -5,28 +5,21 @@ class SI_Ennemi : public SI_Perso
 {
 protected :
 	int Type;
-	bool Droite;
-	bool Gauche;
 	bool Descente;
-	bool Tir;
 
 public :
 	SI_Ennemi();
 	SI_Ennemi(Vector2f _position, int _type);
 	~SI_Ennemi();
 
-	bool Get_Droite();
-	bool Get_Gauche();
-	bool Get_Tir();
+	int Get_Type();
 
-	void Set_Droite(bool _bool);
-	void Set_Gauche(bool _bool);
-	void Set_Tir(bool _bool);
+	void Set_Descente(bool _bool);
 
 	void Update();
 	void Draw();
 };
 
-extern vector <SI_Ennemi*> EnnemyList;
+extern vector <SI_Ennemi> EnnemyList;
 
 static int Nombre_Ennemis = 0;

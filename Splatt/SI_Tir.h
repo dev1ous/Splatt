@@ -5,6 +5,7 @@ class SI_Tir
 {
 protected :
 	Vector2f Position;
+	bool destruction;
 	float Radius;
 
 public :
@@ -15,11 +16,15 @@ public :
 	CircleShape Ball;
 
 	Vector2f Get_Position();
+	bool Get_Destruct();
+	float Get_Radius();
+
 	void Set_Position(Vector2f _position);
+	void Set_Destruct(bool _bool);
 
 	void Update();
 	void Draw();
 };
 
-extern vector <SI_Tir*> Tir_Joueur;
-extern vector <SI_Tir*> Tir_Ennemi;
+extern vector <SI_Tir> Tir_Joueur;
+extern vector <SI_Tir> Tir_Ennemi;

@@ -7,8 +7,8 @@ SI_Ennemi::SI_Ennemi()
 	Nombre_Ennemis++;
 	Droite = false;
 	Gauche = false;
+	Descente = false;
 	Tir = false;
-	life = 1;
 	Timer = 0;
 }
 
@@ -31,34 +31,14 @@ SI_Ennemi::~SI_Ennemi()
 	Nombre_Ennemis--;
 }
 
-bool SI_Ennemi::Get_Droite()
+int SI_Ennemi::Get_Type()
 {
-	return Droite;
+	return Type;
 }
 
-bool SI_Ennemi::Get_Gauche()
+void SI_Ennemi::Set_Descente(bool _bool)
 {
-	return Gauche;
-}
-
-bool SI_Ennemi::Get_Tir()
-{
-	return Tir;
-}
-
-void SI_Ennemi::Set_Droite(bool _bool)
-{
-	Droite = _bool;
-}
-
-void SI_Ennemi::Set_Gauche(bool _bool)
-{
-	Gauche = _bool;
-}
-
-void SI_Ennemi::Set_Tir(bool _bool)
-{
-	Tir = _bool;
+	Descente = _bool;
 }
 
 void SI_Ennemi::Update()
@@ -67,19 +47,19 @@ void SI_Ennemi::Update()
 
 	Sprite_Name += to_string(Type);
 	if (Position.x - getSprite(Sprite_Name).getGlobalBounds().width / 2 < 0 && Gauche == true)
-		for (SI_Ennemi* Actual_Ennemy : EnnemyList)
+		for (SI_Ennemi& Actual_Ennemy : EnnemyList)
 		{
-			Actual_Ennemy->Droite = true;
-			Actual_Ennemy->Gauche = false;
-			Actual_Ennemy->Descente = true;
+			Actual_Ennemy.Droite = true;
+			Actual_Ennemy.Gauche = false;
+			Actual_Ennemy.Descente = true;
 		}
 
 	if (Position.x + getSprite(Sprite_Name).getGlobalBounds().width / 2 > 1920 && Droite == true)
-		for (SI_Ennemi* Actual_Ennemy : EnnemyList)
+		for (SI_Ennemi& Actual_Ennemy : EnnemyList)
 		{
-			Actual_Ennemy->Droite = false;
-			Actual_Ennemy->Gauche = true;
-			Actual_Ennemy->Descente = true;
+			Actual_Ennemy.Droite = false;
+			Actual_Ennemy.Gauche = true;
+			Actual_Ennemy.Descente = true;
 		}
 
 	if (Gauche)
@@ -87,7 +67,7 @@ void SI_Ennemi::Update()
 		if (Descente)
 		{
 			Timer += MainTime.GetTimeDeltaF();
-			Position.y += 100 * MainTime.GetTimeDeltaF();
+			Position.y += 50 * MainTime.GetTimeDeltaF();
 			if (Timer > 0.5f)
 			{
 				Descente = false;
@@ -95,7 +75,7 @@ void SI_Ennemi::Update()
 			}
 		}
 		else
-			Position.x -= 100 * MainTime.GetTimeDeltaF();
+			Position.x -= 50 * MainTime.GetTimeDeltaF();
 	}
 
 	if (Droite)
@@ -103,7 +83,7 @@ void SI_Ennemi::Update()
 		if (Descente)
 		{
 			Timer += MainTime.GetTimeDeltaF();
-			Position.y += 100 * MainTime.GetTimeDeltaF();
+			Position.y += 50 * MainTime.GetTimeDeltaF();
 			if (Timer > 0.5f)
 			{
 				Descente = false;
@@ -111,7 +91,7 @@ void SI_Ennemi::Update()
 			}
 		}
 		else
-			Position.x += 100 * MainTime.GetTimeDeltaF();
+			Position.x += 50 * MainTime.GetTimeDeltaF();
 	}
 
 }
