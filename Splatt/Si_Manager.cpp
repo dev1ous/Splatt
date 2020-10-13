@@ -2,6 +2,7 @@
 #include "SI_Perso.h"
 #include "SI_Joueur.h"
 #include "SI_Ennemi.h"
+#include "SI_Tir.h"
 
 vector <SI_Joueur*> V_joueur;
 vector <SI_Ennemi*> EnnemyList;
@@ -23,7 +24,13 @@ void SI_Update()
 	}
 
 	for (SI_Joueur* Actual_Joueur : V_joueur)
-		Actual_Joueur->Update();
+		FullUpdate(*Actual_Joueur);
+	
+	for (SI_Ennemi* Actual_Ennemy : EnnemyList)
+		FullUpdate(*Actual_Ennemy);
+
+	for (SI_Tir* Actual_Tir : Tir_Joueur)
+		Actual_Tir->Update();
 }
 
 void SI_Display()
@@ -33,4 +40,7 @@ void SI_Display()
 
 	for (SI_Ennemi* Actual_Ennemy : EnnemyList)
 		FullDraw_Perso(*Actual_Ennemy);
+
+	for (SI_Tir* Actual_Tir : Tir_Joueur)
+		Actual_Tir->Draw();
 }

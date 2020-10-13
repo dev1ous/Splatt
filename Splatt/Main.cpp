@@ -2,7 +2,7 @@
 #include "StateManager.hpp"
 #include "RessourcesManager.hpp"
 
-sf::RenderWindow App(sf::VideoMode(1920, 1080), "Splatt");
+sf::RenderWindow App(sf::VideoMode(1920, 1080), "Splatt", sf::Style::Fullscreen);
 sf::Event event;
 
 int main(int argc, char** argv)

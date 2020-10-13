@@ -1,4 +1,7 @@
 #include "SI_Joueur.h"
+#include "SI_Tir.h"
+
+vector <SI_Tir*> Tir_Joueur;
 
 SI_Joueur::SI_Joueur()
 {
@@ -81,6 +84,14 @@ void SI_Joueur::Update()
 			Set_Droite(true);
 		else
 			Set_Droite(false);
+
+		if (Keyboard::isKeyPressed(Keyboard::Space) && Timer > 0.5f)
+		{
+			Set_Tir(true);
+			Timer = 0;
+		}
+		else
+			Set_Tir(false);
 	}
 
 	if (Get_Numero() == 2)
@@ -94,12 +105,27 @@ void SI_Joueur::Update()
 			Set_Droite(true);
 		else
 			Set_Droite(false);
+
+		if (Keyboard::isKeyPressed(Keyboard::Numpad0) && Timer > 0.5f)
+		{
+			Set_Tir(true);
+			Timer = 0;
+		}
+		else
+			Set_Tir(false);
 	}
 
 	if (Droite)
 		Position.x += 200 * MainTime.GetTimeDeltaF();
 	if (Gauche)
 		Position.x -= 200 * MainTime.GetTimeDeltaF();
+	if (Tir)
+	{
+		if (Get_Numero() == 1)
+			Tir_Joueur.push_back(new SI_Tir(Color::Red, Position));
+		if (Get_Numero() == 2)
+			Tir_Joueur.push_back(new SI_Tir(Color::Blue, Position));
+	}
 }
 
 void SI_Joueur::Draw()

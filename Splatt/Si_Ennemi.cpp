@@ -18,7 +18,7 @@ SI_Ennemi::SI_Ennemi(Vector2f _position, int _type)
 	Type = _type;
 	Nombre_Ennemis++;
 	Droite = false;
-	Gauche = false;
+	Gauche = true;
 	Tir = false;
 	life = 1;
 	Timer = 0;
@@ -27,6 +27,7 @@ SI_Ennemi::SI_Ennemi(Vector2f _position, int _type)
 
 SI_Ennemi::~SI_Ennemi()
 {
+	Nombre_Ennemis--;
 }
 
 bool SI_Ennemi::Get_Droite()
@@ -61,22 +62,27 @@ void SI_Ennemi::Set_Tir(bool _bool)
 
 void SI_Ennemi::Update()
 {
-	string Sprite_Name = "Ennemy";
+	string Sprite_Name = "Ennemi";
 
 	Sprite_Name += to_string(Type);
 	if (Position.x - getSprite(Sprite_Name).getGlobalBounds().width / 2 < 0)
 		for (SI_Ennemi* Actual_Ennemy : EnnemyList)
 		{
-			Droite = true;
-			Gauche = false;
+			Actual_Ennemy->Droite = true;
+			Actual_Ennemy->Gauche = false;
 		}
 
 	if (Position.x + getSprite(Sprite_Name).getGlobalBounds().width / 2 > 1920)
 		for (SI_Ennemi* Actual_Ennemy : EnnemyList)
 		{
-			Droite = false;
-			Gauche = true;
+			Actual_Ennemy->Droite = false;
+			Actual_Ennemy->Gauche = true;
 		}
+
+	if (Gauche)
+		Position.x -= 100 * MainTime.GetTimeDeltaF();
+	if (Droite)
+		Position.x += 100 * MainTime.GetTimeDeltaF();
 
 }
 
