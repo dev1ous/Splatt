@@ -54,6 +54,8 @@ void LaunchArguments(int argc, char** argv)
 			ChangeState(State::LUNAR_LANDER);
 		else if(std::string(argv[i]) == "-SpaceI")
 			ChangeState(State::SPACE_INVADER);
+		else if (std::string(argv[i]) == "-PacMan")
+			ChangeState(State::PACMAN);
 	}
 
 }

@@ -13,6 +13,7 @@ int main(int argc, char** argv)
 
 	RessourcesLoad("../Ressources/Asteroid/");
 	RessourcesLoad("../Ressources/Space Invaders/");
+	RessourcesLoad("../Ressources/PacMan/");
 	LaunchArguments(argc, argv);
 
 	while (App.isOpen())

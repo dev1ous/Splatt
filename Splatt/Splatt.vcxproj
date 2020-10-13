@@ -176,6 +176,7 @@
     <ClCompile Include="Pac_Bonus.cpp" />
     <ClCompile Include="Pac_Fantomes.cpp" />
     <ClCompile Include="Pac_Gum.cpp" />
+    <ClCompile Include="Pac_Manager.cpp" />
     <ClCompile Include="Pac_Personnage.cpp" />
     <ClCompile Include="Perso_Pacman.cpp" />
     <ClCompile Include="RessourcesManager.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="Pac_Bonus.h" />
     <ClInclude Include="Pac_Fantomes.h" />
     <ClInclude Include="Pac_Gum.h" />
+    <ClInclude Include="Pac_Manager.h" />
     <ClInclude Include="Pac_Personnage.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Perso_Pacman.h" />

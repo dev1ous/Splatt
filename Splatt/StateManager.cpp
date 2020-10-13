@@ -1,5 +1,6 @@
 #include "StateManager.hpp"
 #include "Aste_Manager.h"
+#include "Pac_Manager.h"
 #include "Lunar_manager.h"
 #include "SI_Manager.h"
 #include "SoundManager.hpp"
@@ -44,6 +45,7 @@ void UpdateManager()
 		SI_Update();
 		break;
 	case State::PACMAN:
+		Pac_Update();
 		break;
 	case State::LUNAR_LANDER:
 		l_manager->Lunar_update();
@@ -77,6 +79,7 @@ void DisplayManager()
 		SI_Display();
 		break;
 	case State::PACMAN:
+		Pac_Display();
 		break;
 	case State::LUNAR_LANDER:
 		l_manager->Lunar_display(App);

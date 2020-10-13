@@ -115,11 +115,16 @@ void RessourcesLoad(std::string path)
 								tmpRessource.state = State::ASTEROID;
 								RessourcesList.push_back(tmpRessource);
 							}
+							if (ActiveStage == "PacMan")
+							{
+								tmpRessource.state = State::PACMAN;
+								RessourcesList.push_back(tmpRessource);
+							}
 
 							if (Line.find("|") == -1)
 								done = true;
 							else
-								Line.erase(0, 3);
+								Line.erase(0, 3);  
 
 						};
 						break;
