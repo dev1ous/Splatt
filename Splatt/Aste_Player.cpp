@@ -2,6 +2,7 @@
 #include "Aste_Shoot.h"
 #include "Aste_Enemies.h"
 #include "Texture_SpriteManager.hpp"
+#include "Aste_Manager.h"
 
 Aste_Player::Aste_Player()
 {
@@ -11,6 +12,7 @@ Aste_Player::Aste_Player()
 	m_velocity = sf::Vector2f(0, 0);
 	m_rotation = 0.0f;
 	m_fireTimer = 0.f;
+	m_rect = sf::IntRect(0, 0, 40, 60);
 }
 
 Aste_Player::~Aste_Player()
@@ -27,6 +29,11 @@ float Aste_Player::getRotation() const
 	return m_rotation;
 }
 
+void Aste_Player::setFrame(int frame)
+{
+	m_rect.left = frame * m_rect.width;
+}
+
 void Aste_Player::AddScore(int toAdd)
 {
 	if ((m_score + toAdd) % 10000 < m_score % 10000)
@@ -41,12 +48,12 @@ void Aste_Player::ResetScore()
 
 void Aste_Player::RotateClockWise()
 {
-	m_rotation += 90 * MainTime.GetTimeDeltaF();
+	m_rotation += 100 * MainTime.GetTimeDeltaF();
 }
 
 void Aste_Player::RotateConterClockWise()
 {
-	m_rotation -= 90 * MainTime.GetTimeDeltaF();
+	m_rotation -= 100 * MainTime.GetTimeDeltaF();
 }
 
 void Aste_Player::MoveForward()
@@ -55,7 +62,7 @@ void Aste_Player::MoveForward()
 
 	m_velocity.x += cos(radiant) * 300 * MainTime.GetTimeDeltaF();
 	m_velocity.y += sin(radiant) * 300 * MainTime.GetTimeDeltaF();
-	
+	setFrame(1);
 }
 
 void Aste_Player::DeathReset()
@@ -109,7 +116,7 @@ void Aste_Player::Update()
 			}
 			else
 			{
-				// death
+				Reset();
 			}
 			break;
 		}
@@ -118,6 +125,7 @@ void Aste_Player::Update()
 
 void Aste_Player::Draw()
 {
+	getSprite("astePlayer").setTextureRect(m_rect);
 	getSprite("astePlayer").setRotation(0);
 	getSprite("astePlayer").setOrigin(getSprite("astePlayer").getGlobalBounds().width / 2, getSprite("astePlayer").getGlobalBounds().height / 2);
 	getSprite("astePlayer").setPosition(aste_player->getPosition());

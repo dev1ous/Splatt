@@ -4,10 +4,12 @@
 
 Aste_Asteroid::Aste_Asteroid()
 {
+	m_spriteType = rand() % 5;
 }
 
 Aste_Asteroid::Aste_Asteroid(sf::Vector2f position, float rotation, int life) : Aste_Enemies(EnemiesType::Asteroids ,position, rotation, life)
 {
+	m_spriteType = rand() % 5;
 }
 
 Aste_Asteroid::~Aste_Asteroid()
@@ -51,7 +53,7 @@ void Aste_Asteroid::Update()
 void Aste_Asteroid::Draw()
 {	
 	getSprite("Asteroid").setScale(1.f, 1.f);
-	getSprite("Asteroid").setTextureRect(sf::IntRect(0,0,60,60));
+	getSprite("Asteroid").setTextureRect(sf::IntRect(60 * m_spriteType,0,60,60));
 	getSprite("Asteroid").setOrigin(getSprite("Asteroid").getGlobalBounds().width / 2, getSprite("Asteroid").getGlobalBounds().height / 2);
 	getSprite("Asteroid").setPosition(getPosition());
 

@@ -27,7 +27,7 @@ public:
 	Aste_Enemies(EnemiesType type, sf::Vector2f position, float rotation, int life);
 	~Aste_Enemies();
 
-	void Kill() { m_life = 0; };
+	void Kill();
 	sf::Vector2f getPosition() const;
 	EnemiesType getType() const { return m_type; }
 	int getLife() const;
@@ -81,11 +81,11 @@ Asteroïd
  - Earn a live every 10'000 (Done)
 
 - Enemies Mecanique (asteroid)
- - Divide on death			(Done)
+ - Divide on death			    (Done)
 
 - Enemies Mecanique (saucer)
- - can die when hit a asteroid			(Done)
- - small shoot at player "rapidely"		(Done)
- - big shoot at random "slowly"			(Done)
- - big don't appears after 40'000 points
+ - can die when hit a asteroid			 (Done)
+ - small shoot at player "rapidely"		 (Done)
+ - big shoot at random "slowly"			 (Done)
+ - big don't appears after 40'000 points (Done)
 */

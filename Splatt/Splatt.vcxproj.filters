@@ -177,6 +177,12 @@
     <ClCompile Include="Pac_Manager.cpp">
       <Filter>Fichiers sources\PacMan</Filter>
     </ClCompile>
+    <ClCompile Include="Aste_Explosion.cpp">
+      <Filter>Fichiers sources\Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="Aste_Lights.cpp">
+      <Filter>Fichiers sources\Asteroid</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.hpp">
@@ -286,6 +292,12 @@
     </ClInclude>
     <ClInclude Include="Pac_Manager.h">
       <Filter>Fichiers d%27en-tête\PacMan</Filter>
+    </ClInclude>
+    <ClInclude Include="Aste_Lights.h">
+      <Filter>Fichiers d%27en-tête\Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="Aste_Explosion.h">
+      <Filter>Fichiers d%27en-tête\Asteroid</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

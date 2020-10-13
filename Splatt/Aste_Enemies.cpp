@@ -1,6 +1,13 @@
 #include "Aste_Enemies.h"
+#include "Aste_Explosion.h"
 
 std::vector<Aste_Enemies*> EnemiesList;
+
+void Aste_Enemies::Kill()
+{
+	m_life = 0;
+	ExplosionList.push_back(Aste_Explosion(m_pos));
+}
 
 sf::Vector2f Aste_Enemies::getPosition() const
 {
@@ -40,8 +47,8 @@ Aste_Enemies::Aste_Enemies(EnemiesType type, sf::Vector2f position, float rotati
 	: m_type(type), m_pos(position), m_rotation(rotation), m_life(life)
 {
 	float radiant = (m_rotation - 90) * (pi / 180);
-	m_velocity.x = cos(radiant) * 200;
-	m_velocity.y = sin(radiant) * 200;
+	m_velocity.x = cos(radiant) * 125;
+	m_velocity.y = sin(radiant) * 125;
 
 }
 

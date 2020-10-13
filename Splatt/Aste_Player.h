@@ -9,6 +9,7 @@ class Aste_Player
 	int m_score;
 	int m_lives;
 	float m_rotation;
+	sf::IntRect m_rect;
 
 public:
 	Aste_Player();
@@ -19,6 +20,7 @@ public:
 	int getScore() const { return m_score; }
 	int getLives() const { return m_lives; }
 
+	void setFrame(int frame);
 	void AddScore(int);
 	void ResetScore();
 	void RotateClockWise();
