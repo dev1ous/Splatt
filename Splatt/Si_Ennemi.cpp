@@ -19,6 +19,7 @@ SI_Ennemi::SI_Ennemi(Vector2f _position, int _type)
 	Nombre_Ennemis++;
 	Droite = false;
 	Gauche = true;
+	Descente = false;
 	Tir = false;
 	life = 1;
 	Timer = 0;
@@ -65,24 +66,53 @@ void SI_Ennemi::Update()
 	string Sprite_Name = "Ennemi";
 
 	Sprite_Name += to_string(Type);
-	if (Position.x - getSprite(Sprite_Name).getGlobalBounds().width / 2 < 0)
+	if (Position.x - getSprite(Sprite_Name).getGlobalBounds().width / 2 < 0 && Gauche == true)
 		for (SI_Ennemi* Actual_Ennemy : EnnemyList)
 		{
 			Actual_Ennemy->Droite = true;
 			Actual_Ennemy->Gauche = false;
+			Actual_Ennemy->Descente = true;
 		}
 
-	if (Position.x + getSprite(Sprite_Name).getGlobalBounds().width / 2 > 1920)
+	if (Position.x + getSprite(Sprite_Name).getGlobalBounds().width / 2 > 1920 && Droite == true)
 		for (SI_Ennemi* Actual_Ennemy : EnnemyList)
 		{
 			Actual_Ennemy->Droite = false;
 			Actual_Ennemy->Gauche = true;
+			Actual_Ennemy->Descente = true;
 		}
 
 	if (Gauche)
-		Position.x -= 100 * MainTime.GetTimeDeltaF();
+	{
+		if (Descente)
+		{
+			Timer += MainTime.GetTimeDeltaF();
+			Position.y += 100 * MainTime.GetTimeDeltaF();
+			if (Timer > 0.5f)
+			{
+				Descente = false;
+				Timer = 0;
+			}
+		}
+		else
+			Position.x -= 100 * MainTime.GetTimeDeltaF();
+	}
+
 	if (Droite)
-		Position.x += 100 * MainTime.GetTimeDeltaF();
+	{
+		if (Descente)
+		{
+			Timer += MainTime.GetTimeDeltaF();
+			Position.y += 100 * MainTime.GetTimeDeltaF();
+			if (Timer > 0.5f)
+			{
+				Descente = false;
+				Timer = 0;
+			}
+		}
+		else
+			Position.x += 100 * MainTime.GetTimeDeltaF();
+	}
 
 }
 

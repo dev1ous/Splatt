@@ -5,3 +5,4 @@
 
 void SI_Update();
 void SI_Display();
+void App_Ennemis(int _rangeX, int _rangeY, int _typeMin, int _typeMax);

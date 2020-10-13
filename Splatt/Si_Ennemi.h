@@ -7,6 +7,7 @@ protected :
 	int Type;
 	bool Droite;
 	bool Gauche;
+	bool Descente;
 	bool Tir;
 
 public :
