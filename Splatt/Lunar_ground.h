@@ -6,6 +6,7 @@ class Ground
 {
 protected:
 
+	int mId;
 	Texture mTexture;
 	Sprite mSprite;
 	Vector2f mPosition;
@@ -23,6 +24,7 @@ public:
 	float GetHeight();
 	float GetWidth();
 	string GetClass();
+	int GetID();
 
 #pragma endregion
 

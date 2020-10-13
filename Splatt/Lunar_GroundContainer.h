@@ -13,7 +13,7 @@ public:
 	GroundContainer(RenderWindow& _window);
 	void Fill(RenderWindow& _window);
 	void Update(Lander &_myplayer);
-	bool IsCollide(Lander &_myplayer);
+	bool IsCollide(Lander &_myplayer, int _x);
 	void Display(RenderWindow& _window);
 	~GroundContainer();
 

@@ -50,6 +50,11 @@ string Ground::GetClass()
 	return typeid(this).name();
 }
 
+int Ground::GetID()
+{
+	return mId;
+}
+
 #pragma endregion
 
 Ground::~Ground()

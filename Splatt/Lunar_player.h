@@ -23,7 +23,7 @@ public:
 	void MoveRight();
 	void MoveLeft();
 	void Inpulse();
-	bool IsLanding();
+	void Landing();
 
 #pragma endregion
 
@@ -36,6 +36,8 @@ public:
 
 	float GetPosX();
 	float GetPosY();
+	float GetVelocityX();
+	float GetVelocityY();
 	float GetHeight();
 	float GetWidth();
 	Sprite GetSprite();

@@ -66,10 +66,10 @@ void Lander::Inpulse()
 	}
 }
 
-bool Lander::IsLanding()
+void Lander::Landing()
 {
-
-	return true;
+	cout << "You Win !" << endl;
+	cout << "GG WP" << endl;
 }
 
 #pragma endregion
@@ -83,8 +83,6 @@ void Lander::Explode()
 {
 	mVelocity.x = 0.0f;
 	mVelocity.y = 0.0f;
-
-	//Explode sprite
 
 	if (!mTexture.loadFromFile("../ressources/Lunar_lander/Lander_explode.png"))
 		exit(EXIT_FAILURE);
@@ -109,6 +107,16 @@ float Lander::GetPosX()
 float Lander::GetPosY()
 {
 	return mPosition.y;
+}
+
+float Lander::GetVelocityX()
+{
+	return mVelocity.x;
+}
+
+float Lander::GetVelocityY()
+{
+	return mVelocity.y;
 }
 
 float Lander::GetHeight()

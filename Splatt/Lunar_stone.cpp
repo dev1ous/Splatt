@@ -11,6 +11,8 @@ Stone::Stone()
 
 Stone::Stone(float _posX, float _posY)
 {
+	mId = 1;
+
 	if (!mTexture.loadFromFile("../ressources/Lunar_lander/LunarGround.png"))
 		exit(EXIT_FAILURE);
 
