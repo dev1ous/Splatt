@@ -18,6 +18,7 @@ Lander::Lander(RenderWindow& _window)
 	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
 	mSprite.setRotation(mAngle);
+	
 }
 
 #pragma region "Lander_update"
@@ -80,13 +81,47 @@ void Lander::Display(RenderWindow& _window)
 
 void Lander::Explode()
 {
-	this->~Lander();
+	mVelocity.x = 0.0f;
+	mVelocity.y = 0.0f;
 
 	//Explode sprite
 
+	if (!mTexture.loadFromFile("../ressources/Lunar_lander/Lander_explode.png"))
+		exit(EXIT_FAILURE);
+
+	mSprite.setPosition(mPosition);
+	mSprite.setTexture(mTexture);
+	mSprite.setScale(Vector2f(2.0f, 2.0f));
+	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x, mTexture.getSize().y));
+	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
 }
 
 Lander::~Lander()
 {
-	delete this;
+	 
+}
+
+float Lander::GetPosX()
+{
+	return mPosition.x;
+}
+
+float Lander::GetPosY()
+{
+	return mPosition.y;
+}
+
+float Lander::GetHeight()
+{
+	return mSprite.getGlobalBounds().height ;
+}
+
+float Lander::GetWidth()
+{
+	return mSprite.getGlobalBounds().width;
+}
+
+Sprite Lander::GetSprite()
+{
+	return mSprite;
 }

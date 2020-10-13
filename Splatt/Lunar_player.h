@@ -31,6 +31,16 @@ public:
 
 	void Explode();
 	~Lander();
+
+#pragma region "Get/Set"
+
+	float GetPosX();
+	float GetPosY();
+	float GetHeight();
+	float GetWidth();
+	Sprite GetSprite();
+
+#pragma endregion
 	
 };
 

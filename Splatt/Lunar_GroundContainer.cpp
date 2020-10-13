@@ -28,25 +28,23 @@ void GroundContainer::Fill(RenderWindow& _window)
 void GroundContainer::Update(Lander& _myplayer)
 {
 	if (IsCollide(_myplayer))
-	{		
-		//player.explode
+	{
+		//draw an explosion
+
+		_myplayer.Explode();
 	}
 }
 
 bool GroundContainer::IsCollide(Lander& _myplayer)
 {
-	Ground myGround;
-
 	for (int x = 0; x < mContainer.size(); x++)
 	{
-		if (mContainer[x].GetClass() == myGround.GetClass())
+		if (mContainer.at(x).IsCollide(_myplayer))
 			return true;
-		else
-			return false;
 	}
+
+	return false;
 }
-
-
 
 void GroundContainer::Display(RenderWindow& _window)
 {

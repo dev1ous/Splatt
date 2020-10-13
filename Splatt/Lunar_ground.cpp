@@ -10,6 +10,14 @@ Ground::Ground(float _posX, float _posY)
 	
 }
 
+bool Ground::IsCollide(Lander& _player)
+{
+	if (mSprite.getGlobalBounds().intersects(_player.GetSprite().getGlobalBounds()))
+		return true;
+
+	return false;
+}
+
 #pragma region "Get/Set"
 
 Sprite Ground::GetSprite()

@@ -1,5 +1,7 @@
 #pragma once
 #include "pch.h"
+#include "Lunar_player.h"
+
 class Ground
 {
 protected:
@@ -11,6 +13,7 @@ protected:
 public:
 	Ground();
 	Ground(float _posX, float _posY);
+	bool IsCollide(Lander &_player);
 
 #pragma region "Get/Set"
 
