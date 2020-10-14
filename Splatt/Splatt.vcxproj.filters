@@ -183,6 +183,12 @@
     <ClCompile Include="Aste_Lights.cpp">
       <Filter>Fichiers sources\Asteroid</Filter>
     </ClCompile>
+    <ClCompile Include="Controles.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePad.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.hpp">
@@ -298,6 +304,12 @@
     </ClInclude>
     <ClInclude Include="Aste_Explosion.h">
       <Filter>Fichiers d%27en-tête\Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePad.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Controles.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

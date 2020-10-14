@@ -335,8 +335,8 @@ void Aste_Display()
 
 
 	// debug infos
-	for (Aste_Enemies* ActualEnemie : EnemiesList)
-		ActualEnemie->DrawDebug();
+	//for (Aste_Enemies* ActualEnemie : EnemiesList)
+		//ActualEnemie->DrawDebug();
 
-	aste_player->DrawDebug();
+	//aste_player->DrawDebug();
 }
