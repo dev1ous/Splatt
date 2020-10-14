@@ -7,7 +7,7 @@ class Aste_Explosion
 	sf::IntRect m_rect;
 	float m_timer;
 	bool m_dead;
-
+	int m_frame;
 public:
 	Aste_Explosion();
 	Aste_Explosion(sf::Vector2f pos);
@@ -15,6 +15,7 @@ public:
 
 	bool isDead() const { return m_dead; }
 	sf::Vector2f getPosition() const { return m_position; }
+	int getFrame() const { return m_frame; }
 
 	void update();
 	void draw();

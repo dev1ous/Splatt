@@ -147,6 +147,18 @@ void Aste_Update()
 			i++;
 	}
 
+	i = 0;
+	for (Aste_Explosion& ActualExplosion : ExplosionList)
+	{
+		if (ActualExplosion.isDead())
+		{
+			ExplosionList.erase(ExplosionList.begin() + i);
+			break;
+		}
+		else
+			i++;
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		aste_player->RotateClockWise();
 
@@ -249,7 +261,20 @@ void Aste_Display()
 		else
 			LightList.push_back(Aste_Lights(sf::Vector3f(Actualshoots.getPosition().x, 1080 - Actualshoots.getPosition().y, 50), sf::Vector3f(0.6f, 0.f, 0.f), 40.f, 0.05f));
 	}
-	
+	for (Aste_Shoot Actualshoots : Aste_ShootList)
+	{
+		if (Actualshoots.isPlayer())
+			LightList.push_back(Aste_Lights(sf::Vector3f(Actualshoots.getPosition().x, 1080 - Actualshoots.getPosition().y, 50), sf::Vector3f(0.6f, 0.5f, 0.f), 40.f, 0.05f));
+		else
+			LightList.push_back(Aste_Lights(sf::Vector3f(Actualshoots.getPosition().x, 1080 - Actualshoots.getPosition().y, 50), sf::Vector3f(0.6f, 0.f, 0.f), 40.f, 0.05f));
+	}
+	for (Aste_Explosion& ActualExplosion : ExplosionList)
+	{
+		float intencity = (ActualExplosion.getFrame() - 2.f) / 10.f;
+		intencity = 1.f - intencity;
+		
+		LightList.push_back(Aste_Lights(sf::Vector3f(ActualExplosion.getPosition().x, 1080 - ActualExplosion.getPosition().y, 25), sf::Vector3f(0.8f * intencity, 0.4f * intencity, 0.f), 70.f, 0.07f));
+	}
 
 	// shader
 	_spriteFond.setTexture(_textureFond);

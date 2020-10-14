@@ -5,16 +5,18 @@ std::vector<Aste_Explosion> ExplosionList;
 
 Aste_Explosion::Aste_Explosion()
 {
+	m_frame = 0;
 	m_timer = 0.f;
 	m_dead = false;
-	m_rect = sf::IntRect(0,0,80,80);
+	m_rect = sf::IntRect(0,0,96, 96);
 }
 
 Aste_Explosion::Aste_Explosion(sf::Vector2f pos) : m_position(pos)
 {
+	m_frame = 2; 
 	m_timer = 0.f;
 	m_dead = false;
-	m_rect = sf::IntRect(0,0,80,80);
+	m_rect = sf::IntRect(2 * 96, 0, 96, 96);
 }
 
 Aste_Explosion::~Aste_Explosion()
@@ -25,14 +27,17 @@ void Aste_Explosion::update()
 {
 	m_timer += MainTime.GetTimeDeltaF();
 
-	if (m_timer >= 0.05f)
+	if (m_timer >= 0.1f)
 	{
-		m_timer -= 0.05f;
+		m_timer -= 0.1f;
 
-		if (m_rect.left == m_rect.width * 23)
+		if (m_frame == 12)
 			m_dead = true;
 		else
-			m_rect.left += m_rect.width;
+		{
+			m_frame++;
+			m_rect.left += m_rect.width;			
+		}
 	}
 }
 
