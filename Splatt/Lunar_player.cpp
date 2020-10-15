@@ -68,6 +68,9 @@ void Lander::Inpulse()
 
 void Lander::Landing()
 {
+	mVelocity.x = 0.0f;
+	mVelocity.y = 0.0f;
+
 	cout << "You Win !" << endl;
 	cout << "GG WP" << endl;
 }

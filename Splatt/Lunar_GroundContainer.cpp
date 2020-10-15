@@ -38,9 +38,9 @@ void GroundContainer::Update(Lander& _myPlayer)
 		{
 			if (mContainer[x].GetID() == 1)
 				_myPlayer.Explode();
-			else if (mContainer[x].GetID() == 2 && _myPlayer.GetVelocityY() > .1f)
+			else if (mContainer[x].GetID() == 2 && _myPlayer.GetVelocityY() > .5f)
 				_myPlayer.Explode();
-			else if (mContainer[x].GetID() == 2 && _myPlayer.GetVelocityY() <= .1f)
+			else if (mContainer[x].GetID() == 2 && _myPlayer.GetVelocityY() <= .5f)
 				_myPlayer.Landing();
 		}
 	}
