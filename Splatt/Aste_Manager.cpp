@@ -326,7 +326,7 @@ void Aste_Display()
 
 
 	// Hud
-	sf::Text Tscore("", Font, 30);
+	sf::Text Tscore("", font, 30);
 	Tscore.setString(std::to_string(aste_player->getScore()));
 	App.draw(Tscore);
 

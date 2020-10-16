@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 {
 	App.setFramerateLimit(240);
 	srand(time(NULL));
-	Font.loadFromFile("../Ressources/times.ttf");
+	font.loadFromFile("../Ressources/times.ttf");
 
 	InitControles();
 	RessourcesLoad("../Ressources/Asteroid/");
