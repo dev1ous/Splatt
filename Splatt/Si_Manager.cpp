@@ -7,11 +7,16 @@
 vector <SI_Joueur> V_joueur;
 vector <SI_Ennemi> EnnemyList;
 
+State_SI Etat;
+static Text Play("Play", font, 20);
+static Text Quit("Quit", font, 20);
+
 void SI_Update()
 {
 	static bool Load = false;
 	if (!Load)
 	{
+		Etat = State_SI::Menu;
 		Color Couleur;
 		for (int i = 0; i < Nombre_Joueur; i++)
 		{
@@ -61,10 +66,14 @@ void SI_Display()
 
 		for (SI_Tir& Actual_Tir : Tir_Joueur)
 			Actual_Tir.Draw();
+		if (Etat == State_SI::Niveau1)
+			App.draw(getSprite("Niveau1"));
 	}
 	else if (Etat == State_SI::Menu)
 	{
-
+		App.draw(Play);
+		App.draw(Quit);
+		App.draw(getSprite("Menu"));
 	}
 	else if (Etat == State_SI::Intro)
 	{
@@ -79,8 +88,23 @@ void Intro()
 
 void Menu()
 {
-	static Text Play("Play", font, 20);
-	static Text Play("Quit", font, 20);
+	static int select = 0;
+	static RectangleShape shape(Vector2f(20, 20));
+
+	static bool Load = false;
+	if (!Load)
+	{
+		Play.setColor(Color::Blue);
+		Quit.setColor(Color::Blue);
+		Play.setOrigin(Vector2f(Play.getGlobalBounds().width / 2, Play.getGlobalBounds().height / 2));
+		Quit.setOrigin(Vector2f(Quit.getGlobalBounds().width / 2, Quit.getGlobalBounds().height / 2));
+		Play.setPosition(Vector2f(1920 / 2, 1080 / 3));
+		Quit.setPosition(Vector2f(1920 / 2, 1080 / 3 + 1080 / 3));
+		Load = true;
+	}
+
+
+
 }
 
 

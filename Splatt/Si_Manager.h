@@ -11,8 +11,6 @@ enum class State_SI
 	Niveau2,
 	Niveau3,
 };
-State_SI Etat = State_SI::Intro;
-
 
 void SI_Update();
 void SI_Display();
