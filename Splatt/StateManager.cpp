@@ -5,6 +5,7 @@
 #include "SI_Manager.h"
 #include "SoundManager.hpp"
 #include "Texture_SpriteManager.hpp"
+#include "SoundManager.hpp"
 #include "Controles.h"
 
 State state = State::MENU;
@@ -45,6 +46,12 @@ void UpdateManager()
 {
 	//restart of the clock (time per frame)
 	MainTime.RestartClock();
+
+	for (SSound& ActualSound : SoundList)
+		ActualSound.update();
+
+	for (Musics* ActualMusic : MusicList)
+		ActualMusic->update();
 
 	switch (state)
 	{

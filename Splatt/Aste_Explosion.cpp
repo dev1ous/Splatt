@@ -1,5 +1,6 @@
 #include "Aste_Explosion.h"
 #include "Texture_SpriteManager.hpp"
+#include "SoundManager.hpp"
 
 std::vector<Aste_Explosion> ExplosionList;
 
@@ -17,6 +18,7 @@ Aste_Explosion::Aste_Explosion(sf::Vector2f pos) : m_position(pos)
 	m_timer = 0.f;
 	m_dead = false;
 	m_rect = sf::IntRect(2 * 96, 0, 96, 96);
+	getSound("Explosion").play();
 }
 
 Aste_Explosion::~Aste_Explosion()

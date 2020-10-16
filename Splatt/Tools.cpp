@@ -2,7 +2,7 @@
 #include "StateManager.hpp"
 
 Times MainTime;
-sf::Font Font;
+sf::Font font;
 
 
 int irandom(int Min, int Max)

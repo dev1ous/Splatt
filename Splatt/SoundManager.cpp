@@ -2,8 +2,8 @@
 
 std::list<SSound> SoundList;
 std::list<Musics*> MusicList;
-int MusicMultip = 50;
-int SoundMultip = 30;
+int MusicMultip = 100;
+int SoundMultip = 100;
  
 void LoadSounds(State _state)
 {
