@@ -2,6 +2,7 @@
 #include "Aste_Shoot.h"
 #include "Aste_Enemies.h"
 #include "Texture_SpriteManager.hpp"
+#include "SoundManager.hpp"
 #include "Aste_Manager.h"
 
 Aste_Player::Aste_Player()
@@ -140,6 +141,7 @@ void Aste_Player::Shoot()
 	{
 		m_fireTimer = 0;
 		Aste_ShootList.push_back(Aste_Shoot(getPosition(), m_rotation, true));
+		getSound("Shoot").play();
 	}
 }
 

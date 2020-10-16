@@ -1,6 +1,7 @@
 #include "Aste_Manager.h"
 #include "RessourcesManager.hpp"
 #include "Texture_SpriteManager.hpp"
+#include "SoundManager.hpp"
 #include "Aste_Player.h"
 #include "Aste_Shoot.h"
 #include "Aste_Asteroid.h"
@@ -79,6 +80,10 @@ void Aste_Update()
 	// reset saucer spawn timer when finish a round (Done)
 	// saucer timer spawn don't increase when 1 is alive (Done)
 	
+	getMusic("Alone_Against_Enemy").setLoop(true);
+	if (getMusic("Alone_Against_Enemy").getStatus() != sf::Music::Playing)
+		getMusic("Alone_Against_Enemy").play();
+
 	if (EnemiesList.size() == 0)
 		RoundPass = true;
 
