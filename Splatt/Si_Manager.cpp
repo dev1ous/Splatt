@@ -94,8 +94,8 @@ void Menu()
 	static bool Load = false;
 	if (!Load)
 	{
-		Play.setColor(Color::Blue);
-		Quit.setColor(Color::Blue);
+		//Play.setColor(Color::Blue);
+		//Quit.setColor(Color::Blue);
 		Play.setOrigin(Vector2f(Play.getGlobalBounds().width / 2, Play.getGlobalBounds().height / 2));
 		Quit.setOrigin(Vector2f(Quit.getGlobalBounds().width / 2, Quit.getGlobalBounds().height / 2));
 		Play.setPosition(Vector2f(1920 / 2, 1080 / 3));
@@ -103,7 +103,8 @@ void Menu()
 		Load = true;
 	}
 
-
+	if (Keyboard::isKeyPressed(Keyboard::Up))
+		;
 
 }
 
