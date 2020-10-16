@@ -61,12 +61,6 @@
     <Filter Include="Fichiers sources\Tron">
       <UniqueIdentifier>{69762c6f-3c5c-4b46-95a1-56feab009d0d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\Space Invader\Ennemis">
-      <UniqueIdentifier>{5177b8b2-a208-4f4b-add5-06ad2658f714}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Space Invader\Ennemis">
-      <UniqueIdentifier>{b36d5e73-b8f6-4c7c-9270-7961891ff24a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -165,9 +159,6 @@
     <ClCompile Include="Tetris_Block.cpp">
       <Filter>Fichiers sources\Tetris</Filter>
     </ClCompile>
-    <ClCompile Include="Si_Ennemi.cpp">
-      <Filter>Fichiers sources\Space Invader\Ennemis</Filter>
-    </ClCompile>
     <ClCompile Include="Si_Manager.cpp">
       <Filter>Fichiers sources\Space Invader</Filter>
     </ClCompile>
@@ -188,6 +179,12 @@
     </ClCompile>
     <ClCompile Include="GamePad.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SI_Ennemi.cpp">
+      <Filter>Fichiers sources\Space Invader</Filter>
+    </ClCompile>
+    <ClCompile Include="SI_Collision.cpp">
+      <Filter>Fichiers sources\Space Invader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -293,9 +290,6 @@
     <ClInclude Include="Lunar_stone.h">
       <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
     </ClInclude>
-    <ClInclude Include="SI_Ennemi.h">
-      <Filter>Fichiers d%27en-tête\Space Invader\Ennemis</Filter>
-    </ClInclude>
     <ClInclude Include="Pac_Manager.h">
       <Filter>Fichiers d%27en-tête\PacMan</Filter>
     </ClInclude>
@@ -310,6 +304,12 @@
     </ClInclude>
     <ClInclude Include="Controles.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="SI_Ennemi.h">
+      <Filter>Fichiers d%27en-tête\Space Invader</Filter>
+    </ClInclude>
+    <ClInclude Include="SI_Collision.h">
+      <Filter>Fichiers d%27en-tête\Space Invader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

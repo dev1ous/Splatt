@@ -15,12 +15,12 @@ public :
 
 	CircleShape Ball;
 
-	Vector2f Get_Position();
-	bool Get_Destruct();
-	float Get_Radius();
+	inline Vector2f Get_Position() { return Position; };
+	inline bool Get_Destruct() { return destruction; };
+	inline float Get_Radius() { return Radius; };
 
-	void Set_Position(Vector2f _position);
-	void Set_Destruct(bool _bool);
+	inline void Set_Position(Vector2f _position) { Position = _position; };
+	inline void Set_Destruct(bool _bool) { destruction = _bool; };
 
 	void Update();
 	void Draw();

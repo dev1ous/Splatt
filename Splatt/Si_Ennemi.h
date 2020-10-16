@@ -12,9 +12,9 @@ public :
 	SI_Ennemi(Vector2f _position, int _type);
 	~SI_Ennemi();
 
-	int Get_Type();
+	inline int Get_Type() { return Type; };
 
-	void Set_Descente(bool _bool);
+	inline void Set_Descente(bool _bool) { Descente = _bool; };
 
 	void Update();
 	void Draw();

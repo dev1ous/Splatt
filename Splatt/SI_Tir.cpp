@@ -22,31 +22,6 @@ SI_Tir::~SI_Tir()
 {
 }
 
-Vector2f SI_Tir::Get_Position()
-{
-	return Position;
-}
-
-bool SI_Tir::Get_Destruct()
-{
-	return destruction;
-}
-
-float SI_Tir::Get_Radius()
-{
-	return Radius;
-}
-
-void SI_Tir::Set_Position(Vector2f _position)
-{
-	Position = _position;
-}
-
-void SI_Tir::Set_Destruct(bool _bool)
-{
-	destruction = _bool;
-}
-
 void SI_Tir::Update()
 {
 	Position.y -= 500 * MainTime.GetTimeDeltaF();

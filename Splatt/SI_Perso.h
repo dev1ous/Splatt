@@ -17,23 +17,23 @@ public :
 	SI_Perso();
 	~SI_Perso();
 
-	Vector2f Get_Position();
-	Vector2f Get_Origin();
-	float Get_Timer();
-	int Get_Life();
+	inline Vector2f Get_Position() { return Position; };
+	inline Vector2f Get_Origin() { return Origine; };
+	inline float Get_Timer() { return Timer; };
+	inline int Get_Life() { return life; };
 
-	bool Get_Droite();
-	bool Get_Gauche();
-	bool Get_Tir();
+	inline bool Get_Droite() { return Droite; };
+	inline bool Get_Gauche() { return Gauche; };
+	inline bool Get_Tir() { return Tir; };
 
-	void Set_Position(Vector2f _position);
-	void Set_Origin(Vector2f _origine);
-	void Set_Timer(float _timer);
-	void Set_Life(int _life);
+	inline void Set_Position(Vector2f _position) { Position = _position; };
+	inline void Set_Origin(Vector2f _origine) { Origine = _origine; };
+	inline void Set_Timer(float _timer) { Timer = _timer; };
+	inline void Set_Life(int _life) { life = _life; };
 
-	void Set_Droite(bool _bool);
-	void Set_Gauche(bool _bool);
-	void Set_Tir(bool _bool);
+	inline void Set_Droite(bool _bool) { Droite = _bool; };
+	inline void Set_Gauche(bool _bool) { Gauche = _bool; };
+	inline void Set_Tir(bool _bool) { Tir = _bool; };
 
 	virtual void Update() = 0;
 	virtual void Draw() = 0;

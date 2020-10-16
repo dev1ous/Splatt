@@ -31,16 +31,6 @@ SI_Ennemi::~SI_Ennemi()
 	Nombre_Ennemis--;
 }
 
-int SI_Ennemi::Get_Type()
-{
-	return Type;
-}
-
-void SI_Ennemi::Set_Descente(bool _bool)
-{
-	Descente = _bool;
-}
-
 void SI_Ennemi::Update()
 {
 	string Sprite_Name = "Ennemi";

@@ -58,81 +58,11 @@ SI_Joueur::~SI_Joueur()
 {
 }
 
-int SI_Joueur::Get_Numero()
-{
-	return Numero_Joueur;
-}
-
-int SI_Joueur::Get_NombreTir()
-{
-	return Nombre_Tir;
-}
-
-int SI_Joueur::Get_Limit()
-{
-	return Limite_Tir;
-}
-
-Color SI_Joueur::Get_Color()
-{
-	return Couleur;
-}
-
-int SI_Joueur::Get_Special_Jaune()
-{
-	return Special_Jaune;
-}
-
-int SI_Joueur::Get_Special_Bleu()
-{
-	return Special_Bleu;
-}
-
-int SI_Joueur::Get_Special_Violet()
-{
-	return Special_Violet;
-}
-
-int SI_Joueur::Get_Special_Vert()
-{
-	return Special_Vert;
-}
-
-void SI_Joueur::Set_Numero(int _numero)
-{
-	Numero_Joueur = _numero;
-}
-
 void SI_Joueur::Set_NombreTir(int _NbTir)
 {
 	Nombre_Tir = _NbTir;
 	if (Nombre_Tir < 0)
 		Nombre_Tir = 0;
-}
-
-void SI_Joueur::Set_Limit(int _limit)
-{
-	Limite_Tir = _limit;
-}
-
-void SI_Joueur::Set_Special_Jaune(int _special)
-{
-	Special_Jaune = _special;
-}
-
-void SI_Joueur::Set_Special_Bleu(int _special)
-{
-	Special_Bleu = _special;
-}
-
-void SI_Joueur::Set_Special_Violet(int _special)
-{
-	Special_Violet = _special;
-}
-
-void SI_Joueur::Set_Special_Vert(int _special)
-{
-	Special_Vert = _special;
 }
 
 void SI_Joueur::Update()

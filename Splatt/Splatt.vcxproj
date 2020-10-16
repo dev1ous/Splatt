@@ -184,6 +184,7 @@
     <ClCompile Include="Pac_Personnage.cpp" />
     <ClCompile Include="Perso_Pacman.cpp" />
     <ClCompile Include="RessourcesManager.cpp" />
+    <ClCompile Include="SI_Collision.cpp" />
     <ClCompile Include="SI_Ennemi.cpp" />
     <ClCompile Include="SI_Joueur.cpp" />
     <ClCompile Include="SI_Manager.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Perso_Pacman.h" />
     <ClInclude Include="RessourcesManager.hpp" />
+    <ClInclude Include="SI_Collision.h" />
     <ClInclude Include="SI_Ennemi.h" />
     <ClInclude Include="SI_Joueur.h" />
     <ClInclude Include="SI_Manager.h" />
