@@ -8,6 +8,7 @@
 #include "Aste_BigSaucer.h"
 #include "Aste_Lights.h"
 #include "Aste_Explosion.h"
+#include "Controles.h"
 
 Aste_Player* aste_player = new Aste_Player();
 
@@ -159,18 +160,18 @@ void Aste_Update()
 			i++;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (isButtonPressed(Action::Aste_RotateRight))
 		aste_player->RotateClockWise();
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	if (isButtonPressed(Action::Aste_RotateLeft))
 		aste_player->RotateConterClockWise();
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	if (isButtonPressed(Action::Aste_Forward))
 		aste_player->MoveForward();
 	else
 		aste_player->setFrame(0);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if (isButtonPressed(Action::Aste_Fire))
 		aste_player->Shoot();
 
 }

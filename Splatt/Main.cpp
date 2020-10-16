@@ -1,6 +1,7 @@
 #include "Tools.hpp"
 #include "StateManager.hpp"
 #include "RessourcesManager.hpp"
+#include "Controles.h"
 
 sf::RenderWindow App(sf::VideoMode(1920, 1080), "Splatt", sf::Style::Fullscreen);
 sf::Event event;
@@ -11,6 +12,7 @@ int main(int argc, char** argv)
 	srand(time(NULL));
 	Font.loadFromFile("../Ressources/times.ttf");
 
+	InitControles();
 	RessourcesLoad("../Ressources/Asteroid/");
 	RessourcesLoad("../Ressources/Space Invaders/");
 	RessourcesLoad("../Ressources/PacMan/");

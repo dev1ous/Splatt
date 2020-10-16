@@ -5,6 +5,7 @@
 #include "SI_Manager.h"
 #include "SoundManager.hpp"
 #include "Texture_SpriteManager.hpp"
+#include "Controles.h"
 
 State state = State::MENU;
 
@@ -16,6 +17,16 @@ void EventsManager()
 	{
 		if (event.type == sf::Event::Closed)
 			App.close();
+
+
+		if (event.type == sf::Event::KeyPressed)
+			PressedKey.push_back(event.key.code);
+
+		if (event.type == sf::Event::KeyReleased)
+			PressedKey.remove(event.key.code);
+
+		for (int i = 0; i < 8; i++)
+			GamepadManager(i, event);
 	}
 }
 
