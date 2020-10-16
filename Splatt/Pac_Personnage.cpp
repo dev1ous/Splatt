@@ -18,10 +18,15 @@ void Pac_Personnage::Mort()
 	}
 }
 
+void Pac_Personnage::Deplacement()
+{
+
+}
+
 void Pac_Personnage::Update()
 {
 }
 
-void Pac_Personnage::Draw()
+void Pac_Personnage::Display()
 {
 }

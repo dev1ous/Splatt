@@ -7,25 +7,19 @@ public:
 	Pac_Personnage();
 	~Pac_Personnage();
 
-	void Mort();
+	virtual void Mort() = 0;
 
-
-	void Update();
-	void Draw();
+	virtual void Deplacement() = 0;
+	virtual void Update() = 0;
+	virtual	void Display() = 0;
 
 	bool Get_vie();
-	bool Get_gauche();
-	bool Get_droite();
-	bool Get_haut();
-	bool Get_bas();
+
 
 protected:
 
+	
 	bool vie;
-	bool gauche;
-	bool droite;
-	bool haut;
-	bool bas;
 	float PosX;
 	float PosY;
 

@@ -9,12 +9,16 @@ public:
 	Perso_Pacman();
 	~Perso_Pacman();
 
-	void Display();
+	void Mort();
+
+	void Deplacement();
+	void Update();
+	void Display() ;
 
 private:
 
-	
-
+	Direction Direction_Pac;
+	int rotate;
 
 };
 

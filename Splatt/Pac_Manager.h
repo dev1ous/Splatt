@@ -5,3 +5,13 @@
 
 void Pac_Update();
 void Pac_Display();
+
+enum Direction {
+
+	RIEN,
+	DROITE,
+	GAUCHE,
+	HAUT,
+	BAS
+
+};

@@ -5,7 +5,7 @@ Perso_Pacman Pac;
 
 void Pac_Update()
 {
-
+	Pac.Update();
 
 }
 
