@@ -9,6 +9,12 @@ public:
 	Pac_Fantomes();
 	~Pac_Fantomes();
 
+	void Mort();
+
+	void Deplacement();
+	void Update();
+	void Display();
+
 private:
 
 
