@@ -12,14 +12,13 @@ Lunar_manager::Lunar_manager()
 
 void Lunar_manager::Lunar_update()
 {
-	player->Update();
-	myContainer->Update(*player);
+	player->Update(*myContainer);
 }
 
 void Lunar_manager::Lunar_display(RenderWindow& _window)
 {
-	player->Display(App);
 	myContainer->Display(App);
+	player->Display(App);
 }
 
 Lunar_manager::~Lunar_manager()

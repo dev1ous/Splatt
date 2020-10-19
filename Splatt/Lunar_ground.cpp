@@ -10,20 +10,7 @@ Ground::Ground(float _posX, float _posY)
 	
 }
 
-bool Ground::IsCollide(Lander& _player)
-{
-	if (mSprite.getGlobalBounds().intersects(_player.GetSprite().getGlobalBounds()))
-		return true;
-
-	return false;
-}
-
 #pragma region "Get/Set"
-
-Sprite Ground::GetSprite()
-{
-	return mSprite;
-}
 
 float Ground::GetPosX()
 {
@@ -33,16 +20,6 @@ float Ground::GetPosX()
 float Ground::GetPosY()
 {
 	return mPosition.y;
-}
-
-float Ground::GetHeight()
-{
-	return mSprite.getGlobalBounds().height;
-}
-
-float Ground::GetWidth()
-{
-	return mSprite.getGlobalBounds().width;
 }
 
 string Ground::GetClass()

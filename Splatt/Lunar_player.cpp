@@ -1,5 +1,6 @@
 #include "Lunar_player.h"
 #include "Lunar_ground.h"
+#include "Lunar_GroundContainer.h"
 
 Lander::Lander(RenderWindow& _window)
 {
@@ -18,13 +19,16 @@ Lander::Lander(RenderWindow& _window)
 	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
 	mSprite.setRotation(mAngle);
-	
+
 }
 
 #pragma region "Lander_update"
 
-void Lander::Update()
+
+
+void Lander::Update(GroundContainer& _myContainer)
 {
+
 	mVelocity.y += .2f * MainTime.GetTimeDeltaF();
 
 	MoveRight();
@@ -34,6 +38,8 @@ void Lander::Update()
 	mPosition += mVelocity;
 	mSprite.setPosition(mPosition);
 
+	if (IsCollide(_myContainer))
+		Explode();
 }
 
 void Lander::MoveRight()
@@ -75,6 +81,32 @@ void Lander::Landing()
 	cout << "GG WP" << endl;
 }
 
+bool Lander::IsCollide(GroundContainer& _myContainer)
+{
+	Color color = _myContainer.GetImage().getPixel(mPosition.x, mPosition.y);
+	cout << "x" << mPosition.x << endl;
+	cout << "y" << mPosition.y << endl;
+		//to_string(color.r) << to_string(color.g) << to_string(color.b) << to_string(color.a) << endl;
+
+	if (_myContainer.GetImage().getPixel((int)mSprite.getPosition().x, (int)mSprite.getPosition().y) == Color::Color(255, 255, 255))
+	{
+		return true;
+	}
+
+	//for (int i = 0; i <= mSprite.getGlobalBounds().width; i++)
+	//{
+	//	for (int j = 0; j <= mSprite.getGlobalBounds().height; j++)
+	//	{
+	//		/*int x = mSprite.getPosition().x - mSprite.getOrigin().x + i;
+	//		int y = mSprite.getPosition().y - mSprite.getOrigin().y + j;
+
+	//		*/
+	//	}
+	//}
+
+	return false;
+}
+
 #pragma endregion
 
 void Lander::Display(RenderWindow& _window)
@@ -99,7 +131,7 @@ void Lander::Explode()
 
 Lander::~Lander()
 {
-	 
+
 }
 
 float Lander::GetPosX()
@@ -110,6 +142,11 @@ float Lander::GetPosX()
 float Lander::GetPosY()
 {
 	return mPosition.y;
+}
+
+Vector2f Lander::GetPos()
+{
+	return mPosition;
 }
 
 float Lander::GetVelocityX()
@@ -124,7 +161,7 @@ float Lander::GetVelocityY()
 
 float Lander::GetHeight()
 {
-	return mSprite.getGlobalBounds().height ;
+	return mSprite.getGlobalBounds().height;
 }
 
 float Lander::GetWidth()
@@ -135,4 +172,9 @@ float Lander::GetWidth()
 Sprite Lander::GetSprite()
 {
 	return mSprite;
+}
+
+FloatRect Lander::GetBound()
+{
+	return mSprite.getGlobalBounds();
 }

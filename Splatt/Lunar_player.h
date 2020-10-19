@@ -1,6 +1,7 @@
 #pragma once
-#include "Tools.hpp"
+#include "Lunar_GroundContainer.h"
 #include "pch.h"
+#include "Tools.hpp"
 
 class Lander
 {
@@ -13,17 +14,20 @@ protected:
 	float mAngle;
 	bool mEngineOn;
 
+	FloatRect mCollideBox;
+
 
 public:
 	Lander(RenderWindow &_window);
 
 #pragma region "Lander_update"
 
-	void Update();
+	void Update(GroundContainer& _myContainer);
 	void MoveRight();
 	void MoveLeft();
 	void Inpulse();
 	void Landing();
+	bool IsCollide(GroundContainer& _myContainer);
 
 #pragma endregion
 
@@ -36,11 +40,13 @@ public:
 
 	float GetPosX();
 	float GetPosY();
+	Vector2f GetPos();
 	float GetVelocityX();
 	float GetVelocityY();
 	float GetHeight();
 	float GetWidth();
 	Sprite GetSprite();
+	FloatRect GetBound();
 
 #pragma endregion
 	
