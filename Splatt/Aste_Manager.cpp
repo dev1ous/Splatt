@@ -1,4 +1,5 @@
 #include "Aste_Manager.h"
+#include "StateManager.hpp"
 #include "RessourcesManager.hpp"
 #include "Texture_SpriteManager.hpp"
 #include "SoundManager.hpp"
@@ -16,6 +17,7 @@ Aste_Player* aste_player = new Aste_Player();
 int Round = 0;
 bool RoundPass = true;
 float saucerTimer = 0.f;
+float ButtonTimer = 0.f;
 void Reset()
 {
 	// sauvegarde
@@ -75,6 +77,8 @@ void Reset()
 
 void Aste_Update()
 {
+	ButtonTimer += MainTime.GetTimeDeltaF();
+	MusicMultip = 5;
 	// + 2 asteroid every round (Done)
 	// + 1 saucer every 10 sec ~ (Done)
 	// reset saucer spawn timer when finish a round (Done)
@@ -125,7 +129,10 @@ void Aste_Update()
 	aste_player->Update();
 
 	for (Aste_Enemies* ActualEnemie : EnemiesList)
-		ActualEnemie->Update();	
+	{
+		if (!ActualEnemie->Update())
+			break;
+	}
 
 	for (Aste_Explosion& ActualExplosion : ExplosionList)
 		ActualExplosion.update();
@@ -179,12 +186,20 @@ void Aste_Update()
 	if (isButtonPressed(Action::Aste_Fire))
 		aste_player->Shoot();
 
+	if (isButtonPressed(Action::Escape) && ButtonTimer >= 0.5)
+	{
+		ButtonTimer = 0.f;
+		Pause = true;
+	}
 }
 
 void Aste_Display()
 {
 	App.clear(sf::Color::Color(40, 40, 40));
 
+	getSprite("Moon").setOrigin(getSprite("Moon").getGlobalBounds().width / 2, getSprite("Moon").getGlobalBounds().height / 2);
+	getSprite("Moon").setPosition(1600, 200);
+	App.draw(getSprite("Moon"));
 
 	static sf::Shader shader;
 
@@ -252,6 +267,7 @@ void Aste_Display()
 	// light
 	LightList.clear();
 	LightList.push_back(Aste_Lights(sf::Vector3f(aste_player->getPosition().x, 1080 - aste_player->getPosition().y, 100), sf::Vector3f(0.7,0.7,0.7), 75.f, 0.1));
+	LightList.push_back(Aste_Lights(sf::Vector3f(1600, 1080 - 200, 100), sf::Vector3f(0.8,0.8,0.8), 175.f, 0.2));
 	for (Aste_Enemies* ActualEnemie : EnemiesList)
 	{
 		if (ActualEnemie->getType() != EnemiesType::Asteroids)
@@ -289,7 +305,7 @@ void Aste_Display()
 	_textureLastPass.update(App);
 	_textureDiffuse.update(App);
 
-	sf::Vector3f Ambiant = { 0.1f ,0.1f ,0.1f };
+	sf::Vector3f Ambiant = { 0.2f ,0.2f ,0.2f };
 	shader.setUniform("AmbientLight", Ambiant);
 
 	int _pass = 1;
@@ -345,4 +361,39 @@ void Aste_Display()
 		//ActualEnemie->DrawDebug();
 
 	//aste_player->DrawDebug();
+}
+
+void Aste_UpdatePause()
+{
+	ButtonTimer += MainTime.GetTimeDeltaF();
+	if (isButtonPressed(Action::Escape) && ButtonTimer >= 0.5)
+	{
+		ButtonTimer = 0.f;
+		Pause = false;
+	}
+}
+
+void Aste_DisplayPause()
+{
+	sf::Text TResume("Resume",font,50);
+	sf::Text TQuit("Quit", font,50);
+	float height = (TResume.getLocalBounds().height + TQuit.getLocalBounds().height) * 1.5 + 20;
+
+	sf::RectangleShape shape(sf::Vector2f(500, height));
+	shape.setFillColor(sf::Color::Transparent);
+	shape.setOutlineColor(sf::Color::White);
+	shape.setOutlineThickness(2);
+
+	TResume.setOrigin(getMidle(TResume));
+	TQuit.setOrigin(getMidle(TQuit));
+	shape.setOrigin(getMidle(shape));
+
+	shape.setPosition(960, 540);
+	TResume.setPosition(960, shape.getGlobalBounds().top + getMidle(TResume).y + 10);
+	TQuit.setPosition(960, TResume.getPosition().y + getMidle(TQuit).y + 20);
+
+
+	App.draw(TResume);
+	App.draw(TQuit);
+	App.draw(shape);
 }

@@ -23,6 +23,7 @@ enum class State
 
 };
 extern State state;
+extern bool Pause;
 
 void EventsManager();
 

@@ -96,3 +96,7 @@ bool Circle_Collision(sf::Vector2f _pos1, sf::Vector2f _pos2, float _rayon1, flo
 /// \return float : rotation
 /////////////
 float Angle_calc(sf::Vector2f pointA, sf::Vector2f pointB);
+
+sf::Vector2f getMidle(sf::Sprite& _o);
+sf::Vector2f getMidle(sf::RectangleShape& _o);
+sf::Vector2f getMidle(sf::Text& _o);

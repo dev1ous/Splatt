@@ -23,7 +23,7 @@ void Aste_SmallSaucer::RemoveLife()
 	Kill();
 }
 
-void Aste_SmallSaucer::Update()
+bool Aste_SmallSaucer::Update()
 {
 	setPosition(getPosition() + getVelocity() * MainTime.GetTimeDeltaF());
 
@@ -54,10 +54,12 @@ void Aste_SmallSaucer::Update()
 			{
 				ActualEnemie->RemoveLife();
 				RemoveLife();
-				break;
+				return false;
 			}
 		}
 	}
+
+	return true;
 }
 
 void Aste_SmallSaucer::Draw()

@@ -11,7 +11,7 @@ public:
 	~Aste_SmallSaucer();
 
 	virtual void RemoveLife();
-	virtual void Update();
+	virtual bool Update();
 	virtual void Draw();
 	virtual void DrawDebug();
 };

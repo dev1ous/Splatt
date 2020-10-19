@@ -35,7 +35,7 @@ void Aste_Asteroid::RemoveLife()
 	Kill();
 }
 
-void Aste_Asteroid::Update()
+bool Aste_Asteroid::Update()
 {
 	setPosition(getPosition() + getVelocity() * MainTime.GetTimeDeltaF());
 
@@ -48,6 +48,8 @@ void Aste_Asteroid::Update()
 		setPosition(sf::Vector2f(getPosition().x, 1080 + 15));
 	else if (getPosition().y > 1080 + 15)
 		setPosition(sf::Vector2f(getPosition().x, -15));
+
+	return true;
 }
 
 void Aste_Asteroid::Draw()

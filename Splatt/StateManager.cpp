@@ -11,6 +11,7 @@
 State state = State::MENU;
 
 Lunar_manager* l_manager = new Lunar_manager;
+bool Pause = false;
 
 void EventsManager()
 {
@@ -69,7 +70,10 @@ void UpdateManager()
 		l_manager->Lunar_update();
 		break;
 	case State::ASTEROID:
-		Aste_Update();
+		if (!Pause)
+			Aste_Update();
+		else
+			Aste_UpdatePause();
 		break;
 	case State::TETRIS:
 		break;
@@ -104,6 +108,8 @@ void DisplayManager()
 		break;
 	case State::ASTEROID:
 		Aste_Display();
+		if (Pause)
+			Aste_DisplayPause();
 		break;
 	case State::TETRIS:
 		break;

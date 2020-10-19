@@ -32,7 +32,7 @@ public:
 	EnemiesType getType() const { return m_type; }
 	int getLife() const;
 	virtual void RemoveLife();
-	virtual void Update() = 0;
+	virtual bool Update() = 0;
 	virtual void Draw() = 0;
 	virtual void DrawDebug() = 0;
 };

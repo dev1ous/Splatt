@@ -2,6 +2,7 @@
 #include "Aste_Enemies.h"
 #include "Aste_Player.h"
 #include "Texture_SpriteManager.hpp"
+#include "Aste_Manager.h"
 
 std::vector<Aste_Shoot> Aste_ShootList;
 
@@ -92,8 +93,13 @@ void Aste_Shoot::Update()
 		{
 			if (Circle_Collision(m_pos, aste_player->getPosition(), 3, getSprite("astePlayer").getLocalBounds().width / 2))
 			{
-				m_dead = true;
-				aste_player->DeathReset();
+				if (aste_player->getLives() > 1)
+				{
+					m_dead = true;
+					aste_player->DeathReset();
+				}
+				else
+					Reset();
 			}
 		}
 	}
