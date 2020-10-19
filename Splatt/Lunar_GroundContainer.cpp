@@ -4,13 +4,13 @@
 
 GroundContainer::GroundContainer()
 {
-	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Luanar_lander_lvl_01.png"))
+	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Luanar_lander_lvl_01_2.png"))
 		exit(EXIT_FAILURE);
 }
 
 GroundContainer::GroundContainer(RenderWindow& _window)
 {
-	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Luanar_lander_lvl_01.png"))
+	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Luanar_lander_lvl_01_2.png"))
 		exit(EXIT_FAILURE);
 
 	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
@@ -29,7 +29,7 @@ void GroundContainer::Display(RenderWindow& _window)
 	_window.draw(mMySprite);
 }
 
-Image GroundContainer::GetImage()
+Image& GroundContainer::GetImage()
 {
 	return mMyImage;
 }

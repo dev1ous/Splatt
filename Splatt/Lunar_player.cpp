@@ -83,26 +83,19 @@ void Lander::Landing()
 
 bool Lander::IsCollide(GroundContainer& _myContainer)
 {
-	Color color = _myContainer.GetImage().getPixel(mPosition.x, mPosition.y);
-	cout << "x" << mPosition.x << endl;
-	cout << "y" << mPosition.y << endl;
-		//to_string(color.r) << to_string(color.g) << to_string(color.b) << to_string(color.a) << endl;
-
-	if (_myContainer.GetImage().getPixel((int)mSprite.getPosition().x, (int)mSprite.getPosition().y) == Color::Color(255, 255, 255))
+	for (int i = 0; i <= mSprite.getGlobalBounds().width; i++)
 	{
-		return true;
+		for (int j = 0; j <= mSprite.getGlobalBounds().height; j++)
+		{
+			int x = mSprite.getPosition().x - mSprite.getOrigin().x + i;
+			int y = mSprite.getPosition().y - mSprite.getOrigin().y + j;
+
+			if (_myContainer.GetImage().getPixel(x, y) == Color::White)
+			{
+				return true;
+			}			
+		}
 	}
-
-	//for (int i = 0; i <= mSprite.getGlobalBounds().width; i++)
-	//{
-	//	for (int j = 0; j <= mSprite.getGlobalBounds().height; j++)
-	//	{
-	//		/*int x = mSprite.getPosition().x - mSprite.getOrigin().x + i;
-	//		int y = mSprite.getPosition().y - mSprite.getOrigin().y + j;
-
-	//		*/
-	//	}
-	//}
 
 	return false;
 }

@@ -17,7 +17,7 @@ public:
 	GroundContainer(RenderWindow& _window);
 	void Display(RenderWindow& _window);
 
-	Image GetImage();
+	Image& GetImage();
 
 	~GroundContainer();
 
