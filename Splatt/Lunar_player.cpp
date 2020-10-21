@@ -38,8 +38,7 @@ void Lander::Update(GroundContainer& _myContainer)
 	mPosition += mVelocity;
 	mSprite.setPosition(mPosition);
 
-	if (IsCollide(_myContainer))
-		Explode();
+	Collide(_myContainer);
 }
 
 void Lander::MoveRight()
@@ -81,23 +80,24 @@ void Lander::Landing()
 	cout << "GG WP" << endl;
 }
 
-bool Lander::IsCollide(GroundContainer& _myContainer)
+void Lander::Collide(GroundContainer& _myContainer)
 {
-	for (int i = 0; i <= mSprite.getGlobalBounds().width; i++)
+	for (int i = 0; i <= mSprite.getLocalBounds().width; i++)
 	{
-		for (int j = 0; j <= mSprite.getGlobalBounds().height; j++)
+		for (int j = 0; j <= mSprite.getLocalBounds().height; j++)
 		{
 			int x = mSprite.getPosition().x - mSprite.getOrigin().x + i;
 			int y = mSprite.getPosition().y - mSprite.getOrigin().y + j;
 
-			if (_myContainer.GetImage().getPixel(x, y) == Color::White)
-			{
-				return true;
-			}			
+			if (_myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y < .5f)
+				Landing();
+
+			if (_myContainer.GetImage().getPixel(x, y) == Color::White || _myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y > .5f)
+				Explode();
+
 		}
 	}
 
-	return false;
 }
 
 #pragma endregion

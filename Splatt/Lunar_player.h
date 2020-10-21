@@ -27,7 +27,7 @@ public:
 	void MoveLeft();
 	void Inpulse();
 	void Landing();
-	bool IsCollide(GroundContainer& _myContainer);
+	void Collide(GroundContainer& _myContainer);
 
 #pragma endregion
 
