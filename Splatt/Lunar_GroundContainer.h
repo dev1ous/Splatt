@@ -1,6 +1,8 @@
 #pragma once
+#include "Tools.hpp"
+
 #include "pch.h"
-#include <list>
+
 
 class GroundContainer
 {
@@ -8,16 +10,20 @@ class GroundContainer
 	Texture mMyTexture;
 	Sprite mMySprite;
 
-	list<Color> mMapColor;
-
 	Vector2f mPosition;
+
+	int mNbLvl;
 
 public:
 	GroundContainer();
 	GroundContainer(RenderWindow& _window);
+	void Update(RenderWindow& _window);
+	void Start(RenderWindow& _window);
+	void ChangeLevel(RenderWindow& _window);
 	void Display(RenderWindow& _window);
 
 	Image& GetImage();
+	int GetLvl();
 
 	~GroundContainer();
 

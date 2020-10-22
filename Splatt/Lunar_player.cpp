@@ -1,6 +1,4 @@
 #include "Lunar_player.h"
-#include "Lunar_ground.h"
-#include "Lunar_GroundContainer.h"
 
 Lander::Lander(RenderWindow& _window)
 {
@@ -23,8 +21,6 @@ Lander::Lander(RenderWindow& _window)
 }
 
 #pragma region "Lander_update"
-
-
 
 void Lander::Update(GroundContainer& _myContainer)
 {
@@ -94,10 +90,8 @@ void Lander::Collide(GroundContainer& _myContainer)
 
 			if (_myContainer.GetImage().getPixel(x, y) == Color::White || _myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y > .5f)
 				Explode();
-
 		}
 	}
-
 }
 
 #pragma endregion
