@@ -123,9 +123,6 @@
     <ClCompile Include="Texture_SpriteManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="lunar_landingZone.cpp">
-      <Filter>Fichiers sources\Lunar Lander</Filter>
-    </ClCompile>
     <ClCompile Include="SI_Joueur.cpp">
       <Filter>Fichiers sources\Space Invader</Filter>
     </ClCompile>
@@ -134,9 +131,6 @@
     </ClCompile>
     <ClCompile Include="SI_Tir.cpp">
       <Filter>Fichiers sources\Space Invader</Filter>
-    </ClCompile>
-    <ClCompile Include="Lunar_ground.cpp">
-      <Filter>Fichiers sources\Lunar Lander</Filter>
     </ClCompile>
     <ClCompile Include="Lunar_GroundContainer.cpp">
       <Filter>Fichiers sources\Lunar Lander</Filter>
@@ -161,9 +155,6 @@
     </ClCompile>
     <ClCompile Include="Si_Manager.cpp">
       <Filter>Fichiers sources\Space Invader</Filter>
-    </ClCompile>
-    <ClCompile Include="Lunar_stone.cpp">
-      <Filter>Fichiers sources\Lunar Lander</Filter>
     </ClCompile>
     <ClCompile Include="Pac_Manager.cpp">
       <Filter>Fichiers sources\PacMan</Filter>
@@ -248,9 +239,6 @@
     <ClInclude Include="Texture_SpriteManager.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="lunar_landingZone.h">
-      <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
-    </ClInclude>
     <ClInclude Include="SI_Tir.h">
       <Filter>Fichiers d%27en-tête\Space Invader</Filter>
     </ClInclude>
@@ -259,9 +247,6 @@
     </ClInclude>
     <ClInclude Include="SI_Perso.h">
       <Filter>Fichiers d%27en-tête\Space Invader</Filter>
-    </ClInclude>
-    <ClInclude Include="Lunar_ground.h">
-      <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
     </ClInclude>
     <ClInclude Include="Lunar_GroundContainer.h">
       <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
@@ -286,9 +271,6 @@
     </ClInclude>
     <ClInclude Include="Si_Manager.h">
       <Filter>Fichiers d%27en-tête\Space Invader</Filter>
-    </ClInclude>
-    <ClInclude Include="Lunar_stone.h">
-      <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
     </ClInclude>
     <ClInclude Include="Pac_Manager.h">
       <Filter>Fichiers d%27en-tête\PacMan</Filter>

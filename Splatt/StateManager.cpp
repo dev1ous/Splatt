@@ -67,7 +67,7 @@ void UpdateManager()
 		Pac_Update();
 		break;
 	case State::LUNAR_LANDER:
-		l_manager->Lunar_update();
+		l_manager->Lunar_update(App);
 		break;
 	case State::ASTEROID:
 		if (!Pause)
