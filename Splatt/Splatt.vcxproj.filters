@@ -177,6 +177,15 @@
     <ClCompile Include="SI_Collision.cpp">
       <Filter>Fichiers sources\Space Invader</Filter>
     </ClCompile>
+    <ClCompile Include="TronJoueurs.cpp">
+      <Filter>Fichiers sources\Tron</Filter>
+    </ClCompile>
+    <ClCompile Include="TronManager.cpp">
+      <Filter>Fichiers sources\Tron</Filter>
+    </ClCompile>
+    <ClCompile Include="TronControles.cpp">
+      <Filter>Fichiers sources\Tron</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.hpp">
@@ -292,6 +301,15 @@
     </ClInclude>
     <ClInclude Include="SI_Collision.h">
       <Filter>Fichiers d%27en-tête\Space Invader</Filter>
+    </ClInclude>
+    <ClInclude Include="TronControles.h">
+      <Filter>Fichiers d%27en-tête\Tron</Filter>
+    </ClInclude>
+    <ClInclude Include="TronJoueurs.h">
+      <Filter>Fichiers d%27en-tête\Tron</Filter>
+    </ClInclude>
+    <ClInclude Include="TronTools.h">
+      <Filter>Fichiers d%27en-tête\Tron</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

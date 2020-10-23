@@ -197,6 +197,9 @@
     <ClCompile Include="Tetris_Score.cpp" />
     <ClCompile Include="Texture_SpriteManager.cpp" />
     <ClCompile Include="Tools.cpp" />
+    <ClCompile Include="TronControles.cpp" />
+    <ClCompile Include="TronJoueurs.cpp" />
+    <ClCompile Include="TronManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aste_Asteroid.h" />
@@ -237,6 +240,9 @@
     <ClInclude Include="Tetris_Score.h" />
     <ClInclude Include="Texture_SpriteManager.hpp" />
     <ClInclude Include="Tools.hpp" />
+    <ClInclude Include="TronControles.h" />
+    <ClInclude Include="TronJoueurs.h" />
+    <ClInclude Include="TronTools.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

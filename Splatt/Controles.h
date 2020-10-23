@@ -15,6 +15,15 @@ enum class Action
 	Aste_RotateLeft,
 	Aste_RotateRight,
 	Aste_Fire,
+	TronJ1_Gauche,
+	TronJ1_Droite,
+	TronJ1_Haut,
+	TronJ1_Bas,
+	TronJ2_Gauche,
+	TronJ2_Droite,
+	TronJ2_Haut,
+	TronJ2_Bas
+
 };
 
 
