@@ -7,6 +7,10 @@
 enum class Action
 {
 	Escape,
+	Interact,
+	UP,
+	Down,
+
 	Aste_Forward,
 	Aste_RotateLeft,
 	Aste_RotateRight,

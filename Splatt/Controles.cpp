@@ -95,6 +95,9 @@ void ResetButtonsPressed()
 void InitControles()
 {
 	controles.push_back(Controle(Action::Escape, sf::Keyboard::Escape, true, gamepadPS4::Start));
+	controles.push_back(Controle(Action::Interact, sf::Keyboard::Enter, true, gamepadPS4::A));
+	controles.push_back(Controle(Action::UP, sf::Keyboard::Z, false, gamepadPS4::StickLY, -1));
+	controles.push_back(Controle(Action::Down, sf::Keyboard::S, false, gamepadPS4::StickLY, 1));
 
 	controles.push_back(Controle(Action::Aste_RotateLeft, sf::Keyboard::Q, false, gamepadPS4::StickLX, -1));
 	controles.push_back(Controle(Action::Aste_RotateRight, sf::Keyboard::D, false, gamepadPS4::StickLX, 1));

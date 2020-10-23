@@ -18,6 +18,8 @@ int Round = 0;
 bool RoundPass = true;
 float saucerTimer = 0.f;
 float ButtonTimer = 0.f;
+int Choice = 1;
+
 void Reset()
 {
 	// sauvegarde
@@ -279,9 +281,9 @@ void Aste_Display()
 	for (Aste_Shoot Actualshoots : Aste_ShootList)
 	{
 		if (Actualshoots.isPlayer())
-			LightList.push_back(Aste_Lights(sf::Vector3f(Actualshoots.getPosition().x, 1080 - Actualshoots.getPosition().y, 50), sf::Vector3f(0.6f, 0.5f, 0.f), 40.f, 0.05f));
+			LightList.push_back(Aste_Lights(sf::Vector3f(Actualshoots.getPosition().x, 1080 - Actualshoots.getPosition().y, 50), sf::Vector3f(0.5f, 0.4f, 0.f), 40.f, 0.1f));
 		else
-			LightList.push_back(Aste_Lights(sf::Vector3f(Actualshoots.getPosition().x, 1080 - Actualshoots.getPosition().y, 50), sf::Vector3f(0.6f, 0.f, 0.f), 40.f, 0.05f));
+			LightList.push_back(Aste_Lights(sf::Vector3f(Actualshoots.getPosition().x, 1080 - Actualshoots.getPosition().y, 50), sf::Vector3f(0.5f, 0.f, 0.f), 40.f, 0.1f));
 	}
 	for (Aste_Shoot Actualshoots : Aste_ShootList)
 	{
@@ -371,6 +373,38 @@ void Aste_UpdatePause()
 		ButtonTimer = 0.f;
 		Pause = false;
 	}
+
+	if (isButtonPressed(Action::UP) && ButtonTimer >= 0.2)
+	{
+		ButtonTimer = 0.f;
+		if (Choice > 1)
+			Choice--;
+	}
+
+	if (isButtonPressed(Action::Down) && ButtonTimer >= 0.2)
+	{
+		ButtonTimer = 0.f;
+		if (Choice < 2)
+			Choice++;
+	}
+
+	if (isButtonPressed(Action::Interact))
+	{
+		switch (Choice)
+		{
+		case 1:
+			Pause = false;
+			break;
+
+		case 2:
+			break;
+
+		default:
+			break;
+		}
+
+		ButtonTimer = 0.f;
+	}
 }
 
 void Aste_DisplayPause()
@@ -391,6 +425,23 @@ void Aste_DisplayPause()
 	shape.setPosition(960, 540);
 	TResume.setPosition(960, shape.getGlobalBounds().top + getMidle(TResume).y + 10);
 	TQuit.setPosition(960, TResume.getPosition().y + getMidle(TQuit).y + 20);
+
+
+	switch (Choice)
+	{
+	case 1:
+		TResume.setFillColor(sf::Color::White);
+		TQuit.setFillColor(sf::Color::Color(100,100,100));
+		break;
+
+	case 2:
+		TResume.setFillColor(sf::Color::Color(100, 100, 100));
+		TQuit.setFillColor(sf::Color::White);
+		break;
+
+	default:
+		break;
+	}
 
 
 	App.draw(TResume);
