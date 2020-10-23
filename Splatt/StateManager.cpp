@@ -7,8 +7,9 @@
 #include "Texture_SpriteManager.hpp"
 #include "SoundManager.hpp"
 #include "Controles.h"
+#include "TronTools.h"
 
-State state = State::MENU;
+State state = State::TRON;
 
 Lunar_manager* l_manager = new Lunar_manager;
 bool Pause = false;
@@ -114,6 +115,7 @@ void DisplayManager()
 	case State::TETRIS:
 		break;
 	case State::TRON:
+		TronDisplay();
 		break;
 
 	default:

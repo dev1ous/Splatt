@@ -3,7 +3,7 @@
 #include "RessourcesManager.hpp"
 #include "Controles.h"
 
-sf::RenderWindow App(sf::VideoMode(1920, 1080), "Splatt", sf::Style::Fullscreen);
+sf::RenderWindow App(sf::VideoMode(1920, 1080), "Splatt", sf::Style::Default);
 sf::Event event;
 
 int main(int argc, char** argv)

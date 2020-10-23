@@ -68,6 +68,7 @@ void Aste_Player::MoveForward()
 
 void Aste_Player::DeathReset()
 {
+	// here
 	if (m_lives > 1)
 	{
 		m_lives--;
