@@ -14,18 +14,19 @@ protected:
 	Vector2f mVelocity;
 	float mAngle;
 	bool mEngineOn;
+	bool mIsAlive;
 
 public:
 	Lander(RenderWindow &_window);
 
 #pragma region "Lander_update"
 
-	void Update(GroundContainer &_myContainer);
+	void Update(RenderWindow& _window, GroundContainer &_myContainer);
 	void MoveRight();
 	void MoveLeft();
 	void Inpulse();
-	void Landing();
-	void Collide(GroundContainer &_myContainer);
+	void Landing(RenderWindow& _window, GroundContainer& _myContainer);
+	void Collide(RenderWindow& _window, GroundContainer &_myContainer);
 
 #pragma endregion
 
@@ -45,6 +46,7 @@ public:
 	float GetWidth();
 	Sprite GetSprite();
 	FloatRect GetBound();
+	bool GetIsAlive();
 
 #pragma endregion
 	

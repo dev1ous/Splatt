@@ -3,11 +3,13 @@
 GroundContainer::GroundContainer()
 {
 	mNbLvl = 0;
+	mLvlCanChange = true;
 }
 
 GroundContainer::GroundContainer(RenderWindow& _window)
 {
 	mNbLvl = 0;
+	mLvlCanChange = true;
 
 	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_Lander_Menu.png"))
 		exit(EXIT_FAILURE);
@@ -21,31 +23,58 @@ GroundContainer::GroundContainer(RenderWindow& _window)
 
 void GroundContainer::Update(RenderWindow& _window)
 {
-	Start(_window);
-	ChangeLevel(_window);
+	if (mLvlCanChange)
+	{
+		if (mNbLvl == 0)
+			Start(_window);
+		else if(mNbLvl > 0)
+			ChangeLevel(_window);
+	}
 }
 
 void GroundContainer::Start(RenderWindow& _window)
 {
 	if (Keyboard::isKeyPressed(Keyboard::Space))
-	{
-		if (mNbLvl <= 1)
-			mNbLvl = 1;
-	}
+		mNbLvl++;
+}
+
+void GroundContainer::GoToNextLvl(RenderWindow& _window)
+{
+	mNbLvl++;
+	mLvlCanChange = true;
+
+	ChangeLevel(_window);
 }
 
 void GroundContainer::ChangeLevel(RenderWindow& _window)
 {
 	if (mNbLvl == 1)
 	{
-		if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Luanar_lander_lvl_01_2.png"))
-			exit(EXIT_FAILURE);
+		mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_lvl_01.png");
+
+		mLvlCanChange = false;
 	}
-	/*else if (mNbLvl == 2)
+	
+	if (mNbLvl == 2)
 	{
-		if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_Lander_Menu.png"))
-			exit(EXIT_FAILURE);
-	}*/
+		mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_lvl_02.png");
+
+		mLvlCanChange = false;
+	}
+
+	if (mNbLvl == 3)
+	{
+		mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_lvl_03.png");
+
+		mLvlCanChange = false;
+	}
+
+	if (mNbLvl == 4)
+	{
+		mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_final_stage.png");
+
+		mLvlCanChange = false;
+	}
 
 	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
 	mMyTexture.loadFromImage(mMyImage);
@@ -69,6 +98,11 @@ Image& GroundContainer::GetImage()
 int GroundContainer::GetLvl()
 {
 	return mNbLvl;
+}
+
+bool GroundContainer::GetLvlChange()
+{
+	return mLvlCanChange;
 }
 
 GroundContainer::~GroundContainer()

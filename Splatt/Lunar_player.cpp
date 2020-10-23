@@ -9,32 +9,40 @@ Lander::Lander(RenderWindow& _window)
 	mSprite.setScale(Vector2f(2.0f, 2.0f));
 
 	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
-	mVelocity = Vector2f(0, 0);
 	mAngle = 0;
 	mEngineOn = false;
+	mVelocity = Vector2f(0, 0);
 
 	mSprite.setPosition(mPosition);
 	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
 	mSprite.setRotation(mAngle);
 
+	mIsAlive = true;
 }
 
 #pragma region "Lander_update"
 
-void Lander::Update(GroundContainer& _myContainer)
+void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 {
+	if (mPosition.x - GetWidth() / 2 <= 0 || mPosition.x + GetWidth() / 2 >= _window.getSize().x)
+		Explode();
+	if (mPosition.y - GetHeight() / 2 <= 0 || mPosition.y + GetHeight() / 2 >= _window.getSize().y)
+		Explode();
 
-	mVelocity.y += .2f * MainTime.GetTimeDeltaF();
+	if (mIsAlive)
+	{
+		mVelocity.y += .2f * MainTime.GetTimeDeltaF();
 
-	MoveRight();
-	MoveLeft();
-	Inpulse();
+		MoveRight();
+		MoveLeft();
+		Inpulse();
 
-	mPosition += mVelocity;
-	mSprite.setPosition(mPosition);
+		mPosition += mVelocity;
+		mSprite.setPosition(mPosition);
 
-	Collide(_myContainer);
+		Collide(_window, _myContainer);
+	}
 }
 
 void Lander::MoveRight()
@@ -67,16 +75,20 @@ void Lander::Inpulse()
 	}
 }
 
-void Lander::Landing()
+void Lander::Landing(RenderWindow& _window, GroundContainer& _myContainer)
 {
+	mPosition = Vector2f(50, 50);
+
 	mVelocity.x = 0.0f;
 	mVelocity.y = 0.0f;
 
 	cout << "You Win !" << endl;
 	cout << "GG WP" << endl;
+
+	_myContainer.GoToNextLvl(_window);
 }
 
-void Lander::Collide(GroundContainer& _myContainer)
+void Lander::Collide(RenderWindow& _window, GroundContainer& _myContainer)
 {
 	for (int i = 0; i <= mSprite.getLocalBounds().width; i++)
 	{
@@ -85,11 +97,12 @@ void Lander::Collide(GroundContainer& _myContainer)
 			int x = mSprite.getPosition().x - mSprite.getOrigin().x + i;
 			int y = mSprite.getPosition().y - mSprite.getOrigin().y + j;
 
-			if (_myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y < .5f)
-				Landing();
-
 			if (_myContainer.GetImage().getPixel(x, y) == Color::White || _myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y > .5f)
 				Explode();
+
+			if (_myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y < .5f && mIsAlive)
+				Landing(_window, _myContainer);
+			
 		}
 	}
 }
@@ -114,6 +127,9 @@ void Lander::Explode()
 	mSprite.setScale(Vector2f(2.0f, 2.0f));
 	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x, mTexture.getSize().y));
 	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
+
+
+	mIsAlive = false;
 }
 
 Lander::~Lander()
@@ -164,4 +180,9 @@ Sprite Lander::GetSprite()
 FloatRect Lander::GetBound()
 {
 	return mSprite.getGlobalBounds();
+}
+
+bool Lander::GetIsAlive()
+{
+	return mIsAlive;
 }
