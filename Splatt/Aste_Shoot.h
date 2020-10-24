@@ -19,6 +19,7 @@ public:
 	sf::Vector2f getVelocity() const;
 	bool isDead() const;
 	bool isPlayer() const {	return m_isPlayer; }
+	void setDead() { m_dead = true; };
 
 	void Update();
 };

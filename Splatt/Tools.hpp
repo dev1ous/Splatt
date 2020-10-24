@@ -100,3 +100,4 @@ float Angle_calc(sf::Vector2f pointA, sf::Vector2f pointB);
 sf::Vector2f getMidle(sf::Sprite& _o);
 sf::Vector2f getMidle(sf::RectangleShape& _o);
 sf::Vector2f getMidle(sf::Text& _o);
+float lerp(float a, float b, float f);

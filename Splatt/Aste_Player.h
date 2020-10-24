@@ -10,6 +10,8 @@ class Aste_Player
 	int m_lives;
 	float m_rotation;
 	sf::IntRect m_rect;
+	bool m_invu;
+	float m_invuTimer;
 
 public:
 	Aste_Player();
@@ -19,6 +21,7 @@ public:
 	float getRotation() const;
 	int getScore() const { return m_score; }
 	int getLives() const { return m_lives; }
+	bool isinvu() const { return m_invu; }
 
 	void setFrame(int frame);
 	void AddScore(int);
