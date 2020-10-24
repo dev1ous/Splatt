@@ -24,7 +24,7 @@ void Reset()
 {
 	// sauvegarde
 
-	int Scores[5] = {0,0,0,0,0};
+	int Scores[5] = { 0,0,0,0,0 };
 	std::ifstream ReadSave("../Ressources/Asteroid/Scores.txt");
 	if (ReadSave.is_open())
 	{
@@ -67,7 +67,7 @@ void Reset()
 
 	for (Aste_Enemies* ActualEnemie : EnemiesList)
 		delete ActualEnemie;
-	EnemiesList.clear();	
+	EnemiesList.clear();
 
 	LightList.clear();
 	Aste_ShootList.clear();
@@ -85,7 +85,7 @@ void Aste_Update()
 	// + 1 saucer every 10 sec ~ (Done)
 	// reset saucer spawn timer when finish a round (Done)
 	// saucer timer spawn don't increase when 1 is alive (Done)
-	
+
 	getMusic("Alone_Against_Enemy").setLoop(true);
 	if (getMusic("Alone_Against_Enemy").getStatus() != sf::Music::Playing)
 		getMusic("Alone_Against_Enemy").play();
@@ -100,7 +100,12 @@ void Aste_Update()
 		saucerTimer = 0.f;
 		for (int i = 0; i < Round * 2 + 2; i++)
 		{
-			EnemiesList.push_back(new Aste_Asteroid(sf::Vector2f(irandom(50, 1870), irandom(50, 1030)), frandom(0, 360), 3));
+			sf::Vector2f tmpPos(irandom(50, 1870), irandom(50, 1030));
+			while (Circle_Collision(aste_player->getPosition(), tmpPos, 1.f, 350.f))
+			{
+				tmpPos = sf::Vector2f(irandom(50, 1870), irandom(50, 1030));
+			}
+			EnemiesList.push_back(new Aste_Asteroid(tmpPos, frandom(0, 360), 3));
 		}
 	}
 
@@ -116,16 +121,22 @@ void Aste_Update()
 	if (saucerTimer >= 10.f)
 	{
 		saucerTimer = 0.f;
+		sf::Vector2f tmpPos(irandom(50, 1870), irandom(50, 1030));
+		while (Circle_Collision(aste_player->getPosition(), tmpPos, 1.f, 350.f))
+		{
+			tmpPos = sf::Vector2f(irandom(50, 1870), irandom(50, 1030));
+		}
+
 		if (aste_player->getScore() < 40000)
 		{
 			if (rand() % 100 < 50)
-				EnemiesList.push_back(new Aste_SmallSaucer(sf::Vector2f(irandom(50, 1870), irandom(50, 1030)), frandom(0, 360)));
+				EnemiesList.push_back(new Aste_SmallSaucer(tmpPos, frandom(0, 360)));
 			else
-				EnemiesList.push_back(new Aste_BigSaucer(sf::Vector2f(irandom(50, 1870), irandom(50, 1030)), frandom(0, 360)));
+				EnemiesList.push_back(new Aste_BigSaucer(tmpPos, frandom(0, 360)));
 
 		}
 		else
-			EnemiesList.push_back(new Aste_SmallSaucer(sf::Vector2f(irandom(50, 1870), irandom(50, 1030)), frandom(0, 360)));
+			EnemiesList.push_back(new Aste_SmallSaucer(tmpPos, frandom(0, 360)));
 	}
 
 	aste_player->Update();
@@ -144,7 +155,7 @@ void Aste_Update()
 	{
 		ActualShoot.Update();
 		if (ActualShoot.isDead())
-			Aste_ShootList.erase(Aste_ShootList.begin() + i);		
+			Aste_ShootList.erase(Aste_ShootList.begin() + i);
 		else
 			i++;
 	}
@@ -233,15 +244,6 @@ void Aste_Display()
 
 
 
-
-
-
-
-
-
-
-
-
 	static sf::RenderStates Rstate;
 	static sf::Texture _textureLastPass;
 	static sf::Texture _textureDiffuse;
@@ -268,14 +270,14 @@ void Aste_Display()
 
 	// light
 	LightList.clear();
-	LightList.push_back(Aste_Lights(sf::Vector3f(aste_player->getPosition().x, 1080 - aste_player->getPosition().y, 100), sf::Vector3f(0.7,0.7,0.7), 75.f, 0.1));
-	LightList.push_back(Aste_Lights(sf::Vector3f(1600, 1080 - 200, 100), sf::Vector3f(0.8,0.8,0.8), 175.f, 0.2));
+	LightList.push_back(Aste_Lights(sf::Vector3f(aste_player->getPosition().x, 1080 - aste_player->getPosition().y, 100), sf::Vector3f(0.7, 0.7, 0.7), 75.f, 0.1));
+	LightList.push_back(Aste_Lights(sf::Vector3f(1600, 1080 - 200, 100), sf::Vector3f(0.8, 0.8, 0.8), 175.f, 0.2));
 	for (Aste_Enemies* ActualEnemie : EnemiesList)
 	{
 		if (ActualEnemie->getType() != EnemiesType::Asteroids)
-			LightList.push_back(Aste_Lights(sf::Vector3f(ActualEnemie->getPosition().x, 1080 - ActualEnemie->getPosition().y, 60), sf::Vector3f(0.4f,0.45,0.f), 55.f, 0.5));
+			LightList.push_back(Aste_Lights(sf::Vector3f(ActualEnemie->getPosition().x, 1080 - ActualEnemie->getPosition().y, 60), sf::Vector3f(0.4f, 0.45, 0.f), 55.f, 0.5));
 		else
-			LightList.push_back(Aste_Lights(sf::Vector3f(ActualEnemie->getPosition().x, 1080 - ActualEnemie->getPosition().y, 60), sf::Vector3f(0.45,0.45,0.45), 55.f, 0.5));
+			LightList.push_back(Aste_Lights(sf::Vector3f(ActualEnemie->getPosition().x, 1080 - ActualEnemie->getPosition().y, 60), sf::Vector3f(0.45, 0.45, 0.45), 55.f, 0.5));
 	}
 
 	for (Aste_Shoot Actualshoots : Aste_ShootList)
@@ -296,7 +298,7 @@ void Aste_Display()
 	{
 		float intencity = (ActualExplosion.getFrame() - 2.f) / 10.f;
 		intencity = 1.f - intencity;
-		
+
 		LightList.push_back(Aste_Lights(sf::Vector3f(ActualExplosion.getPosition().x, 1080 - ActualExplosion.getPosition().y, 25), sf::Vector3f(0.8f * intencity, 0.4f * intencity, 0.f), 70.f, 0.07f));
 	}
 
@@ -409,8 +411,8 @@ void Aste_UpdatePause()
 
 void Aste_DisplayPause()
 {
-	sf::Text TResume("Resume",font,50);
-	sf::Text TQuit("Quit", font,50);
+	sf::Text TResume("Resume", font, 50);
+	sf::Text TQuit("Quit", font, 50);
 	float height = (TResume.getLocalBounds().height + TQuit.getLocalBounds().height) * 1.5 + 20;
 
 	sf::RectangleShape shape(sf::Vector2f(500, height));
@@ -431,7 +433,7 @@ void Aste_DisplayPause()
 	{
 	case 1:
 		TResume.setFillColor(sf::Color::White);
-		TQuit.setFillColor(sf::Color::Color(100,100,100));
+		TQuit.setFillColor(sf::Color::Color(100, 100, 100));
 		break;
 
 	case 2:

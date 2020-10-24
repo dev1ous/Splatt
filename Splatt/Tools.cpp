@@ -50,7 +50,10 @@ sf::Vector2f getMidle(sf::Text& _o)
 	return sf::Vector2f(_o.getLocalBounds().left + _o.getLocalBounds().width / 2, _o.getLocalBounds().top + _o.getLocalBounds().height / 2);
 }
 
-
+float lerp(float a, float b, float f)
+{
+	return a + f * (b - a);
+}
 
 
 void LaunchArguments(int argc, char** argv)

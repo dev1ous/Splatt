@@ -19,7 +19,6 @@ class Aste_Enemies
 protected:
 	sf::Vector2f getVelocity() const;
 
-	void setPosition(sf::Vector2f);
 	void setVelocity(sf::Vector2f);
 
 public:
@@ -28,6 +27,7 @@ public:
 	~Aste_Enemies();
 
 	void Kill();
+	void setPosition(sf::Vector2f);
 	sf::Vector2f getPosition() const;
 	EnemiesType getType() const { return m_type; }
 	int getLife() const;

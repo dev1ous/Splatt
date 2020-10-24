@@ -91,15 +91,18 @@ void Aste_Shoot::Update()
 		// balle enemies -> joueur
 		else
 		{
-			if (Circle_Collision(m_pos, aste_player->getPosition(), 3, getSprite("astePlayer").getLocalBounds().width / 2))
+			if (!aste_player->isinvu())
 			{
-				if (aste_player->getLives() > 1)
+				if (Circle_Collision(m_pos, aste_player->getPosition(), 3, getSprite("astePlayer").getLocalBounds().width / 2))
 				{
-					m_dead = true;
-					aste_player->DeathReset();
+					if (aste_player->getLives() > 1)
+					{
+						m_dead = true;
+						aste_player->DeathReset();
+					}
+					else
+						Reset();
 				}
-				else
-					Reset();
 			}
 		}
 	}
