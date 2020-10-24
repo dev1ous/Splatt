@@ -22,4 +22,4 @@ public :
 
 extern vector <SI_Ennemi> EnnemyList;
 
-static int Nombre_Ennemis = 0;
+extern int Nombre_Ennemis;

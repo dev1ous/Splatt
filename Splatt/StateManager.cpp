@@ -9,7 +9,7 @@
 #include "Controles.h"
 #include "TronTools.h"
 
-State state = State::TRON;
+State state;
 
 Lunar_manager* l_manager = new Lunar_manager;
 bool Pause = false;
@@ -27,7 +27,7 @@ void EventsManager()
 
 		if (event.type == sf::Event::KeyReleased)
 			PressedKey.remove(event.key.code);
-
+		
 		for (int i = 0; i < 8; i++)
 			GamepadManager(i, event);
 	}

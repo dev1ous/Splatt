@@ -47,4 +47,4 @@ public :
 
 extern vector <SI_Joueur> V_joueur;
 
-static int Nombre_Joueur = 2;
+static int Nombre_Joueur = 1;
