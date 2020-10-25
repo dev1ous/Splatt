@@ -13,6 +13,7 @@ protected:
 	Vector2f mPosition;
 	Vector2f mVelocity;
 	float mAngle;
+	int mNbLifePoints;
 	bool mEngineOn;
 	bool mIsAlive;
 
