@@ -30,6 +30,7 @@ public:
 
 		if (m_texture.loadFromFile(Path))
 		{
+			m_texture.setSmooth(true);
 			m_sprite.setTexture(m_texture); // need to redo it beacause the address is moved when pushback
 		}
 		else

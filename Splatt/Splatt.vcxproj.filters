@@ -61,17 +61,14 @@
     <Filter Include="Fichiers sources\Tron">
       <UniqueIdentifier>{69762c6f-3c5c-4b46-95a1-56feab009d0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\_Global">
+      <UniqueIdentifier>{9a342276-552c-4058-a9fe-c837e823ffac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\_Global">
+      <UniqueIdentifier>{f8a28335-9f23-4f8d-aea6-21862959ebe5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Tools.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="StateManager.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Aste_Asteroid.cpp">
       <Filter>Fichiers sources\Asteroid\Aste_Enemies</Filter>
     </ClCompile>
@@ -113,15 +110,6 @@
     </ClCompile>
     <ClCompile Include="Pac_Gum.cpp">
       <Filter>Fichiers sources\PacMan</Filter>
-    </ClCompile>
-    <ClCompile Include="RessourcesManager.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture_SpriteManager.cpp">
-      <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="SI_Joueur.cpp">
       <Filter>Fichiers sources\Space Invader</Filter>
@@ -165,12 +153,6 @@
     <ClCompile Include="Aste_Lights.cpp">
       <Filter>Fichiers sources\Asteroid</Filter>
     </ClCompile>
-    <ClCompile Include="Controles.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="GamePad.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="SI_Ennemi.cpp">
       <Filter>Fichiers sources\Space Invader</Filter>
     </ClCompile>
@@ -186,14 +168,35 @@
     <ClCompile Include="TronControles.cpp">
       <Filter>Fichiers sources\Tron</Filter>
     </ClCompile>
+    <ClCompile Include="Tools.cpp">
+      <Filter>Fichiers sources\_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture_SpriteManager.cpp">
+      <Filter>Fichiers sources\_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Fichiers sources\_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Fichiers sources\_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="RessourcesManager.cpp">
+      <Filter>Fichiers sources\_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePad.cpp">
+      <Filter>Fichiers sources\_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Controles.cpp">
+      <Filter>Fichiers sources\_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Fichiers sources\_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuManager.cpp">
+      <Filter>Fichiers sources\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StateManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Tools.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Aste_Asteroid.h">
       <Filter>Fichiers d%27en-tête\Asteroid\Aste_Enemies</Filter>
     </ClInclude>
@@ -214,9 +217,6 @@
     </ClInclude>
     <ClInclude Include="Aste_Shoot.h">
       <Filter>Fichiers d%27en-tête\Asteroid</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Lunar_player.h">
       <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
@@ -239,15 +239,6 @@
     <ClInclude Include="Pac_Gum.h">
       <Filter>Fichiers d%27en-tête\PacMan</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="RessourcesManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture_SpriteManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="SI_Tir.h">
       <Filter>Fichiers d%27en-tête\Space Invader</Filter>
     </ClInclude>
@@ -259,9 +250,6 @@
     </ClInclude>
     <ClInclude Include="Lunar_GroundContainer.h">
       <Filter>Fichiers d%27en-tête\Lunar Lander</Filter>
-    </ClInclude>
-    <ClInclude Include="Tetris_Manager.h">
-      <Filter>Fichiers sources</Filter>
     </ClInclude>
     <ClInclude Include="Tetris_Score.h">
       <Filter>Fichiers d%27en-tête\Tetris</Filter>
@@ -290,12 +278,6 @@
     <ClInclude Include="Aste_Explosion.h">
       <Filter>Fichiers d%27en-tête\Asteroid</Filter>
     </ClInclude>
-    <ClInclude Include="GamePad.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Controles.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="SI_Ennemi.h">
       <Filter>Fichiers d%27en-tête\Space Invader</Filter>
     </ClInclude>
@@ -310,6 +292,36 @@
     </ClInclude>
     <ClInclude Include="TronTools.h">
       <Filter>Fichiers d%27en-tête\Tron</Filter>
+    </ClInclude>
+    <ClInclude Include="Tetris_Manager.h">
+      <Filter>Fichiers d%27en-tête\Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Controles.h">
+      <Filter>Fichiers d%27en-tête\_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePad.h">
+      <Filter>Fichiers d%27en-tête\_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Fichiers d%27en-tête\_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.hpp">
+      <Filter>Fichiers d%27en-tête\_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="RessourcesManager.hpp">
+      <Filter>Fichiers d%27en-tête\_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.hpp">
+      <Filter>Fichiers d%27en-tête\_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools.hpp">
+      <Filter>Fichiers d%27en-tête\_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture_SpriteManager.hpp">
+      <Filter>Fichiers d%27en-tête\_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuManager.h">
+      <Filter>Fichiers d%27en-tête\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

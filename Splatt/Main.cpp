@@ -2,6 +2,8 @@
 #include "StateManager.hpp"
 #include "RessourcesManager.hpp"
 #include "Controles.h"
+#include "SoundManager.hpp"
+#include "Texture_SpriteManager.hpp"
 
 sf::RenderWindow App(sf::VideoMode(1920, 1080), "Splatt", sf::Style::Fullscreen);
 sf::Event event;
@@ -17,6 +19,9 @@ int main(int argc, char** argv)
 	RessourcesLoad("../Ressources/Space Invaders/");
 	RessourcesLoad("../Ressources/PacMan/");
 	LaunchArguments(argc, argv);
+
+	LoadSounds(State::ALL);
+	LoadSprite(State::ALL);
 
 	while (App.isOpen())
 	{

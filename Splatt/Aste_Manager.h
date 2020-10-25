@@ -7,3 +7,4 @@ void Aste_UpdatePause();
 void Aste_Display();
 void Aste_DisplayPause();
 
+void Aste_Infos(const int& x);

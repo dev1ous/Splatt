@@ -8,8 +8,9 @@
 #include "SoundManager.hpp"
 #include "Controles.h"
 #include "TronTools.h"
+#include "MenuManager.h"
 
-State state;
+State state = State::MENU;
 
 Lunar_manager l_manager;
 bool Pause = false;
@@ -60,6 +61,7 @@ void UpdateManager()
 	case State::RTNULL:
 		break;
 	case State::MENU:
+		Menu_Update();
 		break;
 	case State::SPACE_INVADER:
 		SI_Update();
@@ -97,6 +99,7 @@ void DisplayManager()
 	case State::RTNULL:
 		break;
 	case State::MENU:
+		Menu_Display();
 		break;
 	case State::SPACE_INVADER:
 		SI_Display();

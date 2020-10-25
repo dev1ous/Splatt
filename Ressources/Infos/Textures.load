@@ -1,9 +1,10 @@
-astePlayer | Asteroid
+astePlayer | All | Asteroid
 Asteroid | Asteroid
 alien | Asteroid
 Aste_Explosion | Asteroid
 Moon | Asteroid
 aste_shield | Asteroid
+Aste_Infos | All
 lunarPlayer | All
 PersoBase | SpaceInvaders
 Perso1 | SpaceInvaders

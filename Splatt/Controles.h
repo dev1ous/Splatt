@@ -29,7 +29,7 @@ enum class Action
 
 struct Controle
 {
-	Controle(Action _name, sf::Keyboard::Key _baseTouche, bool _button, gamepadPS4 Button_or_Axis, int Axis_direction = 0);
+	Controle(Action _name, sf::Keyboard::Key _baseTouche, bool _button, gamepadPS4 Button_or_Axis, int Axis_direction = 0, int _speManette = -1);
 
 	Action name;
 
@@ -38,6 +38,7 @@ struct Controle
 	gamepadPS4 PadKey;
 	bool isButton;
 	int AxisDirection;
+	int speManette;
 };
 
 ////////////////////////////////////////////////////////////

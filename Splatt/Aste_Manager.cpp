@@ -37,7 +37,7 @@ void Reset()
 
 		ReadSave.close();
 	}
-
+	
 	for (int i = 0; i < 5; i++)
 	{
 		if (aste_player->getScore() > Scores[i])
@@ -71,6 +71,7 @@ void Reset()
 
 	LightList.clear();
 	Aste_ShootList.clear();
+	ExplosionList.clear();
 
 	Round = 0;
 	RoundPass = true;
@@ -399,6 +400,9 @@ void Aste_UpdatePause()
 			break;
 
 		case 2:
+			Reset();
+			Pause = false;
+			ChangeState(State::MENU);
 			break;
 
 		default:
@@ -449,4 +453,49 @@ void Aste_DisplayPause()
 	App.draw(TResume);
 	App.draw(TQuit);
 	App.draw(shape);
+}
+
+
+void Aste_Infos(const int& x)
+{
+
+	static float rotate1 = 0.f;
+	rotate1 += -75 * MainTime.GetTimeDeltaF();
+
+	getSprite("astePlayer").setTextureRect(sf::IntRect(0, 0, 40, 60));
+	getSprite("astePlayer").setRotation(0);
+	getSprite("astePlayer").setOrigin(getSprite("astePlayer").getGlobalBounds().width / 2, getSprite("astePlayer").getGlobalBounds().height / 2);
+	getSprite("astePlayer").setPosition(x + 125, 150);
+	getSprite("astePlayer").setRotation(rotate1);
+
+	App.draw(getSprite("astePlayer"));
+
+
+
+	static float rotate2 = 0.f;
+	rotate2 += 75 * MainTime.GetTimeDeltaF();
+
+	getSprite("astePlayer").setTextureRect(sf::IntRect(0, 0, 40, 60));
+	getSprite("astePlayer").setRotation(0);
+	getSprite("astePlayer").setOrigin(getSprite("astePlayer").getGlobalBounds().width / 2, getSprite("astePlayer").getGlobalBounds().height / 2);
+	getSprite("astePlayer").setPosition(x + 125, 210);
+	getSprite("astePlayer").setRotation(rotate2);
+
+	App.draw(getSprite("astePlayer"));
+
+
+	static float yBall = 200.f;
+	yBall -= 125 * MainTime.GetTimeDeltaF();
+	if (yBall < 50.f)
+		yBall = 200;
+
+
+	sf::CircleShape CBall(3);
+	CBall.setPosition(x + 563.5f, yBall);
+	App.draw(CBall);
+
+
+	getSprite("Aste_Infos").setPosition(x, 100);
+	getSprite("Aste_Infos").setScale(1.2f,1.2f);
+	App.draw(getSprite("Aste_Infos"));
 }
