@@ -83,6 +83,21 @@ void GroundContainer::ChangeLevel(RenderWindow& _window)
 	mMySprite.setPosition(mPosition);
 }
 
+void GroundContainer::DeathScreen(RenderWindow& _window)
+{
+	mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_death_screen.jpg");
+	mLvlCanChange = false;
+
+	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
+	mMyTexture.loadFromImage(mMyImage);
+	mMySprite.setTexture(mMyTexture);
+	mMySprite.setOrigin(mMySprite.getGlobalBounds().width / 2, mMySprite.getGlobalBounds().height / 2);
+	mMySprite.setPosition(mPosition);
+
+	if (Keyboard::isKeyPressed(Keyboard::Space))
+		Start(_window);
+}
+
 
 
 void GroundContainer::Display(RenderWindow& _window)

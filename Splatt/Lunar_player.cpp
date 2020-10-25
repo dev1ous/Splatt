@@ -19,6 +19,7 @@ Lander::Lander(RenderWindow& _window)
 	mSprite.setRotation(mAngle);
 
 	mIsAlive = true;
+	mNbLifePoints = 3;
 }
 
 #pragma region "Lander_update"
@@ -46,10 +47,10 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 	}
 	else
 	{
-		if (Keyboard::isKeyPressed(Keyboard::Space))
-		{
+		if (mNbLifePoints <= 0)
+			_myContainer.DeathScreen(_window);
+		else
 			ResetPlayer();
-		}
 	}
 }
 
@@ -117,6 +118,8 @@ void Lander::Collide(RenderWindow& _window, GroundContainer& _myContainer)
 
 void Lander::ResetPlayer()
 {
+	mNbLifePoints--;
+
 	if (!mTexture.loadFromFile("../ressources/Lunar_lander/Lander.png"))
 		exit(EXIT_FAILURE);
 
