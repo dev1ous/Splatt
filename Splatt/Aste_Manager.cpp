@@ -471,7 +471,6 @@ void Aste_Infos(const int& x)
 	App.draw(getSprite("astePlayer"));
 
 
-
 	static float rotate2 = 0.f;
 	rotate2 += 75 * MainTime.GetTimeDeltaF();
 
@@ -498,4 +497,28 @@ void Aste_Infos(const int& x)
 	getSprite("Aste_Infos").setPosition(x, 100);
 	getSprite("Aste_Infos").setScale(1.2f,1.2f);
 	App.draw(getSprite("Aste_Infos"));
+
+
+
+	std::string Scores[5];
+	std::ifstream ReadSave("../Ressources/Asteroid/Scores.txt");
+	if (ReadSave.is_open())
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			std::getline(ReadSave, Scores[i]);
+		}
+
+		ReadSave.close();
+	}
+
+	sf::Text Tscores("Best Scores :", font, 40);
+	Tscores.setPosition(x + 655, 450);
+	App.draw(Tscores);
+	for (int i = 0; i < 5; i++)
+	{
+		Tscores.setString(Scores[i]);
+		Tscores.setPosition(x + 700, 500 + (50 * i));
+		App.draw(Tscores);
+	}
 }
