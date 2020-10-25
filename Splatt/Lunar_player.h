@@ -27,6 +27,7 @@ public:
 	void Inpulse();
 	void Landing(RenderWindow& _window, GroundContainer& _myContainer);
 	void Collide(RenderWindow& _window, GroundContainer &_myContainer);
+	void ResetPlayer();
 
 #pragma endregion
 

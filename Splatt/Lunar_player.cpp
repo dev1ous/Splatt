@@ -27,6 +27,7 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 {
 	if (mPosition.x - GetWidth() / 2 <= 0 || mPosition.x + GetWidth() / 2 >= _window.getSize().x)
 		Explode();
+
 	if (mPosition.y - GetHeight() / 2 <= 0 || mPosition.y + GetHeight() / 2 >= _window.getSize().y)
 		Explode();
 
@@ -42,6 +43,13 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 		mSprite.setPosition(mPosition);
 
 		Collide(_window, _myContainer);
+	}
+	else
+	{
+		if (Keyboard::isKeyPressed(Keyboard::Space))
+		{
+			ResetPlayer();
+		}
 	}
 }
 
@@ -105,6 +113,27 @@ void Lander::Collide(RenderWindow& _window, GroundContainer& _myContainer)
 			
 		}
 	}
+}
+
+void Lander::ResetPlayer()
+{
+	if (!mTexture.loadFromFile("../ressources/Lunar_lander/Lander.png"))
+		exit(EXIT_FAILURE);
+
+	mSprite.setTexture(mTexture);
+	mSprite.setScale(Vector2f(2.0f, 2.0f));
+
+	mPosition = Vector2f(50, 50);
+	mAngle = 0;
+	mEngineOn = false;
+	mVelocity = Vector2f(0, 0);
+
+	mSprite.setPosition(mPosition);
+	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
+	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
+	mSprite.setRotation(mAngle);
+
+	mIsAlive = true;
 }
 
 #pragma endregion
