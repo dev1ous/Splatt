@@ -24,7 +24,7 @@ SI_Tir::~SI_Tir()
 
 void SI_Tir::Update()
 {
-	Position.y -= 500 * MainTime.GetTimeDeltaF();
+	Position.y -= 1000 * MainTime.GetTimeDeltaF();
 	if (Position.x < 0 || Position.x > 1920 || Position.y < 0 || Position.y > 1080)
 		destruction = true;
 

@@ -31,7 +31,7 @@ SI_Joueur::SI_Joueur(Vector2f _position, int _numerojoueur, Color _color)
 
 	taille = 0;
 
-	Limite_Tir = 1;
+	Limite_Tir = 2;
 	Nombre_Tir = 0;
 
 	Special_Jaune = 0;
@@ -81,7 +81,7 @@ void SI_Joueur::Update()
 		else
 			Set_Droite(false);
 
-		if (Keyboard::isKeyPressed(Keyboard::Space) && Timer > 0.5f && Nombre_Tir < Limite_Tir)
+		if (Keyboard::isKeyPressed(Keyboard::Space) && Timer > 0.5f && Nombre_Tir < Limite_Tir/* && app == true && Pause == false*/)
 		{
 			Set_Tir(true);
 			Nombre_Tir++;
@@ -103,7 +103,7 @@ void SI_Joueur::Update()
 		else
 			Set_Droite(false);
 
-		if (Keyboard::isKeyPressed(Keyboard::Numpad0) && Timer > 0.5f && Nombre_Tir < Limite_Tir)
+		if (Keyboard::isKeyPressed(Keyboard::Numpad0) && Timer > 0.5f && Nombre_Tir < Limite_Tir && app == true && Pause == false)
 		{
 			Set_Tir(true);
 			Nombre_Tir++;
@@ -115,14 +115,16 @@ void SI_Joueur::Update()
 		Special.setScale(Vector2f(-1.f, 1.f));
 	}
 
+	if (Keyboard::isKeyPressed(Keyboard::Escape))
+		Pause = true;
+
 	if (Droite)
 		Position.x += 200 * MainTime.GetTimeDeltaF();
 	if (Gauche)
 		Position.x -= 200 * MainTime.GetTimeDeltaF();
+
 	if (Tir)
-	{
 		Tir_Joueur.push_back(SI_Tir(Couleur, Position));
-	}
 
 	if (Special_Jaune > 0)
 	{

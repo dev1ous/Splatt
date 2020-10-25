@@ -14,9 +14,11 @@ enum class State_SI
 
 extern bool app;
 
+void reset(State_SI _etat);
 void SI_Update();
 void SI_Display();
 void Intro();
 void Menu();
 void Niveau1();
+void Niveau2();
 bool App_Ennemis(int _rangeX, int _rangeY, int _typeMin, int _typeMax);

@@ -22,4 +22,4 @@ public :
 
 extern vector <SI_Ennemi> EnnemyList;
 
-extern int Nombre_Ennemis;
+extern float Vitesse;

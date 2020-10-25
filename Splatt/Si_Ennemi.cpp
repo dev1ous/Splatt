@@ -4,7 +4,6 @@ SI_Ennemi::SI_Ennemi()
 {
 	life = 1;
 	Type = 1;
-	Nombre_Ennemis++;
 	Droite = false;
 	Gauche = false;
 	Descente = false;
@@ -16,7 +15,6 @@ SI_Ennemi::SI_Ennemi(Vector2f _position, int _type)
 {
 	life = 1;
 	Type = _type;
-	Nombre_Ennemis++;
 	Droite = false;
 	Gauche = true;
 	Descente = false;
@@ -28,7 +26,7 @@ SI_Ennemi::SI_Ennemi(Vector2f _position, int _type)
 
 SI_Ennemi::~SI_Ennemi()
 {
-	Nombre_Ennemis--;
+	
 }
 
 void SI_Ennemi::Update()
@@ -57,7 +55,7 @@ void SI_Ennemi::Update()
 		if (Descente)
 		{
 			Timer += MainTime.GetTimeDeltaF();
-			Position.y += 50 * MainTime.GetTimeDeltaF();
+			Position.y += Vitesse * MainTime.GetTimeDeltaF();
 			if (Timer > 0.5f)
 			{
 				Descente = false;
@@ -65,7 +63,7 @@ void SI_Ennemi::Update()
 			}
 		}
 		else
-			Position.x -= 50 * MainTime.GetTimeDeltaF();
+			Position.x -= Vitesse * MainTime.GetTimeDeltaF();
 	}
 
 	if (Droite)
@@ -73,7 +71,7 @@ void SI_Ennemi::Update()
 		if (Descente)
 		{
 			Timer += MainTime.GetTimeDeltaF();
-			Position.y += 50 * MainTime.GetTimeDeltaF();
+			Position.y += Vitesse * MainTime.GetTimeDeltaF();
 			if (Timer > 0.5f)
 			{
 				Descente = false;
@@ -81,7 +79,7 @@ void SI_Ennemi::Update()
 			}
 		}
 		else
-			Position.x += 50 * MainTime.GetTimeDeltaF();
+			Position.x += Vitesse * MainTime.GetTimeDeltaF();
 	}
 
 }

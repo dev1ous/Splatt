@@ -36,7 +36,6 @@ void Suppression()
 		if (Actual_Ennemy.Get_Life() == 0)
 		{
 			EnnemyList.erase(EnnemyList.begin() + i);
-			Nombre_Ennemis--;
 			break;
 		}
 		i++;

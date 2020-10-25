@@ -6,17 +6,32 @@
 
 vector <SI_Joueur> V_joueur;
 vector <SI_Ennemi> EnnemyList;
+
 bool app = true;
-int Nombre_Ennemis = 0;
+bool Load = false;
+float Vitesse = 50;
+int Wave = 0;
+int Wave_actuel = 0;
 
 State_SI Etat;
 Text Play("Play", font, 100);
 Text Quit("Quit", font, 100);
 
+void reset(State_SI _etat)
+{
+	Etat = _etat;
+	Load = false;
+	app = true;
+	Wave = 0;
+	Wave_actuel = 0;
+
+	V_joueur.clear();
+	EnnemyList.clear();
+	Tir_Joueur.clear();
+}
 
 void SI_Update()
 {
-	static bool Load = false;
 	if (!Load)
 	{
 		Etat = State_SI::Menu;
@@ -34,34 +49,40 @@ void SI_Update()
 		Load = true;
 	}
 
-
 	if (Etat == State_SI::Niveau1 || Etat == State_SI::Niveau2 || Etat == State_SI::Niveau3)
 	{
-		switch (Etat)
-		{
-		case State_SI::Niveau1:
-			Niveau1();
-			break;
-		case State_SI::Niveau2:
-			break;
-		case State_SI::Niveau3:
-			break;
-		}
+		for (SI_Joueur& Actual_Joueur : V_joueur)
+			FullUpdate(Actual_Joueur);
 
-		Collision();
+		for (SI_Tir& Actual_Tir : Tir_Joueur)
+			Actual_Tir.Update();
+
 		Suppression();
 
-		if (app == true)
+		if (!Pause)
 		{
-			for (SI_Joueur& Actual_Joueur : V_joueur)
-				FullUpdate(Actual_Joueur);
+			switch (Etat)
+			{
+			case State_SI::Niveau1:
+				Niveau1();
+				break;
+			case State_SI::Niveau2:
+				break;
+			case State_SI::Niveau3:
+				break;
+			}
 
-			for (SI_Ennemi& Actual_Ennemy : EnnemyList)
-				FullUpdate(Actual_Ennemy);
+			if (app == true)
+			{
+				Collision();
 
-			for (SI_Tir& Actual_Tir : Tir_Joueur)
-				Actual_Tir.Update();
+				for (SI_Ennemi& Actual_Ennemy : EnnemyList)
+					FullUpdate(Actual_Ennemy);
+			}
 		}
+
+		if (Pause)
+			Menu();
 	}
 	else if (Etat == State_SI::Menu)
 	{
@@ -94,6 +115,12 @@ void SI_Display()
 
 		for (SI_Tir& Actual_Tir : Tir_Joueur)
 			Actual_Tir.Draw();
+
+		if (Pause)
+		{
+			App.draw(Play);
+			App.draw(Quit);
+		}
 	}
 
 	else if (Etat == State_SI::Menu)
@@ -159,15 +186,25 @@ void Menu()
 		Quit.setFillColor(Color::Red);
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Enter))
+	if (Keyboard::isKeyPressed(Keyboard::Enter) && timer > 0.2f)
 	{
 		if (select == 0)
-			Etat = State_SI::Niveau1;
+		{
+			if (!Pause)
+				Etat = State_SI::Niveau1;
+			else
+				Pause = false;
+		}
 		if (select == 1)
 		{
-			Etat = State_SI::Intro;
-			state = State::MENU;
+			if (!Pause)
+				state = State::MENU;
+			else
+				reset(State_SI::Menu);
+
 		}
+		select = 0;
+		timer = 0;
 	}
 }
 
@@ -175,8 +212,6 @@ void Niveau1()
 {
 	static int Min = 0;
 	static int Max = 0;
-	static int Wave = 0;
-	static int Wave_actuel = 0;
 
 	if (Wave == Wave_actuel)
 	{
@@ -187,42 +222,114 @@ void Niveau1()
 			Max = 2;
 			break;
 		case 1:
-			Min = 1;
-			Max = 2;
+			Min = 2;
+			Max = 3;
 			break;
 		case 2:
-			Min = 1;
-			Max = 2;
+			Min = 3;
+			Max = 4;
 			break;
 		case 3:
-			Min = 1;
-			Max = 2;
+			Min = 4;
+			Max = 5;
 			break;
 		case 4:
 			Min = 1;
-			Max = 2;
+			Max = 3;
 			break;
 		case 5:
-			Min = 1;
-			Max = 2;
+			Min = 3;
+			Max = 5;
 			break;
 		case 6:
 			Min = 1;
-			Max = 2;
+			Max = 4;
 			break;
 		case 7:
-			Min = 1;
-			Max = 2;
+			Min = 2;
+			Max = 5;
 			break;
 		case 8:
 			Min = 1;
-			Max = 2;
+			Max = 5;
 			break;
 		case 9:
 			Min = 1;
-			Max = 2;
+			Max = 5;
+			break;
+		case 10:
+			Etat = State_SI::Niveau2;
 			break;
 		}
+		Vitesse += 5;
+		app = false;
+		Wave++;
+	}
+
+	if (app == false)
+		app = App_Ennemis(6, 4, Min, Max);
+
+	if (app == true && EnnemyList.size() == 0)
+		Wave_actuel++;
+}
+
+void Niveau2()
+{
+	static int Min = 0;
+	static int Max = 0;
+	static int Wave = 0;
+	static int Wave_actuel = 0;
+
+
+	if (Wave == Wave_actuel)
+	{
+		switch (Wave)
+		{
+		case 0:
+			Min = 1;
+			Max = 5;
+			break;
+		case 1:
+			Min = 1;
+			Max = 5;
+			break;
+		case 2:
+			Min = 1;
+			Max = 5;
+			break;
+		case 3:
+			Min = 1;
+			Max = 5;
+			break;
+		case 4:
+			Min = 1;
+			Max = 5;
+			break;
+		case 5:
+			Min = 1;
+			Max = 5;
+			break;
+		case 6:
+			Min = 1;
+			Max = 5;
+			break;
+		case 7:
+			Min = 1;
+			Max = 5;
+			break;
+		case 8:
+			Min = 1;
+			Max = 5;
+			break;
+		case 9:
+			Min = 1;
+			Max = 5;
+			break;
+		case 10:
+			Etat = State_SI::Niveau3;
+			break;
+		}
+		Vitesse += 5;
 		app = false;
 		Wave++;
 	}
@@ -230,11 +337,8 @@ void Niveau1()
 	if (app == false)
 		app = App_Ennemis(10, 4, Min, Max);
 
-	if (app == true && Nombre_Ennemis == 0)
-	{
-
+	if (app == true && EnnemyList.size() == 0)
 		Wave_actuel++;
-	}
 }
 
 bool App_Ennemis(int _rangeX, int _rangeY, int _typeMin, int _typeMax)
@@ -245,10 +349,16 @@ bool App_Ennemis(int _rangeX, int _rangeY, int _typeMin, int _typeMax)
 	static float timer = 0;
 	timer += MainTime.GetTimeDeltaF();
 
+	if (EnnemyList.size() == 0)
+	{
+		y = 0;
+		x = 0;
+	}
+
 	if (timer > 0.05f && y < _rangeY && x < _rangeX)
 	{
 		Rand = irandom(_typeMin, _typeMax);
-		EnnemyList.push_back(SI_Ennemi(Vector2f((1920 / 11 * (x + 1)), 105 + (130 * y)), Rand));
+		EnnemyList.push_back(SI_Ennemi(Vector2f(180 * (x + 1) + (960 - (180 * (((float)_rangeX / 2.f) + 0.5f))), 105 + (130 * y)), Rand));
 		x++;
 
 		if (x == _rangeX && y < _rangeY)
@@ -261,8 +371,8 @@ bool App_Ennemis(int _rangeX, int _rangeY, int _typeMin, int _typeMax)
 
 	if (y == _rangeY)
 	{
-		return true;
 		y = 0;
+		return true;
 	}
 	else
 		return false;
