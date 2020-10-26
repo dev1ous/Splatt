@@ -17,6 +17,7 @@ protected:
 	bool mEngineOn;
 	bool mIsAlive;
 	int mScore;
+	float mFuel;
 
 public:
 	Lander(RenderWindow &_window);
@@ -52,6 +53,7 @@ public:
 	FloatRect GetBound();
 	bool GetIsAlive();
 	int GetScore();
+	float GetFuel();
 
 #pragma endregion
 	

@@ -21,6 +21,7 @@ Lander::Lander(RenderWindow& _window)
 	mScore = 0;
 	mIsAlive = true;
 	mNbLifePoints = 3;
+	mFuel = 10000;
 }
 
 #pragma region "Lander_update"
@@ -58,13 +59,19 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 void Lander::MoveRight()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Right))
+	{
 		mVelocity.x += .5f * MainTime.GetTimeDeltaF();
+		mFuel -= 1.5f;
+	}
 }
 
 void Lander::MoveLeft()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Left))
+	{
 		mVelocity.x -= .5f * MainTime.GetTimeDeltaF();
+		mFuel -= 1.5f;
+	}
 }
 
 void Lander::Inpulse()
@@ -72,9 +79,9 @@ void Lander::Inpulse()
 	if (Keyboard::isKeyPressed(Keyboard::Up))
 	{
 		mEngineOn = true;
-
 		mVelocity.y -= .5f * MainTime.GetTimeDeltaF();
 		mSprite.setTextureRect(IntRect(mTexture.getSize().x / 3, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
+		mFuel -= 1.5f;
 	}
 
 	if (mEngineOn && !Keyboard::isKeyPressed(Keyboard::Up))
@@ -226,4 +233,9 @@ bool Lander::GetIsAlive()
 int Lander::GetScore()
 {
 	return mScore;
+}
+
+float Lander::GetFuel()
+{
+	return mFuel;
 }

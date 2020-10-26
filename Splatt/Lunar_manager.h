@@ -8,10 +8,11 @@ class Lunar_manager
 {
 private:
 
-	Text mPosXText;
-	Text mPosYText;
+	Text mVelocityXText;
+	Text mVelocityYText;
 	Text mScoreText;
 	Text mLifeText;
+	Text mFuelText;
 	Font mMyFont;
 
 public:
@@ -20,6 +21,7 @@ public:
 	void Lunar_update(RenderWindow& _window);
 	void Lunar_display(RenderWindow &_window);
 	void TextUpdate();
+	bool PlayerHasNoFuel();
 
 	~Lunar_manager();
 

@@ -28,17 +28,23 @@ void Lunar_manager::TextInit(RenderWindow &_window)
 	mScoreText.setPosition(5, _window.getSize().y - (mLifeText.getGlobalBounds().height + mScoreText.getGlobalBounds().height) - 30);
 	mScoreText.setFillColor(Color(Color::Black));
 
-	mPosYText.setString("Pos Y: " + to_string(player->GetPosY()));
-	mPosYText.setFont(mMyFont);
-	mPosYText.setCharacterSize(50);
-	mPosYText.setPosition(_window.getSize().x - mPosYText.getGlobalBounds().width, _window.getSize().y - (mPosYText.getGlobalBounds().height) - 15);
-	mPosYText.setFillColor(Color(Color::Black));
+	mVelocityYText.setString("Velocity Y: " + to_string(player->GetVelocityY()));
+	mVelocityYText.setFont(mMyFont);
+	mVelocityYText.setCharacterSize(50);
+	mVelocityYText.setPosition(_window.getSize().x - mVelocityYText.getGlobalBounds().width, _window.getSize().y - (mVelocityYText.getGlobalBounds().height) - 15);
+	mVelocityYText.setFillColor(Color(Color::Black));
 
-	mPosXText.setString("Pos X: " + to_string(player->GetPosX()));
-	mPosXText.setFont(mMyFont);
-	mPosXText.setCharacterSize(50);
-	mPosXText.setPosition(_window.getSize().x - mPosXText.getGlobalBounds().width, _window.getSize().y - (mPosYText.getGlobalBounds().height + mPosXText.getGlobalBounds().height)- 30);
-	mPosXText.setFillColor(Color(Color::Black));
+	mVelocityXText.setString("Velocity X: " + to_string(player->GetVelocityX()));
+	mVelocityXText.setFont(mMyFont);
+	mVelocityXText.setCharacterSize(50);
+	mVelocityXText.setPosition(_window.getSize().x - mVelocityXText.getGlobalBounds().width, _window.getSize().y - (mVelocityYText.getGlobalBounds().height + mVelocityXText.getGlobalBounds().height)- 30);
+	mVelocityXText.setFillColor(Color(Color::Black));
+
+	mFuelText.setString("Fuel: " + to_string(player->GetFuel()));
+	mFuelText.setFont(mMyFont);
+	mFuelText.setCharacterSize(50);
+	mFuelText.setPosition(_window.getSize().x - mFuelText.getGlobalBounds().width, 5);
+	mFuelText.setFillColor(Color(Color::White));
 }
 
 void Lunar_manager::Lunar_update(RenderWindow& _window)
@@ -49,7 +55,7 @@ void Lunar_manager::Lunar_update(RenderWindow& _window)
 	{
 		TextUpdate();
 
-		if (myContainer->GetNewGame())
+		if (myContainer->GetNewGame() || PlayerHasNoFuel())
 		{
 			delete player;
 
@@ -70,19 +76,29 @@ void Lunar_manager::Lunar_display(RenderWindow& _window)
 	{
 		player->Display(_window);
 		
-		_window.draw(mPosXText);
-		_window.draw(mPosYText);
+		_window.draw(mVelocityXText);
+		_window.draw(mVelocityYText);
 		_window.draw(mScoreText);
 		_window.draw(mLifeText);
+		_window.draw(mFuelText);
 	}
 }
 
 void Lunar_manager::TextUpdate()
 {
-	mPosXText.setString("Pos X: " + to_string(player->GetPosX()));
-	mPosYText.setString("Pos Y: " + to_string(player->GetPosY()));
+	mVelocityXText.setString("Velocity X: " + to_string(player->GetVelocityX()));
+	mVelocityYText.setString("Velocity Y: " + to_string(player->GetVelocityY()));
 	mScoreText.setString("Score: " + to_string(player->GetScore()));
-	mLifeText.setString("Life: " + to_string(player->GetNbLife()));
+	mLifeText.setString("Life number: " + to_string(player->GetNbLife()));
+	mFuelText.setString("Fuel: " + to_string(player->GetFuel()));
+}
+
+bool Lunar_manager::PlayerHasNoFuel()
+{
+	if(player->GetFuel() <= 0)
+		return true;
+
+	return false;
 }
 
 Lunar_manager::~Lunar_manager()
