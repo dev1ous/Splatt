@@ -81,7 +81,6 @@ void Reset()
 void Aste_Update()
 {
 	ButtonTimer += MainTime.GetTimeDeltaF();
-	MusicMultip = 5;
 	// + 2 asteroid every round (Done)
 	// + 1 saucer every 10 sec ~ (Done)
 	// reset saucer spawn timer when finish a round (Done)

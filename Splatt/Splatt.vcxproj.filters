@@ -195,6 +195,9 @@
     <ClCompile Include="MenuManager.cpp">
       <Filter>Fichiers sources\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="MenuOption.cpp">
+      <Filter>Fichiers sources\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aste_Asteroid.h">

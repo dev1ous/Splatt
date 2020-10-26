@@ -6,6 +6,8 @@
 
 std::vector<std::string> VecMenu;
 int choice = 1;
+extern int Windowchoice;
+extern int PrevWindowchoice;
 
 void Menu_Init()
 {
@@ -21,6 +23,7 @@ void Menu_Init()
 	VecMenu.push_back("Quit");
 }
 
+bool isOption = false;
 void Menu_Update()
 {
 	static bool onepass = false;
@@ -33,66 +36,98 @@ void Menu_Update()
 		onepass = true;
 	}
 
-	if (isButtonPressed(Action::Down) && menuTimer >= 0.3)
+	if (!isOption)
 	{
-		menuTimer = 0;
-
-		if (choice < VecMenu.size())
-			choice++;
-		else
-			choice = 1;
-	}
-
-	if (isButtonPressed(Action::UP) && menuTimer >= 0.3)
-	{
-		menuTimer = 0;
-
-		if (choice > 1)
-			choice--;
-		else
-			choice = VecMenu.size();
-	}
-
-	if (isButtonPressed(Action::Interact) && menuTimer >= 0.2)
-	{
-		menuTimer = 0;
-
-		switch (choice)
+		if (isButtonPressed(Action::Down) && menuTimer >= 0.3)
 		{
-		case 1:
-			ChangeState(State::SPACE_INVADER);
-			break;
-		case 2:
-			ChangeState(State::PACMAN);
-			break;
-		case 3:
-			ChangeState(State::LUNAR_LANDER);
-			break;
-		case 4:
-			ChangeState(State::ASTEROID);
-			break;
-		case 5:
-			ChangeState(State::TETRIS);
-			break;
-		case 6:
-			ChangeState(State::TRON);
-			break;
-		case 7:
-			//ChangeState(State::);  KingKong
-			break;
-		case 8:
-			// Option
-			break;
-		case 9:
-			// credits
-			break;
-		case 10:
-			App.close();
-			break;
+			menuTimer = 0;
 
-		default:
-			break;
+			if (choice < VecMenu.size())
+				choice++;
+			else
+				choice = 1;
 		}
+
+		if (isButtonPressed(Action::UP) && menuTimer >= 0.3)
+		{
+			menuTimer = 0;
+
+			if (choice > 1)
+				choice--;
+			else
+				choice = VecMenu.size();
+		}
+
+		if (isButtonPressed(Action::Interact) && menuTimer >= 0.2)
+		{
+			menuTimer = 0;
+
+			switch (choice)
+			{
+			case 1:
+				ChangeState(State::SPACE_INVADER);
+				break;
+			case 2:
+				ChangeState(State::PACMAN);
+				break;
+			case 3:
+				ChangeState(State::LUNAR_LANDER);
+				break;
+			case 4:
+				ChangeState(State::ASTEROID);
+				break;
+			case 5:
+				//ChangeState(State::TETRIS);
+				break;
+			case 6:
+				ChangeState(State::TRON);
+				break;
+			case 7:
+				//ChangeState(State::);  KingKong
+				break;
+			case 8:
+				isOption = true;
+				PrevWindowchoice = Windowchoice;
+				break;
+			case 9:
+				// credits
+				break;
+			case 10:
+				App.close();
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+	else
+	{
+		if (isButtonPressed(Action::Escape) && menuTimer >= 0.3)
+		{
+			OptionSave();
+			isOption = false;
+			App.setVerticalSyncEnabled(isVSync);
+			if (Windowchoice != PrevWindowchoice)
+			{
+				switch (Windowchoice)
+				{
+				case 0:
+					App.create(sf::VideoMode(1920, 1080), "Splatt", sf::Style::Default);
+					break;
+				case 1:
+					App.create(sf::VideoMode(1920, 1080), "Splatt", sf::Style::None);
+					break;
+				case 2:
+					App.create(sf::VideoMode(1920, 1080), "Splatt", sf::Style::Fullscreen);
+					break;
+				default:
+					break;
+				}
+			}
+		}
+
+		MenuOptionUpdate();
 	}
 }
 
@@ -143,7 +178,7 @@ void Menu_Display()
 		// KingKong
 		break;
 	case 8:
-		// Option
+		MenuOptionDisplay(BaseX);
 		break;
 	case 9:
 		// credits

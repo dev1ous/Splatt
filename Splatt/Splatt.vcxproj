@@ -175,6 +175,7 @@
     <ClCompile Include="Lunar_manager.cpp" />
     <ClCompile Include="Lunar_player.cpp" />
     <ClCompile Include="MenuManager.cpp" />
+    <ClCompile Include="MenuOption.cpp" />
     <ClCompile Include="Pac_Bonus.cpp" />
     <ClCompile Include="Pac_Fantomes.cpp" />
     <ClCompile Include="Pac_Gum.cpp" />
