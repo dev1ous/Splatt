@@ -1,24 +1,12 @@
 #include "Lunar_GroundContainer.h"
 
-GroundContainer::GroundContainer()
-{
-	mNbLvl = 0;
-	mLvlCanChange = true;
-}
-
 GroundContainer::GroundContainer(RenderWindow& _window)
 {
 	mNbLvl = 0;
 	mLvlCanChange = true;
+	mIsOnDS = false;
 
-	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_Lander_Menu.png"))
-		exit(EXIT_FAILURE);
-
-	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
-	mMyTexture.loadFromImage(mMyImage);
-	mMySprite.setTexture(mMyTexture);
-	mMySprite.setOrigin(mMySprite.getGlobalBounds().width / 2, mMySprite.getGlobalBounds().height / 2);
-	mMySprite.setPosition(mPosition);
+	mStartNewGame = false;
 }
 
 void GroundContainer::Update(RenderWindow& _window)
@@ -34,6 +22,15 @@ void GroundContainer::Update(RenderWindow& _window)
 
 void GroundContainer::Start(RenderWindow& _window)
 {
+	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_Lander_Menu.png"))
+		exit(EXIT_FAILURE);
+
+	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
+	mMyTexture.loadFromImage(mMyImage);
+	mMySprite.setTexture(mMyTexture);
+	mMySprite.setOrigin(mMySprite.getGlobalBounds().width / 2, mMySprite.getGlobalBounds().height / 2);
+	mMySprite.setPosition(mPosition);
+
 	if (Keyboard::isKeyPressed(Keyboard::Space))
 		mNbLvl++;
 }
@@ -85,8 +82,8 @@ void GroundContainer::ChangeLevel(RenderWindow& _window)
 
 void GroundContainer::DeathScreen(RenderWindow& _window)
 {
+	mIsOnDS = true;
 	mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_death_screen.jpg");
-	mLvlCanChange = false;
 
 	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
 	mMyTexture.loadFromImage(mMyImage);
@@ -94,8 +91,14 @@ void GroundContainer::DeathScreen(RenderWindow& _window)
 	mMySprite.setOrigin(mMySprite.getGlobalBounds().width / 2, mMySprite.getGlobalBounds().height / 2);
 	mMySprite.setPosition(mPosition);
 
+	mLvlCanChange = true;
+
 	if (Keyboard::isKeyPressed(Keyboard::Space))
-		Start(_window);
+	{
+		mNbLvl = 0;
+		mIsOnDS = false;
+		mStartNewGame = true;
+	}
 }
 
 
@@ -118,6 +121,21 @@ int GroundContainer::GetLvl()
 bool GroundContainer::GetLvlChange()
 {
 	return mLvlCanChange;
+}
+
+bool GroundContainer::GetNewGame()
+{
+	return mStartNewGame;
+}
+
+bool GroundContainer::GetIsOnDeathScreen()
+{
+	return mIsOnDS;
+}
+
+void GroundContainer::SetNewGame(bool _newGame)
+{
+	mStartNewGame = _newGame;
 }
 
 GroundContainer::~GroundContainer()

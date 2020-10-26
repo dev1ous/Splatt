@@ -16,6 +16,7 @@ protected:
 	int mNbLifePoints;
 	bool mEngineOn;
 	bool mIsAlive;
+	int mScore;
 
 public:
 	Lander(RenderWindow &_window);
@@ -46,9 +47,11 @@ public:
 	float GetVelocityY();
 	float GetHeight();
 	float GetWidth();
+	int GetNbLife();
 	Sprite GetSprite();
 	FloatRect GetBound();
 	bool GetIsAlive();
+	int GetScore();
 
 #pragma endregion
 	

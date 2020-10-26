@@ -14,9 +14,10 @@ class GroundContainer
 
 	int mNbLvl;
 	bool mLvlCanChange;
+	bool mIsOnDS;
+	bool mStartNewGame;
 
 public:
-	GroundContainer();
 	GroundContainer(RenderWindow& _window);
 	void Update(RenderWindow& _window);
 	void Start(RenderWindow& _window);
@@ -28,6 +29,9 @@ public:
 	Image& GetImage();
 	int GetLvl();
 	bool GetLvlChange();
+	bool GetNewGame();
+	bool GetIsOnDeathScreen();
 
+	void SetNewGame(bool _newGame);
 	~GroundContainer();
 };

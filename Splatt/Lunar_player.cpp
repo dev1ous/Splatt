@@ -8,7 +8,7 @@ Lander::Lander(RenderWindow& _window)
 	mSprite.setTexture(mTexture);
 	mSprite.setScale(Vector2f(2.0f, 2.0f));
 
-	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
+	mPosition = Vector2f(50, 50);
 	mAngle = 0;
 	mEngineOn = false;
 	mVelocity = Vector2f(0, 0);
@@ -18,6 +18,7 @@ Lander::Lander(RenderWindow& _window)
 	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
 	mSprite.setRotation(mAngle);
 
+	mScore = 0;
 	mIsAlive = true;
 	mNbLifePoints = 3;
 }
@@ -88,11 +89,9 @@ void Lander::Landing(RenderWindow& _window, GroundContainer& _myContainer)
 {
 	mPosition = Vector2f(50, 50);
 
+	mScore += 100;
 	mVelocity.x = 0.0f;
 	mVelocity.y = 0.0f;
-
-	cout << "You Win !" << endl;
-	cout << "GG WP" << endl;
 
 	_myContainer.GoToNextLvl(_window);
 }
@@ -204,6 +203,11 @@ float Lander::GetWidth()
 	return mSprite.getGlobalBounds().width;
 }
 
+int Lander::GetNbLife()
+{
+	return mNbLifePoints;
+}
+
 Sprite Lander::GetSprite()
 {
 	return mSprite;
@@ -217,4 +221,9 @@ FloatRect Lander::GetBound()
 bool Lander::GetIsAlive()
 {
 	return mIsAlive;
+}
+
+int Lander::GetScore()
+{
+	return mScore;
 }

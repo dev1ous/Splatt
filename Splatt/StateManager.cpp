@@ -12,7 +12,7 @@
 
 State state = State::MENU;
 
-Lunar_manager l_manager;
+Lunar_manager l_manager(App);
 bool Pause = false;
 
 void EventsManager()
