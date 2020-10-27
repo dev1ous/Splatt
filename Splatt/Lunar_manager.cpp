@@ -55,7 +55,7 @@ void Lunar_manager::TextInit(RenderWindow& _window)
 
 void Lunar_manager::Lunar_update(RenderWindow& _window)
 {
-	mPause = IsOnPause();
+	IsOnPause();
 
 	if (!mPause)
 	{
@@ -81,8 +81,8 @@ void Lunar_manager::Lunar_update(RenderWindow& _window)
 
 void Lunar_manager::Lunar_display(RenderWindow& _window)
 {
-	mPause = IsOnPause();
-	
+	IsOnPause();
+
 	if (!mPause)
 	{
 		myContainer->Display(_window);
@@ -101,9 +101,7 @@ void Lunar_manager::Lunar_display(RenderWindow& _window)
 			_window.draw(mEscText);
 	}
 	else
-	{
 		DisplayPauseMenu();
-	}
 }
 
 void Lunar_manager::TextUpdate()
@@ -132,12 +130,15 @@ void Lunar_manager::DisplayPauseMenu()
 	mMySprite.setTexture(mMyTexture);
 
 	App.draw(mMySprite);
+
+	if (Keyboard::isKeyPressed(Keyboard::Space))
+		mPause = false;
 }
 
-bool Lunar_manager::IsOnPause()
+void Lunar_manager::IsOnPause()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Escape))
-		return true;
+		mPause = !mPause;
 }
 
 Lunar_manager::~Lunar_manager()

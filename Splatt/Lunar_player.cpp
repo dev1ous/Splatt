@@ -117,7 +117,6 @@ void Lander::Collide(RenderWindow& _window, GroundContainer& _myContainer)
 
 			if (_myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y < .5f && mIsAlive)
 				Landing(_window, _myContainer);
-			
 		}
 	}
 }
@@ -146,7 +145,7 @@ void Lander::ResetPlayer()
 }
 
 bool Lander::HasFuel()
-{	
+{
 	if (mFuel <= 0)
 	{
 		mIsAlive = false;
@@ -177,7 +176,6 @@ void Lander::Explode()
 	mSprite.setScale(Vector2f(2.0f, 2.0f));
 	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x, mTexture.getSize().y));
 	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
-
 
 	mIsAlive = false;
 }

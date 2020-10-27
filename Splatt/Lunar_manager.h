@@ -21,6 +21,7 @@ private:
 	Text mEscText;
 	Font mMyFont;
 
+	bool mIsMenuOn;
 	bool mPause;
 
 public:
@@ -31,7 +32,7 @@ public:
 	void TextUpdate();
 	bool PlayerHasNoFuel();
 	void DisplayPauseMenu();
-	bool IsOnPause();
+	void IsOnPause();
 	~Lunar_manager();
 
 };
