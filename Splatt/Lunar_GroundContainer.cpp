@@ -5,7 +5,7 @@ GroundContainer::GroundContainer(RenderWindow& _window)
 	mNbLvl = 0;
 	mLvlCanChange = true;
 	mIsOnDS = false;
-
+	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
 	mStartNewGame = false;
 }
 
@@ -25,7 +25,6 @@ void GroundContainer::Start(RenderWindow& _window)
 	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_Lander_Menu.png"))
 		exit(EXIT_FAILURE);
 
-	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
 	mMyTexture.loadFromImage(mMyImage);
 	mMySprite.setTexture(mMyTexture);
 	mMySprite.setOrigin(mMySprite.getGlobalBounds().width / 2, mMySprite.getGlobalBounds().height / 2);
@@ -72,8 +71,7 @@ void GroundContainer::ChangeLevel(RenderWindow& _window)
 
 		mLvlCanChange = false;
 	}
-
-	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
+	
 	mMyTexture.loadFromImage(mMyImage);
 	mMySprite.setTexture(mMyTexture);
 	mMySprite.setOrigin(mMySprite.getGlobalBounds().width / 2, mMySprite.getGlobalBounds().height / 2);
@@ -85,7 +83,6 @@ void GroundContainer::DeathScreen(RenderWindow& _window)
 	mIsOnDS = true;
 	mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_death_screen.jpg");
 
-	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
 	mMyTexture.loadFromImage(mMyImage);
 	mMySprite.setTexture(mMyTexture);
 	mMySprite.setOrigin(mMySprite.getGlobalBounds().width / 2, mMySprite.getGlobalBounds().height / 2);
@@ -100,8 +97,6 @@ void GroundContainer::DeathScreen(RenderWindow& _window)
 		mStartNewGame = true;
 	}
 }
-
-
 
 void GroundContainer::Display(RenderWindow& _window)
 {

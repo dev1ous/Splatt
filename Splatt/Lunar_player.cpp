@@ -21,7 +21,7 @@ Lander::Lander(RenderWindow& _window)
 	mScore = 0;
 	mIsAlive = true;
 	mNbLifePoints = 3;
-	mFuel = 10000;
+	mFuel = 5000;
 }
 
 #pragma region "Lander_update"
@@ -34,7 +34,7 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 	if (mPosition.y - GetHeight() / 2 <= 0 || mPosition.y + GetHeight() / 2 >= _window.getSize().y)
 		Explode();
 
-	if (mIsAlive)
+	if (mIsAlive && HasFuel())
 	{
 		mVelocity.y += .2f * MainTime.GetTimeDeltaF();
 
@@ -49,7 +49,7 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 	}
 	else
 	{
-		if (mNbLifePoints <= 0)
+		if (mNbLifePoints <= 0 || !HasFuel())
 			_myContainer.DeathScreen(_window);
 		else
 			ResetPlayer();
@@ -109,8 +109,8 @@ void Lander::Collide(RenderWindow& _window, GroundContainer& _myContainer)
 	{
 		for (int j = 0; j <= mSprite.getLocalBounds().height; j++)
 		{
-			int x = mSprite.getPosition().x - mSprite.getOrigin().x + i;
-			int y = mSprite.getPosition().y - mSprite.getOrigin().y + j;
+			float x = mSprite.getPosition().x - mSprite.getOrigin().x + i;
+			float y = mSprite.getPosition().y - mSprite.getOrigin().y + j;
 
 			if (_myContainer.GetImage().getPixel(x, y) == Color::White || _myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y > .5f)
 				Explode();
@@ -143,6 +143,18 @@ void Lander::ResetPlayer()
 	mSprite.setRotation(mAngle);
 
 	mIsAlive = true;
+}
+
+bool Lander::HasFuel()
+{	
+	if (mFuel <= 0)
+	{
+		mIsAlive = false;
+
+		return false;
+	}
+
+	return true;
 }
 
 #pragma endregion

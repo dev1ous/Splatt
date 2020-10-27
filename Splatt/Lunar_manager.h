@@ -7,13 +7,21 @@
 class Lunar_manager
 {
 private:
+	Image mMyImage;
+	Texture mMyTexture;
+	Sprite mMySprite;
+
+	Vector2f mPosition;
 
 	Text mVelocityXText;
 	Text mVelocityYText;
 	Text mScoreText;
 	Text mLifeText;
 	Text mFuelText;
+	Text mEscText;
 	Font mMyFont;
+
+	bool mPause;
 
 public:
 	Lunar_manager(RenderWindow &_window);
@@ -22,7 +30,8 @@ public:
 	void Lunar_display(RenderWindow &_window);
 	void TextUpdate();
 	bool PlayerHasNoFuel();
-
+	void DisplayPauseMenu();
+	bool IsOnPause();
 	~Lunar_manager();
 
 };
