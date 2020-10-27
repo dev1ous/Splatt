@@ -21,7 +21,7 @@ Lander::Lander(RenderWindow& _window)
 	mScore = 0;
 	mIsAlive = true;
 	mNbLifePoints = 3;
-	mFuel = 5000;
+	mFuel = 20000;
 }
 
 #pragma region "Lander_update"

@@ -65,7 +65,7 @@ void Lunar_manager::Lunar_update(RenderWindow& _window)
 		{
 			TextUpdate();
 
-			if (myContainer->GetNewGame())
+			if (myContainer->GetNewGame() || Keyboard::isKeyPressed(Keyboard::R))
 			{
 				delete player;
 
