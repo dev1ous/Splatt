@@ -29,6 +29,7 @@ int main(int argc, char** argv)
 
 	LoadSounds(State::ALL);
 	LoadSprite(State::ALL);
+	ChangeState(state);
 
 	while (App.isOpen())
 	{

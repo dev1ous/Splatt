@@ -4,7 +4,6 @@ alien | Asteroid
 Aste_Explosion | Asteroid
 Moon | Asteroid
 aste_shield | Asteroid
-Aste_Infos | All
 lunarPlayer | All
 PersoBase | SpaceInvaders
 Perso1 | SpaceInvaders
@@ -20,4 +19,6 @@ Niveau3 | SpaceInvaders
 PacMap | PacMan
 Pac | PacMan
 
-OptionBack | All
+OptionBack | Menu
+AsteroidBack | Menu
+Aste_Infos | Menu

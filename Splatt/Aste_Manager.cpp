@@ -270,7 +270,7 @@ void Aste_Display()
 
 	// light
 	LightList.clear();
-	LightList.push_back(Aste_Lights(sf::Vector3f(aste_player->getPosition().x, 1080 - aste_player->getPosition().y, 100), sf::Vector3f(0.7, 0.7, 0.7), 75.f, 0.1));
+	//LightList.push_back(Aste_Lights(sf::Vector3f(aste_player->getPosition().x, 1080 - aste_player->getPosition().y, 100), sf::Vector3f(0.7, 0.7, 0.7), 75.f, 0.1));
 	LightList.push_back(Aste_Lights(sf::Vector3f(1600, 1080 - 200, 100), sf::Vector3f(0.8, 0.8, 0.8), 175.f, 0.2));
 	for (Aste_Enemies* ActualEnemie : EnemiesList)
 	{
@@ -457,6 +457,9 @@ void Aste_DisplayPause()
 
 void Aste_Infos(const int& x)
 {
+	getSprite("AsteroidBack").setPosition(x, 0);
+	App.draw(getSprite("AsteroidBack"));
+
 
 	static float rotate1 = 0.f;
 	rotate1 += -75 * MainTime.GetTimeDeltaF();
@@ -512,12 +515,40 @@ void Aste_Infos(const int& x)
 	}
 
 	sf::Text Tscores("Best Scores :", font, 40);
-	Tscores.setPosition(x + 655, 450);
+	Tscores.setPosition(x + 22, 450);
 	App.draw(Tscores);
 	for (int i = 0; i < 5; i++)
 	{
-		Tscores.setString(Scores[i]);
-		Tscores.setPosition(x + 700, 500 + (50 * i));
+		Tscores.setString("#" + std::to_string(i+1) + " " +Scores[i]);
+		Tscores.setPosition(x + 50, 500 + (50 * i));
 		App.draw(Tscores);
 	}
+
+	std::string sPitch =
+		"Asteroids et un jeu sur le thème de l'espace, c'est un Shooter multidirectionnel. "
+		"\nLe joueur contrôle un vaisseau spatial dans un champ d'astéroïdes dans lequel peu passer des soucoupes volantes. "
+		"\nL'objectif est de détruire les astéroïdes et soucoupes volantes. ";
+
+	// set Auto '\n'
+	std::string sPitch2;
+	std::string sPitchFinal;
+	for (int i = 0; i < sPitch.length() ; i++)
+	{
+		sPitch2 += sPitch[i];
+		sf::Text TPitchTest(sPitch2, font);	
+		if (TPitchTest.getLocalBounds().width >= 550 && sPitch[i] == ' ')
+		{
+			sPitchFinal += sPitch2;
+			sPitchFinal += '\n';
+			sPitch2 = "";
+		}
+	}
+
+	sf::Text TPitch("Explications :", font);
+	TPitch.setPosition(x + 400, 450);
+	App.draw(TPitch);
+
+	TPitch.setString(sPitchFinal);
+	TPitch.setPosition(x + 400, 500);
+	App.draw(TPitch);
 }
