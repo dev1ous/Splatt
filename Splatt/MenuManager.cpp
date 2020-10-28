@@ -81,6 +81,7 @@ void Menu_Update()
 				break;
 			case 6:
 				ChangeState(State::TRON);
+				Pause = true;
 				break;
 			case 7:
 				//ChangeState(State::);  KingKong
