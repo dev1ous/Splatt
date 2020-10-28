@@ -551,4 +551,9 @@ void Aste_Infos(const int& x)
 	TPitch.setString(sPitchFinal);
 	TPitch.setPosition(x + 400, 500);
 	App.draw(TPitch);
+
+	sf::Text Tstart("Enter to Start", font, 60);
+	Tstart.setOrigin(getMidle(Tstart));
+	Tstart.setPosition(x + 1170 / 2, 900);
+	App.draw(Tstart);
 }

@@ -10,6 +10,8 @@ enum class Action
 	Interact,
 	UP,
 	Down,
+	Left,
+	Right,
 
 	Aste_Forward,
 	Aste_RotateLeft,

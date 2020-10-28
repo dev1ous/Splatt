@@ -33,7 +33,7 @@ void MenuOptionUpdate()
 			OptionChoice = 1;
 	}
 
-	if (isButtonPressed(Action::Aste_RotateLeft) && menuTimer >= 0.15)
+	if (isButtonPressed(Action::Left) && menuTimer >= 0.15)
 	{
 		menuTimer = 0;
 
@@ -67,7 +67,7 @@ void MenuOptionUpdate()
 		}
 	}
 
-	if (isButtonPressed(Action::Aste_RotateRight) && menuTimer >= 0.15)
+	if (isButtonPressed(Action::Right) && menuTimer >= 0.15)
 	{
 		menuTimer = 0;
 

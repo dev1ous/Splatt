@@ -107,8 +107,15 @@ void InitControles()
 {
 	controles.push_back(Controle(Action::Escape, sf::Keyboard::Escape, true, gamepadPS4::Start));
 	controles.push_back(Controle(Action::Interact, sf::Keyboard::Enter, true, gamepadPS4::A));
+
 	controles.push_back(Controle(Action::UP, sf::Keyboard::Z, false, gamepadPS4::StickLY, -1));
+	controles.push_back(Controle(Action::UP, sf::Keyboard::Up, false, gamepadPS4::CROSSY, -1));
 	controles.push_back(Controle(Action::Down, sf::Keyboard::S, false, gamepadPS4::StickLY, 1));
+	controles.push_back(Controle(Action::Down, sf::Keyboard::Down, false, gamepadPS4::CROSSY, 1));
+	controles.push_back(Controle(Action::Left, sf::Keyboard::Q, false, gamepadPS4::StickLX, -1));
+	controles.push_back(Controle(Action::Left, sf::Keyboard::Left, false, gamepadPS4::CROSSX, -1));
+	controles.push_back(Controle(Action::Right, sf::Keyboard::D, false, gamepadPS4::StickLX, 1));
+	controles.push_back(Controle(Action::Right, sf::Keyboard::Right, false, gamepadPS4::CROSSX, 1));
 
 	controles.push_back(Controle(Action::Aste_RotateLeft, sf::Keyboard::Q, false, gamepadPS4::StickLX, -1));
 	controles.push_back(Controle(Action::Aste_RotateRight, sf::Keyboard::D, false, gamepadPS4::StickLX, 1));
