@@ -1,5 +1,6 @@
 #pragma once
 #include "Tools.hpp"
+#include "StateManager.hpp"
 
 #include "pch.h"
 
@@ -20,10 +21,11 @@ class GroundContainer
 public:
 	GroundContainer(RenderWindow& _window);
 	void Update(RenderWindow& _window);
-	void Start(RenderWindow& _window);
+	void Start();
 	void GoToNextLvl(RenderWindow& _window);
 	void ChangeLevel(RenderWindow& _window);
 	void DeathScreen(RenderWindow& _window);
+	void GoToMainMenu();
 	void Display(RenderWindow& _window);
 
 	Image& GetImage();

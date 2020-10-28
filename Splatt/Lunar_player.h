@@ -18,6 +18,8 @@ protected:
 	bool mIsAlive;
 	int mScore;
 	float mFuel;
+	bool mIsHardMode;
+	float mSpeed;
 
 public:
 	Lander(RenderWindow &_window);
@@ -32,6 +34,7 @@ public:
 	void Collide(RenderWindow& _window, GroundContainer &_myContainer);
 	void ResetPlayer();
 	bool HasFuel();
+	void ChangeMode();
 
 #pragma endregion
 
@@ -55,6 +58,7 @@ public:
 	bool GetIsAlive();
 	int GetScore();
 	float GetFuel();
+	float GetAngle();
 
 #pragma endregion
 	

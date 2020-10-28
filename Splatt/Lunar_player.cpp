@@ -8,18 +8,19 @@ Lander::Lander(RenderWindow& _window)
 	mSprite.setTexture(mTexture);
 	mSprite.setScale(Vector2f(2.0f, 2.0f));
 
-	mPosition = Vector2f(50, 50);
+	mPosition = Vector2f(150, 150);
 	mAngle = 0;
 	mEngineOn = false;
 	mVelocity = Vector2f(0, 0);
 
 	mSprite.setPosition(mPosition);
-	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
-	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
-	mSprite.setRotation(mAngle);
-
+	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 2, mTexture.getSize().y));
+	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
+	
+	mSpeed = 3;
 	mScore = 0;
 	mIsAlive = true;
+	mIsHardMode = false;
 	mNbLifePoints = 3;
 	mFuel = 20000;
 }
@@ -36,6 +37,8 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 
 	if (mIsAlive && HasFuel())
 	{
+		ChangeMode();
+
 		mVelocity.y += .2f * MainTime.GetTimeDeltaF();
 
 		MoveRight();
@@ -44,7 +47,7 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 
 		mPosition += mVelocity;
 		mSprite.setPosition(mPosition);
-
+		mSprite.setRotation(mAngle);
 		Collide(_window, _myContainer);
 	}
 	else
@@ -60,7 +63,11 @@ void Lander::MoveRight()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Right))
 	{
-		mVelocity.x += .5f * MainTime.GetTimeDeltaF();
+		if (!mIsHardMode)
+			mVelocity.x += .5f * MainTime.GetTimeDeltaF();
+		else
+			mAngle += 90 * MainTime.GetTimeDeltaF();
+				
 		mFuel -= 1.5f;
 	}
 }
@@ -69,7 +76,11 @@ void Lander::MoveLeft()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Left))
 	{
-		mVelocity.x -= .5f * MainTime.GetTimeDeltaF();
+		if (!mIsHardMode)
+			mVelocity.x -= .5f * MainTime.GetTimeDeltaF();
+		else
+			mAngle -= 90 * MainTime.GetTimeDeltaF();
+
 		mFuel -= 1.5f;
 	}
 }
@@ -78,9 +89,21 @@ void Lander::Inpulse()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Up))
 	{
+		if(!mIsHardMode)
+			mVelocity.y -= .5f * MainTime.GetTimeDeltaF();
+		else
+		{
+			float angle_rad = mAngle * 180 / pi;
+
+			float forceX = cos(angle_rad) * (mSpeed * MainTime.GetTimeDeltaF());
+			float forceY = sin(angle_rad) * (mSpeed * MainTime.GetTimeDeltaF());
+
+			mVelocity.x += forceX;
+			mVelocity.y += forceY;		
+		}
+
 		mEngineOn = true;
-		mVelocity.y -= .5f * MainTime.GetTimeDeltaF();
-		mSprite.setTextureRect(IntRect(mTexture.getSize().x / 3, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
+		mSprite.setTextureRect(IntRect(mTexture.getSize().x / 2, 0, mTexture.getSize().x / 2, mTexture.getSize().y));
 		mFuel -= 1.5f;
 	}
 
@@ -88,7 +111,7 @@ void Lander::Inpulse()
 	{
 		mEngineOn = false;
 
-		mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
+		mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 2, mTexture.getSize().y));
 	}
 }
 
@@ -138,7 +161,7 @@ void Lander::ResetPlayer()
 
 	mSprite.setPosition(mPosition);
 	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
-	mSprite.setOrigin(mSprite.getGlobalBounds().width / 2, mSprite.getGlobalBounds().height / 2);
+	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
 	mSprite.setRotation(mAngle);
 
 	mIsAlive = true;
@@ -154,6 +177,12 @@ bool Lander::HasFuel()
 	}
 
 	return true;
+}
+
+void Lander::ChangeMode()
+{
+	if (Keyboard::isKeyPressed(Keyboard::M))
+		mIsHardMode = !mIsHardMode;
 }
 
 #pragma endregion
@@ -248,4 +277,9 @@ int Lander::GetScore()
 float Lander::GetFuel()
 {
 	return mFuel;
+}
+
+float Lander::GetAngle()
+{
+	return mAngle;
 }

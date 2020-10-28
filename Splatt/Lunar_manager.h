@@ -1,6 +1,7 @@
 #pragma once
 #include "Lunar_GroundContainer.h"
 #include "Lunar_player.h"
+#include "StateManager.hpp"
 
 #include "Tools.hpp"
 
@@ -19,6 +20,8 @@ private:
 	Text mLifeText;
 	Text mFuelText;
 	Text mEscText;
+	Text mAngleText;
+	Text mGoToMainMenu;
 	Font mMyFont;
 
 	bool mIsMenuOn;

@@ -17,6 +17,11 @@ Lunar_manager::Lunar_manager(RenderWindow& _window)
 
 void Lunar_manager::TextInit(RenderWindow& _window)
 {
+	mGoToMainMenu.setString("Press Q for return to the main menu");
+	mGoToMainMenu.setFont(mMyFont);
+	mGoToMainMenu.setCharacterSize(30);
+	mGoToMainMenu.setPosition(5, 5);
+
 	mEscText.setString("Press the escape button during the game for open the pause menu");
 	mEscText.setFont(mMyFont);
 	mEscText.setCharacterSize(30);
@@ -46,11 +51,11 @@ void Lunar_manager::TextInit(RenderWindow& _window)
 	mVelocityXText.setPosition(_window.getSize().x - mVelocityXText.getGlobalBounds().width, _window.getSize().y - (mVelocityYText.getGlobalBounds().height + mVelocityXText.getGlobalBounds().height) - 30);
 	mVelocityXText.setFillColor(Color(Color::Black));
 
-	mFuelText.setString("Fuel: " + to_string(player->GetFuel()));
-	mFuelText.setFont(mMyFont);
-	mFuelText.setCharacterSize(50);
-	mFuelText.setPosition(_window.getSize().x - mFuelText.getGlobalBounds().width, 5);
-	mFuelText.setFillColor(Color(Color::White));
+	mAngleText.setString("Angle: " + to_string(player->GetAngle()));
+	mAngleText.setFont(mMyFont);
+	mAngleText.setCharacterSize(50);
+	mAngleText.setPosition(_window.getSize().x - mAngleText.getGlobalBounds().width, 5);
+	mAngleText.setFillColor(Color(Color::White));
 }
 
 void Lunar_manager::Lunar_update(RenderWindow& _window)
@@ -95,10 +100,12 @@ void Lunar_manager::Lunar_display(RenderWindow& _window)
 			_window.draw(mVelocityYText);
 			_window.draw(mScoreText);
 			_window.draw(mLifeText);
-			_window.draw(mFuelText);
+			_window.draw(mAngleText);
 		}
-		else
+		else if (myContainer->GetLvl() == 0)
 			_window.draw(mEscText);
+		else
+			_window.draw(mGoToMainMenu);
 	}
 	else
 		DisplayPauseMenu();
@@ -110,7 +117,7 @@ void Lunar_manager::TextUpdate()
 	mVelocityYText.setString("Velocity Y: " + to_string(player->GetVelocityY()));
 	mScoreText.setString("Score: " + to_string(player->GetScore()));
 	mLifeText.setString("Life number: " + to_string(player->GetNbLife()));
-	mFuelText.setString("Fuel: " + to_string(player->GetFuel()));
+	mAngleText.setString("Angle: " + to_string(player->GetAngle()));
 }
 
 bool Lunar_manager::PlayerHasNoFuel()

@@ -14,13 +14,13 @@ void GroundContainer::Update(RenderWindow& _window)
 	if (mLvlCanChange)
 	{
 		if (mNbLvl == 0)
-			Start(_window);
+			Start();
 		else if(mNbLvl > 0)
 			ChangeLevel(_window);
 	}
 }
 
-void GroundContainer::Start(RenderWindow& _window)
+void GroundContainer::Start()
 {
 	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_Lander_Menu.png"))
 		exit(EXIT_FAILURE);
@@ -95,6 +95,18 @@ void GroundContainer::DeathScreen(RenderWindow& _window)
 		mNbLvl = 0;
 		mIsOnDS = false;
 		mStartNewGame = true;
+	}
+
+	GoToMainMenu();
+}
+
+void GroundContainer::GoToMainMenu()
+{
+	if (Keyboard::isKeyPressed(Keyboard::Q))
+	{
+		mNbLvl = 0;
+
+		ChangeState(State::MENU);
 	}
 }
 
