@@ -1,7 +1,7 @@
 #include "MenuManager.h"
 #include "StateManager.hpp"
 #include "Controles.h"
-
+#include "Texture_SpriteManager.hpp"
 #include "Aste_Manager.h"
 
 std::vector<std::string> VecMenu;
@@ -134,6 +134,7 @@ void Menu_Update()
 
 void Menu_Display()
 {
+
 	sf::Text TMenu("", font, 60);
 
 	int i = 0;
@@ -149,9 +150,11 @@ void Menu_Display()
 		TMenu.setString(actu);
 		TMenu.setCharacterSize(60.f + (5.f * -abs(i - choice)));
 		TMenu.setOrigin(getMidle(TMenu));
-		TMenu.setPosition(300.f, 540.f + ((50.f - abs((i - choice)) * 2.75f) * (i - choice)));
+		TMenu.setPosition(375.f, 540.f + ((50.f - abs((i - choice)) * 2.75f) * (i - choice)));
 		App.draw(TMenu);
 	}
+
+	App.draw(getSprite("Main"));
 
 	static const unsigned short int BaseX = 750;
 
