@@ -193,6 +193,7 @@ void TronDisplay()
 
 		if (!TronRound)
 		{
+			getSound("BikeSound").stop();
 			if (TronTimerReset < 5.f)
 			{
 				App.draw(TronShape);
@@ -201,6 +202,7 @@ void TronDisplay()
 		}
 		if (TronPause == 1)
 		{
+			getSound("BikeSound").stop();
 			TronVelocity -= 3;
 			TronMenuControlIG();
 			TronMenuDisplayIG();
@@ -214,6 +216,7 @@ void TronDisplay()
 	}
 	if (!TronGame)
 	{
+		getSound("BikeSound").stop();
 		if (TronTimerFinGame < 2.f)
 		{
 			App.draw(TronShape);
