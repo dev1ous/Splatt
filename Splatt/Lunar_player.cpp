@@ -14,7 +14,7 @@ Lander::Lander(RenderWindow& _window)
 	mVelocity = Vector2f(0, 0);
 
 	mSprite.setPosition(mPosition);
-	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 2, mTexture.getSize().y));
+	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
 	
 	mSpeed = 3;
@@ -39,7 +39,7 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 	{
 		ChangeMode();
 
-		mVelocity.y += .2f * MainTime.GetTimeDeltaF();
+		//mVelocity.y += .2f * MainTime.GetTimeDeltaF();
 
 		MoveRight();
 		MoveLeft();
@@ -103,7 +103,7 @@ void Lander::Inpulse()
 		}
 
 		mEngineOn = true;
-		mSprite.setTextureRect(IntRect(mTexture.getSize().x / 2, 0, mTexture.getSize().x / 2, mTexture.getSize().y));
+		mSprite.setTextureRect(IntRect(mTexture.getSize().x / 3, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 		mFuel -= 1.5f;
 	}
 
@@ -111,7 +111,7 @@ void Lander::Inpulse()
 	{
 		mEngineOn = false;
 
-		mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 2, mTexture.getSize().y));
+		mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	}
 }
 
