@@ -33,6 +33,7 @@ public:
 	bool GetNewGame();
 	bool GetIsOnDeathScreen();
 
+	void SetNbLvl(int _nbLvl);
 	void SetNewGame(bool _newGame);
 	~GroundContainer();
 };

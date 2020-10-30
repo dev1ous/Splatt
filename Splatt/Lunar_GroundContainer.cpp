@@ -2,7 +2,7 @@
 
 GroundContainer::GroundContainer(RenderWindow& _window)
 {
-	mNbLvl = 0;
+	mNbLvl = 4;
 	mLvlCanChange = true;
 	mIsOnDS = false;
 	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
@@ -67,11 +67,20 @@ void GroundContainer::ChangeLevel(RenderWindow& _window)
 
 	if (mNbLvl == 4)
 	{
+		mLvlCanChange = true;
 		mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_final_stage.png");
+
+		if (Keyboard::isKeyPressed(Keyboard::Space))
+			mNbLvl++;
+	}
+	
+	if (mNbLvl == 5)
+	{
+		mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_lvl_04.png");
 
 		mLvlCanChange = false;
 	}
-	
+
 	mMyTexture.loadFromImage(mMyImage);
 	mMySprite.setTexture(mMyTexture);
 	mMySprite.setOrigin(mMySprite.getGlobalBounds().width / 2, mMySprite.getGlobalBounds().height / 2);
@@ -127,6 +136,11 @@ bool GroundContainer::GetNewGame()
 bool GroundContainer::GetIsOnDeathScreen()
 {
 	return mIsOnDS;
+}
+
+void GroundContainer::SetNbLvl(int _nbLvl)
+{
+	mNbLvl = _nbLvl;
 }
 
 void GroundContainer::SetNewGame(bool _newGame)
