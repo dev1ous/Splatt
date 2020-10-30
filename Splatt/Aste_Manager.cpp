@@ -19,6 +19,7 @@ bool RoundPass = true;
 float saucerTimer = 0.f;
 float ButtonTimer = 0.f;
 int Choice = 1;
+bool AsteGameOver = false;
 
 void Reset()
 {
@@ -76,6 +77,7 @@ void Reset()
 	Round = 0;
 	RoundPass = true;
 	saucerTimer = 0.f;
+	AsteGameOver = false;
 }
 
 void Aste_Update()
@@ -93,116 +95,123 @@ void Aste_Update()
 	if (EnemiesList.size() == 0)
 		RoundPass = true;
 
-	if (RoundPass)
+	if (!AsteGameOver)
 	{
-		RoundPass = false;
-		Round++;
-		saucerTimer = 0.f;
-		for (int i = 0; i < Round * 2 + 2; i++)
+		if (RoundPass)
 		{
+			RoundPass = false;
+			Round++;
+			saucerTimer = 0.f;
+			for (int i = 0; i < Round * 2 + 2; i++)
+			{
+				sf::Vector2f tmpPos(irandom(50, 1870), irandom(50, 1030));
+				while (Circle_Collision(aste_player->getPosition(), tmpPos, 1.f, 350.f))
+				{
+					tmpPos = sf::Vector2f(irandom(50, 1870), irandom(50, 1030));
+				}
+				EnemiesList.push_back(new Aste_Asteroid(tmpPos, frandom(0, 360), 3));
+			}
+		}
+
+		bool saucer_exist = false;
+		for (Aste_Enemies* ActualEnemie : EnemiesList)
+		{
+			if (ActualEnemie->getType() != EnemiesType::Asteroids)
+				saucer_exist = true;
+		}
+
+		if (!saucer_exist)
+			saucerTimer += MainTime.GetTimeDeltaF();
+		if (saucerTimer >= 10.f)
+		{
+			saucerTimer = 0.f;
 			sf::Vector2f tmpPos(irandom(50, 1870), irandom(50, 1030));
 			while (Circle_Collision(aste_player->getPosition(), tmpPos, 1.f, 350.f))
 			{
 				tmpPos = sf::Vector2f(irandom(50, 1870), irandom(50, 1030));
 			}
-			EnemiesList.push_back(new Aste_Asteroid(tmpPos, frandom(0, 360), 3));
-		}
-	}
 
-	bool saucer_exist = false;
-	for (Aste_Enemies* ActualEnemie : EnemiesList)
-	{
-		if (ActualEnemie->getType() != EnemiesType::Asteroids)
-			saucer_exist = true;
-	}
+			if (aste_player->getScore() < 40000)
+			{
+				if (rand() % 100 < 50)
+					EnemiesList.push_back(new Aste_SmallSaucer(tmpPos, frandom(0, 360)));
+				else
+					EnemiesList.push_back(new Aste_BigSaucer(tmpPos, frandom(0, 360)));
 
-	if (!saucer_exist)
-		saucerTimer += MainTime.GetTimeDeltaF();
-	if (saucerTimer >= 10.f)
-	{
-		saucerTimer = 0.f;
-		sf::Vector2f tmpPos(irandom(50, 1870), irandom(50, 1030));
-		while (Circle_Collision(aste_player->getPosition(), tmpPos, 1.f, 350.f))
-		{
-			tmpPos = sf::Vector2f(irandom(50, 1870), irandom(50, 1030));
-		}
-
-		if (aste_player->getScore() < 40000)
-		{
-			if (rand() % 100 < 50)
-				EnemiesList.push_back(new Aste_SmallSaucer(tmpPos, frandom(0, 360)));
+			}
 			else
-				EnemiesList.push_back(new Aste_BigSaucer(tmpPos, frandom(0, 360)));
-
+				EnemiesList.push_back(new Aste_SmallSaucer(tmpPos, frandom(0, 360)));
 		}
-		else
-			EnemiesList.push_back(new Aste_SmallSaucer(tmpPos, frandom(0, 360)));
-	}
 
-	aste_player->Update();
+		aste_player->Update();
 
-	for (Aste_Enemies* ActualEnemie : EnemiesList)
-	{
-		if (!ActualEnemie->Update())
-			break;
-	}
-
-	for (Aste_Explosion& ActualExplosion : ExplosionList)
-		ActualExplosion.update();
-
-	int i = 0;
-	for (Aste_Shoot& ActualShoot : Aste_ShootList)
-	{
-		ActualShoot.Update();
-		if (ActualShoot.isDead())
-			Aste_ShootList.erase(Aste_ShootList.begin() + i);
-		else
-			i++;
-	}
-
-	i = 0;
-	for (Aste_Enemies* ActualEnemie : EnemiesList)
-	{
-		if (ActualEnemie->getLife() <= 0)
+		for (Aste_Enemies* ActualEnemie : EnemiesList)
 		{
-			delete ActualEnemie;
-			EnemiesList.erase(EnemiesList.begin() + i);
-			break;
+			if (!ActualEnemie->Update())
+				break;
 		}
-		else
-			i++;
-	}
 
-	i = 0;
-	for (Aste_Explosion& ActualExplosion : ExplosionList)
-	{
-		if (ActualExplosion.isDead())
+		for (Aste_Explosion& ActualExplosion : ExplosionList)
+			ActualExplosion.update();
+
+		int i = 0;
+		for (Aste_Shoot& ActualShoot : Aste_ShootList)
 		{
-			ExplosionList.erase(ExplosionList.begin() + i);
-			break;
+			ActualShoot.Update();
+			if (ActualShoot.isDead())
+				Aste_ShootList.erase(Aste_ShootList.begin() + i);
+			else
+				i++;
 		}
+
+		i = 0;
+		for (Aste_Enemies* ActualEnemie : EnemiesList)
+		{
+			if (ActualEnemie->getLife() <= 0)
+			{
+				delete ActualEnemie;
+				EnemiesList.erase(EnemiesList.begin() + i);
+				break;
+			}
+			else
+				i++;
+		}
+
+		i = 0;
+		for (Aste_Explosion& ActualExplosion : ExplosionList)
+		{
+			if (ActualExplosion.isDead())
+			{
+				ExplosionList.erase(ExplosionList.begin() + i);
+				break;
+			}
+			else
+				i++;
+		}
+
+		if (isButtonPressed(Action::Aste_RotateRight))
+			aste_player->RotateClockWise();
+
+		if (isButtonPressed(Action::Aste_RotateLeft))
+			aste_player->RotateConterClockWise();
+
+		if (isButtonPressed(Action::Aste_Forward))
+			aste_player->MoveForward();
 		else
-			i++;
+			aste_player->setFrame(0);
+
+		if (isButtonPressed(Action::Aste_Fire))
+			aste_player->Shoot();
+
+		if (isButtonPressed(Action::Escape) && ButtonTimer >= 0.5)
+		{
+			ButtonTimer = 0.f;
+			Pause = true;
+		}
 	}
-
-	if (isButtonPressed(Action::Aste_RotateRight))
-		aste_player->RotateClockWise();
-
-	if (isButtonPressed(Action::Aste_RotateLeft))
-		aste_player->RotateConterClockWise();
-
-	if (isButtonPressed(Action::Aste_Forward))
-		aste_player->MoveForward();
 	else
-		aste_player->setFrame(0);
-
-	if (isButtonPressed(Action::Aste_Fire))
-		aste_player->Shoot();
-
-	if (isButtonPressed(Action::Escape) && ButtonTimer >= 0.5)
-	{
-		ButtonTimer = 0.f;
-		Pause = true;
+	{ 
+		Aste_GameOverUpdate();
 	}
 }
 
@@ -270,7 +279,7 @@ void Aste_Display()
 
 	// light
 	LightList.clear();
-	//LightList.push_back(Aste_Lights(sf::Vector3f(aste_player->getPosition().x, 1080 - aste_player->getPosition().y, 100), sf::Vector3f(0.7, 0.7, 0.7), 75.f, 0.1));
+	LightList.push_back(Aste_Lights(sf::Vector3f(aste_player->getPosition().x, 1080 - aste_player->getPosition().y, 100), sf::Vector3f(0.7, 0.7, 0.7), 75.f, 0.1));
 	LightList.push_back(Aste_Lights(sf::Vector3f(1600, 1080 - 200, 100), sf::Vector3f(0.8, 0.8, 0.8), 175.f, 0.2));
 	for (Aste_Enemies* ActualEnemie : EnemiesList)
 	{
@@ -365,6 +374,9 @@ void Aste_Display()
 		//ActualEnemie->DrawDebug();
 
 	//aste_player->DrawDebug();
+
+	if (AsteGameOver)
+		Aste_GameOverDisplay();
 }
 
 void Aste_UpdatePause()
@@ -407,7 +419,7 @@ void Aste_UpdatePause()
 		default:
 			break;
 		}
-
+		Choice = 1;
 		ButtonTimer = 0.f;
 	}
 }
@@ -454,6 +466,84 @@ void Aste_DisplayPause()
 	App.draw(shape);
 }
 
+void Aste_GameOverUpdate()
+{
+	ButtonTimer += MainTime.GetTimeDeltaF();
+	if (isButtonPressed(Action::UP) && ButtonTimer >= 0.2)
+	{
+		ButtonTimer = 0.f;
+		if (Choice > 1)
+			Choice--;
+	}
+
+	if (isButtonPressed(Action::Down) && ButtonTimer >= 0.2)
+	{
+		ButtonTimer = 0.f;
+		if (Choice < 2)
+			Choice++;
+	}
+
+	if (isButtonPressed(Action::Interact))
+	{
+		switch (Choice)
+		{
+		case 1:
+			Reset();
+			break;
+
+		case 2:
+			Reset();
+			Pause = false;
+			ChangeState(State::MENU);
+			break;
+
+		default:
+			break;
+		}
+
+		Choice = 1;
+		ButtonTimer = 0.f;
+	}
+
+}
+
+void Aste_GameOverDisplay()
+{
+	sf::Text Tgameover("GAME OVER", font, 60);
+	sf::Text TRestart("Save and Restart", font, 50);
+	sf::Text TQuit("Save and Quit", font, 50);
+	float height = (TRestart.getLocalBounds().height + TQuit.getLocalBounds().height) * 1.5 + 20;
+
+	sf::RectangleShape shape(sf::Vector2f(500, height));
+	shape.setFillColor(sf::Color::Transparent);
+	shape.setOutlineColor(sf::Color::White);
+	shape.setOutlineThickness(2);
+
+	Tgameover.setOrigin(getMidle(Tgameover));
+	TRestart.setOrigin(getMidle(TRestart));
+	TQuit.setOrigin(getMidle(TQuit));
+	shape.setOrigin(getMidle(shape));
+
+	shape.setPosition(960, 540);
+	Tgameover.setPosition(960, shape.getGlobalBounds().top + getMidle(TRestart).y - 80);
+	TRestart.setPosition(960, shape.getGlobalBounds().top + getMidle(TRestart).y + 10);
+	TQuit.setPosition(960, TRestart.getPosition().y + getMidle(TQuit).y + 20);
+
+	Tgameover.setFillColor(sf::Color::White);
+	TRestart.setFillColor(sf::Color::White);
+	TQuit.setFillColor(sf::Color::White);
+
+	if (Choice == 1)
+		TQuit.setFillColor(sf::Color::Color(100, 100, 100));
+	else if (Choice == 2)
+		TRestart.setFillColor(sf::Color::Color(100, 100, 100));
+		
+
+	App.draw(Tgameover);
+	App.draw(TRestart);
+	App.draw(TQuit);
+	App.draw(shape);
+}
 
 void Aste_Infos(const int& x)
 {

@@ -5,6 +5,8 @@
 #include "SoundManager.hpp"
 #include "Aste_Manager.h"
 
+extern bool AsteGameOver;
+
 Aste_Player::Aste_Player()
 {
 	m_lives = 3;
@@ -134,7 +136,8 @@ void Aste_Player::Update()
 				}
 				else
 				{
-					Reset();
+					AsteGameOver = true;
+					//Reset();
 				}
 				break;
 			}
