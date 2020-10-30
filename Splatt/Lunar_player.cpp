@@ -123,7 +123,10 @@ void Lander::Landing(RenderWindow& _window, GroundContainer& _myContainer)
 	mVelocity.x = 0.0f;
 	mVelocity.y = 0.0f;
 
-	_myContainer.GoToNextLvl(_window);
+	if (_myContainer.GetLvl() == 5)
+		_myContainer.SetNbLvl(0);		
+	else
+		_myContainer.GoToNextLvl(_window);
 }
 
 void Lander::Collide(RenderWindow& _window, GroundContainer& _myContainer)

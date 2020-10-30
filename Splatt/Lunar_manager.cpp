@@ -67,7 +67,7 @@ void Lunar_manager::Lunar_update(RenderWindow& _window)
 	{
 		myContainer->Update(_window);
 
-		if (myContainer->GetLvl() >= 1)
+		if (myContainer->GetLvl() >= 1 && myContainer->GetLvl() != 4)
 		{
 			TextUpdate();
 
@@ -93,9 +93,10 @@ void Lunar_manager::Lunar_display(RenderWindow& _window)
 	{
 		myContainer->Display(_window);
 
-		if (!myContainer->GetIsOnDeathScreen() && myContainer->GetLvl() >= 1 && player != nullptr)
+		if (!myContainer->GetIsOnDeathScreen() && myContainer->GetLvl() >= 1)
 		{
-			player->Display(_window);
+			if (myContainer->GetLvl() != 4)
+				player->Display(_window);
 
 			_window.draw(mVelocityXText);
 			_window.draw(mVelocityYText);
