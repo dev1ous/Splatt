@@ -37,7 +37,7 @@ float Angle_calc(sf::Vector2f pointA, sf::Vector2f pointB)
 
 sf::Vector2f getMidle(sf::Sprite& _o)
 {
-	return sf::Vector2f(_o.getGlobalBounds().width / 2, _o.getGlobalBounds().height / 2);
+	return sf::Vector2f(_o.getLocalBounds().width / 2, _o.getLocalBounds().height / 2);
 }
 
 sf::Vector2f getMidle(sf::RectangleShape& _o)

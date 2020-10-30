@@ -74,7 +74,7 @@ void TronMenuDisplay()
 			Pause = 0;
 			break;
 		case 1:
-			state = State::MENU;
+			ChangeState(State::MENU);
 			break;
 		default:
 			break;

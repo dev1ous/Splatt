@@ -9,6 +9,37 @@ int choice = 1;
 extern int Windowchoice;
 extern int PrevWindowchoice;
 
+void Menu_Credits(const int& x)
+{
+	getSprite("GA").setScale(0.5f, 0.5f);
+	getSprite("GA").setOrigin(getMidle(getSprite("GA")));
+	getSprite("GA").setPosition(x + ((1920 - x) / 2), 300);
+	App.draw(getSprite("GA"));
+
+	sf::Text Credies("", font, 40);
+	
+	Credies.setString("  Canonge Laurent\tFaltrauer Grégoire");
+	Credies.setOrigin(getMidle(Credies));
+	Credies.setPosition(x + ((1920 - x) / 2), 450 + (60 * 0));
+	App.draw(Credies);
+
+	Credies.setString("      Gonzalez Leo\tMadouche Amine");
+	Credies.setOrigin(getMidle(Credies));
+	Credies.setPosition(x + ((1920 - x) / 2), 450 + (60 * 1));
+	App.draw(Credies);
+
+	Credies.setString("       Maillard Martin\tPelegrin Quentin (?)");
+	Credies.setOrigin(getMidle(Credies));
+	Credies.setPosition(x + ((1920 - x) / 2), 450 + (60 * 2));
+	App.draw(Credies);
+
+	Credies.setString("Renevier Jeremy");
+	Credies.setOrigin(getMidle(Credies));
+	Credies.setPosition(x + ((1920 - x) / 2), 450 + (60 * 3));
+	App.draw(Credies);
+
+}
+
 void Menu_Init()
 {
 	VecMenu.push_back("Space Invader");
@@ -134,7 +165,6 @@ void Menu_Update()
 
 void Menu_Display()
 {
-
 	sf::Text TMenu("", font, 60);
 
 	int i = 0;
@@ -185,7 +215,7 @@ void Menu_Display()
 		MenuOptionDisplay(BaseX);
 		break;
 	case 9:
-		// credits
+		Menu_Credits(BaseX);
 		break;
 	case 10:
 		// idk what to do 
