@@ -22,7 +22,7 @@ Lander::Lander(RenderWindow& _window)
 	mIsAlive = true;
 	mIsHardMode = false;
 	mNbLifePoints = 3;
-	mFuel = 20000;
+	mFuel = 100000;
 }
 
 #pragma region "Lander_update"
@@ -39,7 +39,7 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 	{
 		ChangeMode();
 
-		mVelocity.y += .2f * MainTime.GetTimeDeltaF();
+		mVelocity.y += .1f * MainTime.GetTimeDeltaF();
 
 		MoveRight();
 		MoveLeft();
@@ -90,7 +90,7 @@ void Lander::Inpulse()
 	if (Keyboard::isKeyPressed(Keyboard::Up))
 	{
 		if(!mIsHardMode)
-			mVelocity.y -= .5f * MainTime.GetTimeDeltaF();
+			mVelocity.y -= .4f * MainTime.GetTimeDeltaF();
 		else
 		{
 			float angle_rad = mAngle * 180 / pi;
@@ -282,4 +282,9 @@ float Lander::GetFuel()
 float Lander::GetAngle()
 {
 	return mAngle;
+}
+
+bool Lander::GetHard()
+{
+	return mIsHardMode;
 }

@@ -17,10 +17,6 @@ Lunar_manager::Lunar_manager(RenderWindow& _window)
 
 void Lunar_manager::TextInit(RenderWindow& _window)
 {
-	mGoToMainMenu.setString("Press Q for return to the main menu");
-	mGoToMainMenu.setFont(mMyFont);
-	mGoToMainMenu.setCharacterSize(30);
-	mGoToMainMenu.setPosition(5, 5);
 
 	mEscText.setString("Press the escape button during the game for open the pause menu");
 	mEscText.setFont(mMyFont);
@@ -56,6 +52,11 @@ void Lunar_manager::TextInit(RenderWindow& _window)
 	mAngleText.setCharacterSize(50);
 	mAngleText.setPosition(_window.getSize().x - mAngleText.getGlobalBounds().width, 5);
 	mAngleText.setFillColor(Color(Color::White));
+	
+	mFuelText.setString("Fuel: " + to_string(player->GetFuel()));
+	mFuelText.setFont(mMyFont);
+	mFuelText.setCharacterSize(30);
+	mFuelText.setPosition(_window.getSize().x - mFuelText.getGlobalBounds().width - 15, mAngleText.getGlobalBounds().height + 30);
 }
 
 void Lunar_manager::Lunar_update(RenderWindow& _window)
@@ -100,12 +101,13 @@ void Lunar_manager::Lunar_display(RenderWindow& _window)
 			_window.draw(mVelocityYText);
 			_window.draw(mScoreText);
 			_window.draw(mLifeText);
-			_window.draw(mAngleText);
+			_window.draw(mFuelText);
+
+			if(player->GetHard())
+				_window.draw(mAngleText);
 		}
-		else if (myContainer->GetLvl() == 0)
-			_window.draw(mEscText);
 		else
-			_window.draw(mGoToMainMenu);
+			_window.draw(mEscText);
 	}
 	else
 		DisplayPauseMenu();
@@ -118,6 +120,7 @@ void Lunar_manager::TextUpdate()
 	mScoreText.setString("Score: " + to_string(player->GetScore()));
 	mLifeText.setString("Life number: " + to_string(player->GetNbLife()));
 	mAngleText.setString("Angle: " + to_string(player->GetAngle()));
+	mFuelText.setString("Fuel: " + to_string(player->GetFuel()));
 }
 
 bool Lunar_manager::PlayerHasNoFuel()
@@ -146,6 +149,9 @@ void Lunar_manager::IsOnPause()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Escape))
 		mPause = !mPause;
+
+	if (Keyboard::isKeyPressed(Keyboard::Q))
+		ChangeState(State::MENU);
 }
 
 Lunar_manager::~Lunar_manager()

@@ -59,6 +59,7 @@ public:
 	int GetScore();
 	float GetFuel();
 	float GetAngle();
+	bool GetHard();
 
 #pragma endregion
 	

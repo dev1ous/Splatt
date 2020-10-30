@@ -97,17 +97,6 @@ void GroundContainer::DeathScreen(RenderWindow& _window)
 		mStartNewGame = true;
 	}
 
-	GoToMainMenu();
-}
-
-void GroundContainer::GoToMainMenu()
-{
-	if (Keyboard::isKeyPressed(Keyboard::Q))
-	{
-		mNbLvl = 0;
-
-		ChangeState(State::MENU);
-	}
 }
 
 void GroundContainer::Display(RenderWindow& _window)

@@ -25,7 +25,6 @@ public:
 	void GoToNextLvl(RenderWindow& _window);
 	void ChangeLevel(RenderWindow& _window);
 	void DeathScreen(RenderWindow& _window);
-	void GoToMainMenu();
 	void Display(RenderWindow& _window);
 
 	Image& GetImage();
