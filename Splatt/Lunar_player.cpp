@@ -39,7 +39,7 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 	{
 		ChangeMode();
 
-		//mVelocity.y += .2f * MainTime.GetTimeDeltaF();
+		mVelocity.y += .2f * MainTime.GetTimeDeltaF();
 
 		MoveRight();
 		MoveLeft();
