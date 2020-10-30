@@ -64,7 +64,7 @@ void Lander::MoveRight()
 	if (Keyboard::isKeyPressed(Keyboard::Right))
 	{
 		if (!mIsHardMode)
-			mVelocity.x += .5f * MainTime.GetTimeDeltaF();
+			mVelocity.x += .4f * MainTime.GetTimeDeltaF();
 		else
 			mAngle += 90 * MainTime.GetTimeDeltaF();
 				
@@ -77,7 +77,7 @@ void Lander::MoveLeft()
 	if (Keyboard::isKeyPressed(Keyboard::Left))
 	{
 		if (!mIsHardMode)
-			mVelocity.x -= .5f * MainTime.GetTimeDeltaF();
+			mVelocity.x -= .4f * MainTime.GetTimeDeltaF();
 		else
 			mAngle -= 90 * MainTime.GetTimeDeltaF();
 
