@@ -12,6 +12,7 @@ private:
 	sf::Texture texture;
 	std::string path;
 	sf::Vector2f origin;
+	unsigned short TronNBdeVies;
 public:
 	/*sf::Vector2f aiCheckOffset = sf::Vector2f(0, 0);
 	bool isAI = false;
@@ -36,6 +37,9 @@ public:
 	void setTexture(std::string _path);
 	void setOrigin(sf::Vector2f _origin);
 	void Zuse();
+	unsigned short getNbdeVies();
+	void setNbdeVies();
+	void setAddVies();
 };
 
 extern Joueurs joueur1;

@@ -1,6 +1,7 @@
 #include "TronControles.h"
 #include "TronJoueurs.h"
 #include "Controles.h"
+#include "TronMenu.h"
 
 void TronControlesClavierJ1()
 {
@@ -55,4 +56,14 @@ void TronControlesClavierJ2()
 			joueur2.setDir(0);
 			joueur2.getSprite().setRotation(90);
 		}
+}
+void GoMenuIG()
+{
+	static float TimerTronControle = 0.f;
+	TimerTronControle += MainTime.GetTimeDeltaF();
+	if (isButtonPressed(Action::Escape) && TimerTronControle > 0.5f)
+	{
+		TronPause = 1;
+		TimerTronControle = 0.f;
+	}
 }

@@ -10,6 +10,7 @@ Joueurs::Joueurs(sf::Color _color)
 	origin.y = 29.5f;
 	texture;
 	sprite;
+	TronNBdeVies = 5;
 }
 
 Joueurs::~Joueurs()
@@ -114,7 +115,22 @@ void Joueurs::Zuse()
 	if (y >= HEIGHT)
 		y = 0;
 	if (x < 0)
-		x = WIDTH - 1;
+		x = WIDTH -1;
 	if (y < 0)
-		y = HEIGHT - 1;
+		y = HEIGHT -1;
 }
+unsigned short Joueurs::getNbdeVies()
+{
+	return TronNBdeVies;
+}
+
+void Joueurs::setNbdeVies()
+{
+	TronNBdeVies -= 1;
+}
+
+void Joueurs::setAddVies()
+{
+	TronNBdeVies = 5;
+}
+

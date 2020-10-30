@@ -6,6 +6,7 @@
 #include "SFML/Audio.hpp"
 #include <list>
 #include <math.h>
+#include <sstream>
 
 #define pi 3.141592653589793238462643383279502884197169399375105820974944592307816406286
 

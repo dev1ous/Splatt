@@ -9,6 +9,7 @@
 #include "Controles.h"
 #include "TronTools.h"
 #include "MenuManager.h"
+#include "TronMenu.h"
 
 State state = State::MENU;
 
@@ -81,6 +82,8 @@ void UpdateManager()
 	case State::TETRIS:
 		break;
 	case State::TRON:
+		if(Pause)
+			TronMenuControl();
 		break;
 
 	default:
@@ -118,7 +121,10 @@ void DisplayManager()
 	case State::TETRIS:
 		break;
 	case State::TRON:
-		TronDisplay();
+		if (Pause)
+			TronMenuDisplay();
+		else
+			TronDisplay();
 		break;
 
 	default:

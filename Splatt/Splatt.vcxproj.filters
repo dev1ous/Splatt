@@ -198,6 +198,9 @@
     <ClCompile Include="MenuOption.cpp">
       <Filter>Fichiers sources\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="TronMenu.cpp">
+      <Filter>Fichiers sources\Tron</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aste_Asteroid.h">
@@ -325,6 +328,9 @@
     </ClInclude>
     <ClInclude Include="MenuManager.h">
       <Filter>Fichiers d%27en-tête\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="TronMenu.h">
+      <Filter>Fichiers d%27en-tête\Tron</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

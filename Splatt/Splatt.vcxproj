@@ -202,6 +202,7 @@
     <ClCompile Include="TronControles.cpp" />
     <ClCompile Include="TronJoueurs.cpp" />
     <ClCompile Include="TronManager.cpp" />
+    <ClCompile Include="TronMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aste_Asteroid.h" />
@@ -245,6 +246,7 @@
     <ClInclude Include="Tools.hpp" />
     <ClInclude Include="TronControles.h" />
     <ClInclude Include="TronJoueurs.h" />
+    <ClInclude Include="TronMenu.h" />
     <ClInclude Include="TronTools.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

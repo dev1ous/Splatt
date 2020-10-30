@@ -23,6 +23,7 @@ int main(int argc, char** argv)
 	RessourcesLoad("../Ressources/Space Invaders/");
 	RessourcesLoad("../Ressources/PacMan/");
 	RessourcesLoad("../Ressources/Menu/");
+	RessourcesLoad("../Ressources/Tron/");
 	LaunchArguments(argc, argv);
 
 	OptionRead();
