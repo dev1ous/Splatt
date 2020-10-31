@@ -1,5 +1,5 @@
-uniform float u_time
-uniform vec3 u_resolution
+uniform float u_time; 
+uniform vec3 u_resolution;
 
 void main()
 {
@@ -8,16 +8,8 @@ void main()
     float d = 1./abs(uv.y);
     vec2 pv = vec2(uv.x*d, d);
     pv.y +=u_time;
-    pv *= 2.;
+    pv *= 2.0;
 
-#if 0
-    pv = abs((fract(pv)-.5)*2.);
-    float b = 10./u_resolution.y*d;
-    float t = .02;
-    float g = 1.-smoothstep(t-b,t+b,pv.x)*smoothstep(t-b,t+b,pv.y);
-
-    vec3 col = vec3(g/d);
-#else
     pv += 0.5;
     const float N = 64.0;
     vec2 w = fwidth(pv) + 0.001;
@@ -27,8 +19,7 @@ void main()
     float g = i.x + i.y - i.x*i.y;
     
     vec3 col = vec3(g);
-#endif
 
-    gl_FragColor = vec4(col,1.);
+    gl_FragColor = vec4(col,1.0);
      
 }

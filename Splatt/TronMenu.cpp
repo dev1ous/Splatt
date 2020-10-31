@@ -17,6 +17,10 @@ extern Joueurs joueur1;
 extern Joueurs joueur2;
 extern bool isJ2_ia;
 extern bool isJ1_ia;
+sf::Shader* TronMenuShad;
+sf::Sprite sTronMShad;
+sf::RenderTexture tTronMShad;
+sf::RenderStates TronMShadStates;
 
 void TronMenuInit()
 {
@@ -75,9 +79,24 @@ void TronMenuControl()
 
 void TronMenuDisplay()
 {
-	sf::Texture textureTronBG;
-	textureTronBG.loadFromFile("../Ressources/Tron/TronBackGround2.jpg");
-	sf::Sprite spriteTronBG(textureTronBG);
+	static float TutoTimer = 0.f;
+
+	TutoTimer += MainTime.GetTimeDeltaF();
+
+	static bool one_pass = false;
+	if (!one_pass)
+	{
+		tTronMShad.create(1920, 1080);
+		tTronMShad.setSmooth(true);
+		sTronMShad.setTexture(tTronMShad.getTexture());
+		tTronMShad.clear();
+
+		TronMenuShad = new sf::Shader;
+		TronMenuShad->loadFromFile("../Ressources/Tron/ShaderMenu.frag", sf::Shader::Fragment);
+		TronMenuShad->setUniform("u_resolution", sf::Vector3f(1920, 1080, 0));
+		TronMenuShad->setUniform("u_time", TutoTimer);
+		TronMShadStates.shader = TronMenuShad;
+	}
 	
 	if (isButtonPressed(Action::Interact) && TimerTronMenu > 0.5f)
 	{
@@ -101,12 +120,13 @@ void TronMenuDisplay()
 		}
 		TimerTronMenu = 0.f;
 	}
-	App.draw(spriteTronBG);
+
+	tTronMShad.display();
+	App.draw(sTronMShad, TronMShadStates);
 	App.draw(TronBienvenue);
 	App.draw(TronMiseEnGarde);
 	App.draw(tronPlay);
 	App.draw(tronQuit);
-
 }
 
 void TronMenuControlIG()

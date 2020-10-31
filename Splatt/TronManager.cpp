@@ -26,7 +26,7 @@ sf::RenderTexture t;
 sf::Sprite s;
 sf::Text Trontext("Ce miserable concepteur ne fait pas le poids\n          contre un genie comme vous!", Tronfont, 50);
 sf::Text TrontextFin("Cette vermine de concepteur n'avait aucune chance ! ", Tronfont, 50);
-sf::RenderStates states;
+sf::RenderStates Tronstates;
 sf::Shader* TronShader;
 sf::Text TronTextVies1;
 sf::Text TronTextVies2;
@@ -77,7 +77,7 @@ void TronInit()
 	TronShader->loadFromFile("../Ressources/Tron/shader.frag", sf::Shader::Fragment);
 	TronShader->setUniform("frag_Reso", sf::Vector2f(WIDTH, HEIGHT));
 	TronShader->setUniform("frag_Attenuation_lumiere", 100.f);
-	states.shader = TronShader;
+	Tronstates.shader = TronShader;
 
 	joueur1.setX(100); joueur1.setY(100); joueur1.setDir(2); joueur1.getSprite().setRotation(0);
 	joueur2.setX(100); joueur2.setY(800); joueur2.setDir(2); joueur2.getSprite().setRotation(0);
@@ -328,13 +328,13 @@ void TronDisplay()
 
 		TronShader->setUniform("frag_LightOrigin", sf::Vector2f(joueur1.getX(), joueur1.getY()));
 		TronShader->setUniform("frag_LightColor", joueur1.getVecColor());
-		t.draw(s, states);
+		t.draw(s, Tronstates);
 
 		App.draw(s);
 
 		TronShader->setUniform("frag_LightOrigin", sf::Vector2f(joueur2.getX() , joueur2.getY() ));
 		TronShader->setUniform("frag_LightColor", joueur2.getVecColor());
-		t.draw(s, states);
+		t.draw(s, Tronstates);
 
 		App.draw(s);
 
