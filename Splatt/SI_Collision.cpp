@@ -77,8 +77,10 @@ SI_Joueur Incrementation_Tir_Special(SI_Ennemi _ennemi, SI_Tir _tir, SI_Joueur _
 					_joueur.Set_Special_Bleu(0);
 					_joueur.Set_Special_Violet(0);
 					_joueur.Set_Special_Vert(0);
+					_joueur.Special.setFillColor(Color::Yellow);
 				}
 				_joueur.Set_Special_Jaune(_joueur.Get_Special_Jaune() + 1);
+				_joueur.sTir_Special = "Tu as " + to_string(_joueur.Get_Special_Jaune()) + "/4";
 			}
 			break;
 		case 2:
@@ -90,8 +92,10 @@ SI_Joueur Incrementation_Tir_Special(SI_Ennemi _ennemi, SI_Tir _tir, SI_Joueur _
 					_joueur.Set_Special_Bleu(0);
 					_joueur.Set_Special_Violet(0);
 					_joueur.Set_Special_Vert(0);
+					_joueur.Special.setFillColor(Color::Blue);
 				}
 				_joueur.Set_Special_Bleu(_joueur.Get_Special_Bleu() + 1);
+				_joueur.sTir_Special = "Tu as " + to_string(_joueur.Get_Special_Bleu()) + "/4";
 			}
 			break;
 		case 3:
@@ -103,8 +107,10 @@ SI_Joueur Incrementation_Tir_Special(SI_Ennemi _ennemi, SI_Tir _tir, SI_Joueur _
 					_joueur.Set_Special_Bleu(0);
 					_joueur.Set_Special_Violet(0);
 					_joueur.Set_Special_Vert(0);
+					_joueur.Special.setFillColor(Color::Magenta);
 				}
 				_joueur.Set_Special_Violet(_joueur.Get_Special_Violet() + 1);
+				_joueur.sTir_Special = "Tu as " + to_string(_joueur.Get_Special_Violet()) + "/4";
 			}
 			break;
 		case 4:
@@ -116,8 +122,10 @@ SI_Joueur Incrementation_Tir_Special(SI_Ennemi _ennemi, SI_Tir _tir, SI_Joueur _
 					_joueur.Set_Special_Bleu(0);
 					_joueur.Set_Special_Violet(0);
 					_joueur.Set_Special_Vert(0);
+					_joueur.Special.setFillColor(Color::Green);
 				}
 				_joueur.Set_Special_Vert(_joueur.Get_Special_Vert() + 1);
+				_joueur.sTir_Special = "Tu as " + to_string(_joueur.Get_Special_Vert()) + "/4";
 			}
 			break;
 		default:

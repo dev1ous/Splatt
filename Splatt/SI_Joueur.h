@@ -14,13 +14,16 @@ private :
 	int Special_Violet;
 	int Special_Vert;
 
-	RectangleShape Special;
 	int taille;
 
 public :
 	SI_Joueur();
-	SI_Joueur(Vector2f _position, int _numerojoueur, Color _color);
+	SI_Joueur(Vector2f _position, int _numerojoueur, int Nombre_tir, Color _color);
 	~SI_Joueur();
+
+	RectangleShape Special;
+	string sTir_Special;
+	Text tSpecial;
 
 	inline int Get_Numero() { return Numero_Joueur; };
 	inline int Get_NombreTir() { return Nombre_Tir; };
@@ -47,4 +50,4 @@ public :
 
 extern vector <SI_Joueur> V_joueur;
 
-static int Nombre_Joueur = 1;
+extern int Nombre_Joueur;

@@ -24,8 +24,17 @@ enum class Action
 	TronJ2_Gauche,
 	TronJ2_Droite,
 	TronJ2_Haut,
-	TronJ2_Bas
+	TronJ2_Bas,
 
+	SIJ1_Gauche,
+	SIJ1_Droite,
+	SIJ1_Tir,
+	SIJ1_TirSpe,
+
+	SIJ2_Gauche,
+	SIJ2_Droite,
+	SIJ2_Tir,
+	SIJ2_TirSpe,
 };
 
 

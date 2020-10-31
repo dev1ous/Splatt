@@ -23,7 +23,7 @@ SI_Joueur::SI_Joueur()
 	Timer = 0;
 }
 
-SI_Joueur::SI_Joueur(Vector2f _position, int _numerojoueur, Color _color)
+SI_Joueur::SI_Joueur(Vector2f _position, int _numerojoueur, int Nombre_tir, Color _color)
 {
 	life = 1;
 	Numero_Joueur = _numerojoueur;
@@ -31,7 +31,7 @@ SI_Joueur::SI_Joueur(Vector2f _position, int _numerojoueur, Color _color)
 
 	taille = 0;
 
-	Limite_Tir = 2;
+	Limite_Tir = Nombre_tir;
 	Nombre_Tir = 0;
 
 	Special_Jaune = 0;
@@ -45,11 +45,7 @@ SI_Joueur::SI_Joueur(Vector2f _position, int _numerojoueur, Color _color)
 	Timer = 0;
 	Position = _position;
 
-	if (Numero_Joueur == 1)
-		Special.setPosition(20, 20);
-	if (Numero_Joueur == 2)
-		Special.setPosition(1900, 20);
-
+	Special.setSize(Vector2f(20, 20));
 	Special.setOutlineColor(Color::White);
 	Special.setOutlineThickness(1);
 }
@@ -71,17 +67,17 @@ void SI_Joueur::Update()
 
 	if (Get_Numero() == 1)
 	{
-		if (Keyboard::isKeyPressed(Keyboard::Q) && Position.x - getSprite("Perso1").getGlobalBounds().width / 2 > 0)
+		if (isButtonPressed(Action::SIJ1_Gauche) && Position.x - getSprite("Perso1").getGlobalBounds().width / 2 > 0)
 			Set_Gauche(true);
 		else
 			Set_Gauche(false);
 
-		if (Keyboard::isKeyPressed(Keyboard::D) && Position.x + getSprite("Perso1").getGlobalBounds().width / 2 < 1920)
+		if (isButtonPressed(Action::SIJ1_Droite) && Position.x + getSprite("Perso1").getGlobalBounds().width / 2 < 1920)
 			Set_Droite(true);
 		else
 			Set_Droite(false);
 
-		if (Keyboard::isKeyPressed(Keyboard::Space) && Timer > 0.5f && Nombre_Tir < Limite_Tir && app == true)
+		if (isButtonPressed(Action::SIJ1_Tir) && Timer > 0.25f && Nombre_Tir < Limite_Tir && app == true)
 		{
 			Set_Tir(true);
 			Nombre_Tir++;
@@ -93,17 +89,17 @@ void SI_Joueur::Update()
 
 	if (Get_Numero() == 2)
 	{
-		if (Keyboard::isKeyPressed(Keyboard::Left) && Position.x - getSprite("Perso2").getGlobalBounds().width / 2 > 0)
+		if (isButtonPressed(Action::SIJ2_Gauche) && Position.x - getSprite("Perso2").getGlobalBounds().width / 2 > 0)
 			Set_Gauche(true);
 		else
 			Set_Gauche(false);
 
-		if (Keyboard::isKeyPressed(Keyboard::Right) && Position.x + getSprite("Perso2").getGlobalBounds().width / 2 < 1920)
+		if (isButtonPressed(Action::SIJ2_Droite) && Position.x + getSprite("Perso2").getGlobalBounds().width / 2 < 1920)
 			Set_Droite(true);
 		else
 			Set_Droite(false);
 
-		if (Keyboard::isKeyPressed(Keyboard::Numpad0) && Timer > 0.5f && Nombre_Tir < Limite_Tir && app == true)
+		if (isButtonPressed(Action::SIJ2_Tir) && Timer > 0.25f && Nombre_Tir < Limite_Tir && app == true)
 		{
 			Set_Tir(true);
 			Nombre_Tir++;
@@ -111,11 +107,9 @@ void SI_Joueur::Update()
 		}
 		else
 			Set_Tir(false);
-
-		Special.setScale(Vector2f(-1.f, 1.f));
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Escape))
+	if (isButtonPressed(Action::Escape))
 		Pause = true;
 
 	if (Droite)
@@ -125,27 +119,6 @@ void SI_Joueur::Update()
 
 	if (Tir)
 		Tir_Joueur.push_back(SI_Tir(Couleur, Position));
-
-	if (Special_Jaune > 0)
-	{
-		Special.setFillColor(Color::Yellow);
-		Special.setSize(Vector2f(22 * Special_Jaune, 10));
-	}
-	if (Special_Bleu > 0)
-	{
-		Special.setFillColor(Color::Blue);
-		Special.setSize(Vector2f(20 * Special_Bleu, 10));
-	}
-	if (Special_Violet > 0)
-	{
-		Special.setFillColor(Color::Magenta);
-		Special.setSize(Vector2f(20 * Special_Violet, 10));
-	}
-	if (Special_Vert > 0)
-	{
-		Special.setFillColor(Color::Green);
-		Special.setSize(Vector2f(20 * Special_Vert, 10));
-	}
 }
 
 void SI_Joueur::Draw()
@@ -157,5 +130,25 @@ void SI_Joueur::Draw()
 	getSprite(Sprite_Name).setPosition(Position);
 	App.draw(getSprite(Sprite_Name));
 	
-	App.draw(Special);
+	
+	for (int i = 0; i < Special_Jaune || i < Special_Bleu || i < Special_Violet || i < Special_Vert; i++)
+	{
+		if (Numero_Joueur == 1)
+		{
+			tSpecial = Text::Text(sTir_Special, font, 25);
+			tSpecial.setPosition(Vector2f(20, 20));
+			Special.setPosition(20 + (23 * i), 50);
+		}
+		
+		if (Numero_Joueur == 2)
+		{
+			tSpecial = Text::Text(sTir_Special, font, 25);
+			tSpecial.setPosition(Vector2f(20, 20));
+			Special.setPosition(1880 - (23 * i), 50);
+		}
+
+		App.draw(tSpecial);
+		App.draw(Special);
+	}
+	
 }

@@ -2,10 +2,10 @@
 #include "Tools.hpp"
 #include "pch.h"
 #include "Texture_SpriteManager.hpp"
+#include "Controles.h"
 
 enum class State_SI
 {
-	Intro,
 	Menu,
 	Niveau1,
 	Niveau2,
@@ -15,9 +15,9 @@ enum class State_SI
 extern bool app;
 
 void reset();
+void reset_Joueur(int Nombre_tirJ1, int Nombre_tirJ2);
 void SI_Update();
 void SI_Display();
-void Intro();
 void Menu();
 void Niveau1();
 void Niveau2();
