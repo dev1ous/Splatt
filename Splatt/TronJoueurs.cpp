@@ -11,6 +11,7 @@ Joueurs::Joueurs(sf::Color _color)
 	texture;
 	sprite;
 	TronNBdeVies = 5;
+	TronVerif = false;
 }
 
 Joueurs::~Joueurs()

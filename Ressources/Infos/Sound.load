@@ -1,4 +1,6 @@
 // Name | Volume multi | State1 | State2 ...
 Explosion | 0.5 | Asteroid
 Shoot | 0.07 | Asteroid
-BikeSound | 0.005 | All
+BikeSound | 0.5 | All
+MenuSound | 0.5 | All
+ExplosionTron | 0.5 | All

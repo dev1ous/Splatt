@@ -14,11 +14,6 @@ private:
 	sf::Vector2f origin;
 	unsigned short TronNBdeVies;
 public:
-	/*sf::Vector2f aiCheckOffset = sf::Vector2f(0, 0);
-	bool isAI = false;
-	bool turnedLeft = false;
-	bool DirectionChanged;*/
-
 	Joueurs(sf::Color _color);
 	~Joueurs();
 	sf::Vector3f getVecColor();
@@ -40,6 +35,7 @@ public:
 	unsigned short getNbdeVies();
 	void setNbdeVies();
 	void setAddVies();
+	bool TronVerif;
 };
 
 extern Joueurs joueur1;

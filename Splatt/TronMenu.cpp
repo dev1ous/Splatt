@@ -3,6 +3,7 @@
 #include "TronTools.h"
 #include "StateManager.hpp"
 #include "TronJoueurs.h"
+#include "SoundManager.hpp"
 
 int TronChoix = 0;
 int TronChoixIG = 0;
@@ -10,11 +11,12 @@ float TimerTronMenu;
 sf::Text tronPlay("JOUER", Tronfont, 80);
 sf::Text tronQuit("QUITTER", Tronfont, 80);
 sf::Text TronBienvenue("Bienvenue dans la grille programme", Tronfont, 80);
-sf::Text TronMiseEnGarde("veuillez commencez un duel ou fuir lachement", Tronfont, 40);
+sf::Text TronMiseEnGarde("Veuillez entrez en duel ou fuyez !", Tronfont, 80);
 sf::Font Tronfont;
 extern Joueurs joueur1;
 extern Joueurs joueur2;
 extern bool isJ2_ia;
+extern bool isJ1_ia;
 
 void TronMenuInit()
 {
@@ -22,7 +24,7 @@ void TronMenuInit()
 	TronBienvenue.setOutlineThickness(2);
 	TronBienvenue.setPosition(sf::Vector2f(100,40));
 	TronMiseEnGarde.setOutlineThickness(2);
-	TronMiseEnGarde.setPosition(sf::Vector2f(350, 300));
+	TronMiseEnGarde.setPosition(sf::Vector2f(130, 250));
 	tronPlay.setOutlineThickness(2);
 	tronPlay.setPosition(sf::Vector2f(1920 / 2, 1080 / 2 - tronPlay.getCharacterSize() / 2));
 	tronQuit.setOutlineThickness(2);
@@ -33,6 +35,10 @@ void TronMenuInit()
 
 void TronMenuControl()
 {
+	getSound("MenuSound").setLoop(true);
+	if(getSound("MenuSound").getStatus() != sf::Sound::Playing)
+		getSound("MenuSound").play();
+
 	static bool one_pass = false;
 	TimerTronMenu += MainTime.GetTimeDeltaF();
 	if (!one_pass)
@@ -72,7 +78,7 @@ void TronMenuDisplay()
 	sf::Texture textureTronBG;
 	textureTronBG.loadFromFile("../Ressources/Tron/TronBackGround2.jpg");
 	sf::Sprite spriteTronBG(textureTronBG);
-
+	
 	if (isButtonPressed(Action::Interact) && TimerTronMenu > 0.5f)
 	{
 		switch (TronChoix)
@@ -84,8 +90,10 @@ void TronMenuDisplay()
 			joueur2.setAddVies();
 			Pause = 0;
 			isJ2_ia = true;
+			isJ1_ia = true;
 			break;
 		case 1:
+			getSound("MenuSound").stop();
 			ChangeState(State::MENU);
 			break;
 		default:
