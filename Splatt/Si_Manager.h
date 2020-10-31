@@ -14,7 +14,7 @@ enum class State_SI
 
 extern bool app;
 
-void reset(State_SI _etat);
+void reset();
 void SI_Update();
 void SI_Display();
 void Intro();
