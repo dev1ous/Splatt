@@ -37,7 +37,7 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 
 	if (mIsAlive && HasFuel())
 	{
-		ChangeMode();
+		//ChangeMode();
 
 		mVelocity.y += .1f * MainTime.GetTimeDeltaF();
 
@@ -190,7 +190,7 @@ void Lander::ChangeMode()
 
 #pragma endregion
 
-void Lander::Display(RenderWindow& _window)
+void Lander::Display(RenderWindow& _window, Shader& _myShader)
 {
 	_window.draw(mSprite);
 }
@@ -211,6 +211,8 @@ void Lander::Explode()
 
 	mIsAlive = false;
 }
+
+
 
 Lander::~Lander()
 {

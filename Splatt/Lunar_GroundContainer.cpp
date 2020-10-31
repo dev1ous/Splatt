@@ -2,7 +2,7 @@
 
 GroundContainer::GroundContainer(RenderWindow& _window)
 {
-	mNbLvl = 4;
+	mNbLvl = 0;
 	mLvlCanChange = true;
 	mIsOnDS = false;
 	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);

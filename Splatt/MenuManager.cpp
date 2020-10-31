@@ -3,6 +3,7 @@
 #include "Controles.h"
 #include "Texture_SpriteManager.hpp"
 #include "Aste_Manager.h"
+#include "Lunar_manager.h"
 #include "TronMenu.h"
 #include "Si_Manager.h"
 
@@ -167,6 +168,8 @@ void Menu_Update()
 
 void Menu_Display()
 {
+	Lunar_manager l_manager(App);
+
 	sf::Text TMenu("", font, 60);
 
 	int i = 0;
@@ -200,6 +203,7 @@ void Menu_Display()
 		break;
 	case 3:
 		// lunar
+		l_manager.LunarMenuPause();
 		break;
 	case 4:
 		Aste_Infos(BaseX);

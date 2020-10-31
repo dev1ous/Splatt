@@ -12,6 +12,7 @@ Lunar_manager::Lunar_manager(RenderWindow& _window)
 	player = new Lander(App);
 	mPause = false;
 
+	ShaderInit();
 	TextInit(_window);
 }
 
@@ -52,11 +53,39 @@ void Lunar_manager::TextInit(RenderWindow& _window)
 	mAngleText.setCharacterSize(50);
 	mAngleText.setPosition(_window.getSize().x - mAngleText.getGlobalBounds().width, 5);
 	mAngleText.setFillColor(Color(Color::White));
-	
+
 	mFuelText.setString("Fuel: " + to_string(player->GetFuel()));
 	mFuelText.setFont(mMyFont);
 	mFuelText.setCharacterSize(30);
 	mFuelText.setPosition(_window.getSize().x - mFuelText.getGlobalBounds().width - 15, mAngleText.getGlobalBounds().height + 30);
+}
+
+void Lunar_manager::ShaderInit()
+{
+	if (!mShader.loadFromFile("../ressources/Lunar_lander/vertex_shader.vert", "../ressources/Lunar_lander/fragment_shader.frag"))
+		exit(EXIT_FAILURE);
+
+	mTextureLastPass.create(App.getSize().x, App.getSize().y);
+	mTextureDiffuse.create(App.getSize().x, App.getSize().y);
+	mTextureFond.create(App.getSize().x, App.getSize().y);
+	mSpriteFond.setTexture(mTextureFond);
+
+	Rstate.shader = &mShader;
+	Rstate.blendMode = sf::BlendAlpha;
+	Rstate.transform = sf::Transform::Identity;
+	Rstate.texture = NULL;
+}
+
+void Lunar_manager::ShaderUpdate()
+{
+	mSpriteFond.setTexture(mTextureFond);
+	App.draw(mSpriteFond);
+
+	mTextureLastPass.update(App);
+	mTextureDiffuse.update(App);
+
+	sf::Vector3f Ambiant = { 0.2f ,0.2f ,0.2f };
+	mShader.setUniform("AmbientLight", Ambiant);
 }
 
 void Lunar_manager::Lunar_update(RenderWindow& _window)
@@ -74,7 +103,6 @@ void Lunar_manager::Lunar_update(RenderWindow& _window)
 			if (myContainer->GetNewGame() || Keyboard::isKeyPressed(Keyboard::R))
 			{
 				delete player;
-
 				player = new Lander(App);
 
 				myContainer->SetNewGame(false);
@@ -96,7 +124,7 @@ void Lunar_manager::Lunar_display(RenderWindow& _window)
 		if (!myContainer->GetIsOnDeathScreen() && myContainer->GetLvl() >= 1)
 		{
 			if (myContainer->GetLvl() != 4)
-				player->Display(_window);
+				player->Display(_window, mShader);
 
 			_window.draw(mVelocityXText);
 			_window.draw(mVelocityYText);
@@ -104,7 +132,7 @@ void Lunar_manager::Lunar_display(RenderWindow& _window)
 			_window.draw(mLifeText);
 			_window.draw(mFuelText);
 
-			if(player->GetHard())
+			if (player->GetHard())
 				_window.draw(mAngleText);
 		}
 		else
@@ -152,7 +180,20 @@ void Lunar_manager::IsOnPause()
 		mPause = !mPause;
 
 	if (Keyboard::isKeyPressed(Keyboard::Q))
+	{
 		ChangeState(State::MENU);
+	}
+}
+
+void Lunar_manager::LunarMenuPause()
+{
+	Texture lunarMenu;
+	lunarMenu.loadFromFile("../Ressources/Lunar_lander/Lunar_Lander_petitMenu.png");
+
+	Sprite lunarSprite(lunarMenu);
+	lunarSprite.setPosition(750, 0);
+
+	App.draw(lunarSprite);
 }
 
 Lunar_manager::~Lunar_manager()

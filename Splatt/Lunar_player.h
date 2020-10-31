@@ -38,7 +38,7 @@ public:
 
 #pragma endregion
 
-	void Display(RenderWindow &_window);
+	void Display(RenderWindow &_window, Shader &_myShader);
 
 	void Explode();
 	~Lander();

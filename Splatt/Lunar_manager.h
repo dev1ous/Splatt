@@ -8,6 +8,13 @@
 class Lunar_manager
 {
 private:
+	Shader mShader;
+	RenderStates Rstate;
+	Texture mTextureLastPass;
+	Texture mTextureDiffuse;
+	Texture mTextureFond;
+	Sprite mSpriteFond;
+
 	Image mMyImage;
 	Texture mMyTexture;
 	Sprite mMySprite;
@@ -29,13 +36,16 @@ private:
 
 public:
 	Lunar_manager(RenderWindow &_window);
-	void TextInit(RenderWindow &_window) ;
+	void TextInit(RenderWindow &_window);
+	void ShaderInit();
+	void ShaderUpdate();
 	void Lunar_update(RenderWindow& _window);
 	void Lunar_display(RenderWindow &_window);
 	void TextUpdate();
 	bool PlayerHasNoFuel();
 	void DisplayPauseMenu();
 	void IsOnPause();
+	void LunarMenuPause();
 	~Lunar_manager();
 
 };
