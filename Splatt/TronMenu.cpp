@@ -9,6 +9,8 @@ int TronChoixIG = 0;
 float TimerTronMenu;
 sf::Text tronPlay("JOUER", Tronfont, 80);
 sf::Text tronQuit("QUITTER", Tronfont, 80);
+sf::Text TronBienvenue("Bienvenue dans la grille programme", Tronfont, 80);
+sf::Text TronMiseEnGarde("veuillez commencez un duel ou fuir lachement", Tronfont, 40);
 sf::Font Tronfont;
 extern Joueurs joueur1;
 extern Joueurs joueur2;
@@ -16,6 +18,10 @@ extern Joueurs joueur2;
 void TronMenuInit()
 {
 	Tronfont.loadFromFile("../Ressources/Tron/Tr2n.ttf");
+	TronBienvenue.setOutlineThickness(2);
+	TronBienvenue.setPosition(sf::Vector2f(100,40));
+	TronMiseEnGarde.setOutlineThickness(2);
+	TronMiseEnGarde.setPosition(sf::Vector2f(350, 300));
 	tronPlay.setOutlineThickness(2);
 	tronPlay.setPosition(sf::Vector2f(1920 / 2, 1080 / 2 - tronPlay.getCharacterSize() / 2));
 	tronQuit.setOutlineThickness(2);
@@ -62,6 +68,10 @@ void TronMenuControl()
 
 void TronMenuDisplay()
 {
+	sf::Texture textureTronBG;
+	textureTronBG.loadFromFile("../Ressources/Tron/TronBackGround2.jpg");
+	sf::Sprite spriteTronBG(textureTronBG);
+
 	if (isButtonPressed(Action::Interact) && TimerTronMenu > 0.5f)
 	{
 		switch (TronChoix)
@@ -81,6 +91,9 @@ void TronMenuDisplay()
 		}
 		TimerTronMenu = 0.f;
 	}
+	App.draw(spriteTronBG);
+	App.draw(TronBienvenue);
+	App.draw(TronMiseEnGarde);
 	App.draw(tronPlay);
 	App.draw(tronQuit);
 
@@ -151,4 +164,12 @@ void TronMenuDisplayIG()
 	App.draw(TronQuitter);
 
 }
+void TronTuto()
+{
+	sf::Texture TronTutoT;
+	TronTutoT.loadFromFile("../Ressources/Tron/TronTuto.png");
+	sf::Sprite SpriteTronTuto(TronTutoT);
+	SpriteTronTuto.setPosition(750, 0);
 
+	App.draw(SpriteTronTuto);
+}

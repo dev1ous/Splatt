@@ -35,26 +35,25 @@ sf::Text TronTextVies2;
 void TronInit()
 {
 	joueur1.setOrigin(joueur1.getOrigin());
-	joueur1.setTexture("../Ressources/Tron/MotoBleu.png");
+	joueur1.setTexture("../Ressources/Tron/MotoBleuRe.png");
 	joueur1.setSprite(joueur1.getTexture());
 	joueur2.setOrigin(joueur2.getOrigin());
-	joueur2.setTexture("../Ressources/Tron/MotoJaune.png");
+	joueur2.setTexture("../Ressources/Tron/MotoJauneRe.png");
 	joueur2.setSprite(joueur2.getTexture());
 
 	sf::Vector2f TronSize(WIDTH, HEIGHT);
 	TronShape.setSize(TronSize);
 	TronShape.setFillColor(sf::Color::Black);
-	sf::Texture texture;
-	texture.loadFromFile("../Ressources/Tron/Grille3.png");
-	sf::Sprite grille(texture);
+	sf::Texture Trontexture;
+	Trontexture.loadFromFile("../Ressources/Tron/GrilleFinale.png");
+	sf::Sprite Trongrille(Trontexture);
 	t.create(WIDTH, HEIGHT);
 	t.setSmooth(true);
 	s.setTexture(t.getTexture());
 	t.clear();
-	t.draw(grille);
+	t.draw(Trongrille);
 	Trontext.setPosition(140, HEIGHT / 2);
 	TrontextFin.setPosition(140, HEIGHT / 2);
-
 
 	TronTextVies1.setFillColor(joueur1.getColor());
 	TronTextVies2.setFillColor(joueur2.getColor());
@@ -176,7 +175,7 @@ void TronDisplay()
 
 		App.draw(s);
 
-		TronShader->setUniform("frag_LightOrigin", sf::Vector2f(joueur2.getX(), joueur2.getY()));
+		TronShader->setUniform("frag_LightOrigin", sf::Vector2f(joueur2.getX() , joueur2.getY() ));
 		TronShader->setUniform("frag_LightColor", joueur2.getVecColor());
 		t.draw(s, states);
 

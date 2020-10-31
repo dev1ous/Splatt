@@ -6,8 +6,8 @@ Joueurs::Joueurs(sf::Color _color)
 	x = rand() % WIDTH;
 	y = rand() % HEIGHT;
 	direction = rand() % 4;
-	origin.x = 79.5f;
-	origin.y = 29.5f;
+	origin.x = 88.f;
+	origin.y = 19.f;
 	texture;
 	sprite;
 	TronNBdeVies = 5;

@@ -3,6 +3,7 @@
 #include "Controles.h"
 #include "Texture_SpriteManager.hpp"
 #include "Aste_Manager.h"
+#include "TronMenu.h"
 
 std::vector<std::string> VecMenu;
 int choice = 1;
@@ -207,6 +208,7 @@ void Menu_Display()
 		break;
 	case 6:
 		// tron
+		TronTuto();
 		break;
 	case 7:
 		// KingKong
