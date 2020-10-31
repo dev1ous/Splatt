@@ -25,6 +25,15 @@ int Joueurs::getDir()
 void Joueurs::setDir(int _direction)
 {
 	direction = _direction;
+
+	if (direction == 0)
+		getSprite().setRotation(90);
+	if (direction == 1)
+		getSprite().setRotation(180);
+	if (direction == 2)
+		getSprite().setRotation(0);
+	if (direction == 3)
+		getSprite().setRotation(270);
 }
 
 int Joueurs::getX()

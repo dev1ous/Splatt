@@ -1,8 +1,11 @@
 .vs/
 Splatt/Debug/
+Splatt/Release/
 Splatt/x64/
 *.exe
 *.ilk
 *.pdb
 *.lnk
+*.iobj
+*.ipdb
 *.user

@@ -14,6 +14,7 @@ sf::Text TronMiseEnGarde("veuillez commencez un duel ou fuir lachement", Tronfon
 sf::Font Tronfont;
 extern Joueurs joueur1;
 extern Joueurs joueur2;
+extern bool isJ2_ia;
 
 void TronMenuInit()
 {
@@ -82,6 +83,7 @@ void TronMenuDisplay()
 			joueur1.setAddVies();
 			joueur2.setAddVies();
 			Pause = 0;
+			isJ2_ia = true;
 			break;
 		case 1:
 			ChangeState(State::MENU);

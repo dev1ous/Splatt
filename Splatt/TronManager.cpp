@@ -31,6 +31,7 @@ sf::Shader* TronShader;
 sf::RectangleShape TronShape;
 sf::Text TronTextVies1;
 sf::Text TronTextVies2;
+bool isJ2_ia = true;
 
 void TronInit()
 {
@@ -93,7 +94,7 @@ void TronDisplay()
 	static float TronTimerReset = 0.f;
 	static float TronTimerFinGame = 0.f;
 	static bool onepass = false;
-	App.setFramerateLimit(60);
+	App.setFramerateLimit(180);
 
 	if (!onepass)
 	{
@@ -127,10 +128,90 @@ void TronDisplay()
 		{
 			if(getSound("BikeSound").getStatus() != sf::Sound::Playing)
 				getSound("BikeSound").play();
-			for (int i = 0; i < TronVelocity; i++)
+			//for (int i = 0; i < TronVelocity; i++)
+			//{
+			if (!TronPause)
 			{
 				joueur1.Zuse();
 				joueur2.Zuse();
+
+				// ia part start
+				if (isJ2_ia)
+				{
+					if (joueur2.getDir() == 0) // v
+					{
+						int nextY = joueur2.getY() + 50;
+						if (nextY < 0)
+							nextY += HEIGHT;
+
+						if (nextY < HEIGHT && nextY >= 0)
+						{
+							if (col[joueur2.getX()][nextY] == 1)
+							{
+								int iRand = irandom(0, 2);
+								if (iRand == 0)
+									joueur2.setDir(1);
+								if (iRand == 1)
+									joueur2.setDir(2);
+							}
+						}
+					}
+					else if (joueur2.getDir() == 1) // <-
+					{
+						int nextX = joueur2.getX() - 50;
+						if (nextX < 0)
+							nextX += WIDTH;
+
+						if (nextX < WIDTH && nextX >= 0)
+						{
+							if (col[nextX][joueur2.getY()] == 1)
+							{
+								int iRand = irandom(0, 2);
+								if (iRand == 0)
+									joueur2.setDir(0);
+								if (iRand == 1)
+									joueur2.setDir(3);
+							}
+						}
+					}
+					else if (joueur2.getDir() == 2) // ->
+					{
+						int nextX = joueur2.getX() + 50;
+						if (nextX > WIDTH)
+							nextX -= WIDTH;
+
+						if (nextX < WIDTH && nextX >= 0)
+						{
+							if (col[nextX][joueur2.getY()] == 1)
+							{
+								int iRand = irandom(0, 2);
+								if (iRand == 0)
+									joueur2.setDir(0);
+								if (iRand == 1)
+									joueur2.setDir(3);
+							}
+						}
+					}
+					else if (joueur2.getDir() == 3) // ^
+					{
+						int nextY = joueur2.getY() - 50;
+						if (nextY < 0)
+							nextY -= HEIGHT;
+
+						if (nextY < HEIGHT && nextY >= 0)
+						{
+							if (col[joueur2.getX()][nextY] == 1)
+							{
+								int iRand = irandom(0, 2);
+								if (iRand == 0)
+									joueur2.setDir(1);
+								if (iRand == 1)
+									joueur2.setDir(2);
+							}
+						}
+					}
+				}
+				// ia part end
 
 				if (col[joueur1.getX()][joueur1.getY()] == 1)
 				{
@@ -144,7 +225,7 @@ void TronDisplay()
 					TronRound = 0;
 					Trontext.setFillColor(joueur2.getColor());
 					Trontext.setOutlineThickness(2);
-					break;
+					//break;
 				}
 				else if (col[joueur2.getX()][joueur2.getY()] == 1)
 				{
@@ -158,7 +239,7 @@ void TronDisplay()
 					TronRound = 0;
 					Trontext.setFillColor(joueur1.getColor());
 					Trontext.setOutlineThickness(2);
-					break;
+					//break;
 				}
 				col[joueur1.getX()][joueur1.getY()] = 1;
 				col[joueur2.getX()][joueur2.getY()] = 1;
