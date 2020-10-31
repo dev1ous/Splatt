@@ -51,12 +51,6 @@ void SI_Update()
 
 	if (Etat == State_SI::Niveau1 || Etat == State_SI::Niveau2 || Etat == State_SI::Niveau3)
 	{
-		for (SI_Joueur& Actual_Joueur : V_joueur)
-			FullUpdate(Actual_Joueur);
-
-		for (SI_Tir& Actual_Tir : Tir_Joueur)
-			Actual_Tir.Update();
-
 		Suppression();
 
 		if (!Pause)
@@ -67,10 +61,15 @@ void SI_Update()
 				Niveau1();
 				break;
 			case State_SI::Niveau2:
+				Niveau2();
 				break;
 			case State_SI::Niveau3:
+				Niveau3();
 				break;
 			}
+
+			for (SI_Joueur& Actual_Joueur : V_joueur)
+				FullUpdate(Actual_Joueur);
 
 			if (app == true)
 			{
@@ -78,6 +77,9 @@ void SI_Update()
 
 				for (SI_Ennemi& Actual_Ennemy : EnnemyList)
 					FullUpdate(Actual_Ennemy);
+
+				for (SI_Tir& Actual_Tir : Tir_Joueur)
+					Actual_Tir.Update();
 			}
 		}
 
@@ -202,7 +204,7 @@ void Menu()
 			else
 			{
 				reset(State_SI::Menu);
-				!Pause;
+				Pause = false;
 			}
 
 		}
@@ -338,6 +340,72 @@ void Niveau2()
 		app = App_Ennemis(10, 4, Min, Max);
 
 	if (app == true && EnnemyList.size() == 0)
+		Wave_actuel++;
+}
+
+void Niveau3()
+{
+	static int Min = 0;
+	static int Max = 0;
+
+	if (Wave == Wave_actuel)
+	{
+		switch (Wave)
+		{
+		case 0:
+			Min = 1;
+			Max = 5;
+			break;
+		case 1:
+			Min = 1;
+			Max = 5;
+			break;
+		case 2:
+			Min = 1;
+			Max = 5;
+			break;
+		case 3:
+			Min = 1;
+			Max = 5;
+			break;
+		case 4:
+			Min = 1;
+			Max = 5;
+			break;
+		case 5:
+			Min = 1;
+			Max = 5;
+			break;
+		case 6:
+			Min = 1;
+			Max = 5;
+			break;
+		case 7:
+			Min = 1;
+			Max = 5;
+			break;
+		case 8:
+			Min = 1;
+			Max = 5;
+			break;
+		case 9:
+			Min = 1;
+			Max = 5;
+			break;
+		case 10:
+			Etat = State_SI::Menu;
+			break;
+		}
+		Vitesse += 5;
+		app = false;
+		if (Wave < 10)
+			Wave++;
+	}
+
+	if (app == false)
+		app = App_Ennemis(10, 4, Min, Max);
+
+	if (app == true && EnnemyList.size() == 0 && Wave_actuel < 10)
 		Wave_actuel++;
 }
 

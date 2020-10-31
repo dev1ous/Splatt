@@ -81,7 +81,7 @@ void SI_Joueur::Update()
 		else
 			Set_Droite(false);
 
-		if (Keyboard::isKeyPressed(Keyboard::Space) && Timer > 0.5f && Nombre_Tir < Limite_Tir/* && app == true && Pause == false*/)
+		if (Keyboard::isKeyPressed(Keyboard::Space) && Timer > 0.5f && Nombre_Tir < Limite_Tir && app == true)
 		{
 			Set_Tir(true);
 			Nombre_Tir++;
@@ -103,7 +103,7 @@ void SI_Joueur::Update()
 		else
 			Set_Droite(false);
 
-		if (Keyboard::isKeyPressed(Keyboard::Numpad0) && Timer > 0.5f && Nombre_Tir < Limite_Tir && app == true && Pause == false)
+		if (Keyboard::isKeyPressed(Keyboard::Numpad0) && Timer > 0.5f && Nombre_Tir < Limite_Tir && app == true)
 		{
 			Set_Tir(true);
 			Nombre_Tir++;

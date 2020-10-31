@@ -33,7 +33,7 @@ void SI_Ennemi::Update()
 {
 	string Sprite_Name = "Ennemi";
 
-	Sprite_Name += to_string(Type) + "bite";
+	Sprite_Name += to_string(Type);
 	if (Position.x - getSprite(Sprite_Name).getGlobalBounds().width / 2 < 0 && Gauche == true)
 		for (SI_Ennemi& Actual_Ennemy : EnnemyList)
 		{
@@ -81,6 +81,12 @@ void SI_Ennemi::Update()
 		else
 			Position.x += Vitesse * MainTime.GetTimeDeltaF();
 	}
+
+	if (Keyboard::isKeyPressed(Keyboard::Numpad1))
+		for (SI_Ennemi& Actual_Ennemy : EnnemyList)
+		{
+			Actual_Ennemy.life = 0;
+		}
 
 }
 

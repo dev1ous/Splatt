@@ -21,5 +21,6 @@ void Intro();
 void Menu();
 void Niveau1();
 void Niveau2();
+void Niveau3();
 bool App_Ennemis(int _rangeX, int _rangeY, int _typeMin, int _typeMax);
 void Display_Controle(const int& x);
