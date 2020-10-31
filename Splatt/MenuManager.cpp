@@ -4,6 +4,7 @@
 #include "Texture_SpriteManager.hpp"
 #include "Aste_Manager.h"
 #include "TronMenu.h"
+#include "Si_Manager.h"
 
 std::vector<std::string> VecMenu;
 int choice = 1;
@@ -192,7 +193,7 @@ void Menu_Display()
 	switch (choice)
 	{
 	case 1:
-		// space i
+		Display_Controle(BaseX);
 		break;
 	case 2:
 		// pacman

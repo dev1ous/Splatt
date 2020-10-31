@@ -198,9 +198,12 @@ void Menu()
 		if (select == 1)
 		{
 			if (!Pause)
-				state = State::MENU;
+				ChangeState(State::MENU);
 			else
+			{
 				reset(State_SI::Menu);
+				!Pause;
+			}
 
 		}
 		select = 0;
@@ -277,9 +280,6 @@ void Niveau2()
 {
 	static int Min = 0;
 	static int Max = 0;
-	static int Wave = 0;
-	static int Wave_actuel = 0;
-
 
 	if (Wave == Wave_actuel)
 	{
@@ -376,4 +376,10 @@ bool App_Ennemis(int _rangeX, int _rangeY, int _typeMin, int _typeMax)
 	}
 	else
 		return false;
+}
+
+void Display_Controle(const int& x)
+{
+	getSprite("Controle").setPosition(x, 0);
+	App.draw(getSprite("Controle"));
 }

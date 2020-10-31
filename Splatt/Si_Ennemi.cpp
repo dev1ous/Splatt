@@ -33,7 +33,7 @@ void SI_Ennemi::Update()
 {
 	string Sprite_Name = "Ennemi";
 
-	Sprite_Name += to_string(Type);
+	Sprite_Name += to_string(Type) + "bite";
 	if (Position.x - getSprite(Sprite_Name).getGlobalBounds().width / 2 < 0 && Gauche == true)
 		for (SI_Ennemi& Actual_Ennemy : EnnemyList)
 		{
