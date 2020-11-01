@@ -9,6 +9,8 @@ Lunar_manager::Lunar_manager(RenderWindow& _window)
 	if (!mMyFont.loadFromFile("../ressources/Lunar_lander/Lunar_font.ttf"))
 		exit(EXIT_FAILURE);
 
+	delete myContainer;
+	delete player;
 	myContainer = new GroundContainer(App);
 	player = new Lander(App);
 	mPause = false;
@@ -192,8 +194,4 @@ void Lunar_manager::LunarMenuPause()
 
 Lunar_manager::~Lunar_manager()
 {
-	delete myContainer;
-	delete player;
-	myContainer = 0;
-	player = 0;
 }
