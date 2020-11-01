@@ -148,6 +148,5 @@ void InitControles()
 	controles.push_back(Controle(Action::Lunar_Reset, sf::Keyboard::R, true, gamepadPS4::Y));
 	controles.push_back(Controle(Action::Lunar_Pause, sf::Keyboard::Escape, true, gamepadPS4::Start));
 	controles.push_back(Controle(Action::Lunar_Select, sf::Keyboard::Space, true, gamepadPS4::Select));
-
 	controles.push_back(Controle(Action::Lunar_ReturnMenu, sf::Keyboard::Q, true, gamepadPS4::B));
 }

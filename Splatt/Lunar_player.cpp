@@ -53,7 +53,14 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 	else
 	{
 		if (mNbLifePoints <= 0 || !HasFuel())
+		{
 			_myContainer.DeathScreen(_window);
+
+			mIsAlive = false;
+
+			if (isButtonPressed(Action::Lunar_Select))
+				_myContainer.ResetLevel();
+		}
 		else
 			ResetPlayer();
 	}

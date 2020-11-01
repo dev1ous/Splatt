@@ -15,7 +15,6 @@ Lunar_manager::Lunar_manager(RenderWindow& _window)
 	player = new Lander(App);
 	mPause = false;
 
-	ShaderInit();
 	TextInit(_window);
 }
 
@@ -173,7 +172,7 @@ void Lunar_manager::DisplayPauseMenu()
 
 	App.draw(mMySprite);
 
-	if (isButtonPressed(Action::Lunar_Pause))
+	if (isButtonPressed(Action::Lunar_Select))
 		mPause = false;
 }
 

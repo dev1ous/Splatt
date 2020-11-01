@@ -2,7 +2,8 @@
 
 GroundContainer::GroundContainer(RenderWindow& _window)
 {
-	mNbLvl = 0;
+	mStartNewGame = true;
+	mNbLvl = 1;
 	mLvlCanChange = true;
 	mIsOnDS = false;
 	mPosition = Vector2f(_window.getSize().x / 2, _window.getSize().y / 2);
@@ -12,26 +13,7 @@ GroundContainer::GroundContainer(RenderWindow& _window)
 void GroundContainer::Update(RenderWindow& _window)
 {
 	if (mLvlCanChange)
-	{
-		if (mNbLvl == 0)
-			Start();
-		else if(mNbLvl > 0)
-			ChangeLevel(_window);
-	}
-}
-
-void GroundContainer::Start()
-{
-	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_Lander_Menu.png"))
-		exit(EXIT_FAILURE);
-
-	mMyTexture.loadFromImage(mMyImage);
-	mMySprite.setTexture(mMyTexture);
-	mMySprite.setOrigin(mMySprite.getGlobalBounds().width / 2, mMySprite.getGlobalBounds().height / 2);
-	mMySprite.setPosition(mPosition);
-
-	if (Keyboard::isKeyPressed(Keyboard::Space))
-		mNbLvl++;
+		ChangeLevel(_window);
 }
 
 void GroundContainer::GoToNextLvl(RenderWindow& _window)
@@ -70,7 +52,7 @@ void GroundContainer::ChangeLevel(RenderWindow& _window)
 		mLvlCanChange = true;
 		mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_final_stage.png");
 
-		if (Keyboard::isKeyPressed(Keyboard::Space))
+		if (isButtonPressed(Action::Lunar_Select))
 			mNbLvl++;
 	}
 	
@@ -98,14 +80,13 @@ void GroundContainer::DeathScreen(RenderWindow& _window)
 	mMySprite.setPosition(mPosition);
 
 	mLvlCanChange = true;
+}
 
-	if (Keyboard::isKeyPressed(Keyboard::Space))
-	{
-		mNbLvl = 0;
-		mIsOnDS = false;
-		mStartNewGame = true;
-	}
-
+void GroundContainer::ResetLevel()
+{
+	mNbLvl = 0;
+	mIsOnDS = false;
+	mStartNewGame = true;
 }
 
 void GroundContainer::Display(RenderWindow& _window)
