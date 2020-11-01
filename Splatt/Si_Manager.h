@@ -13,12 +13,15 @@ enum class State_SI
 };
 
 extern bool app;
+extern bool Debut_Niveau;
+extern bool Load;
 
 void reset();
 void reset_Joueur(int Nombre_tirJ1, int Nombre_tirJ2);
 void SI_Update();
 void SI_Display();
 void Menu();
+void Pause_update();
 void Niveau1();
 void Niveau2();
 void Niveau3();

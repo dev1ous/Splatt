@@ -9,20 +9,58 @@ void Collision()
 {
 	for (SI_Ennemi& Actual_Ennemy : EnnemyList)
 	{
+		Actual_Ennemy.Timer_degat += MainTime.GetTimeDeltaF();
 		string Sprite_Name = "Ennemi";
 
 		Sprite_Name += to_string(Actual_Ennemy.Get_Type());
 		for (SI_Tir& Actual_Tir : Tir_Joueur)
 		{
-			if (Circle_Collision(Actual_Ennemy.Get_Position(), Actual_Tir.Get_Position(), getSprite(Sprite_Name).getGlobalBounds().width / 2, Actual_Tir.Get_Radius()))
+			if (Actual_Ennemy.Timer_degat > 0.5f && Circle_Collision(Actual_Ennemy.Get_Position(), Actual_Tir.Get_Position(), getSprite(Sprite_Name).getGlobalBounds().width / 2, Actual_Tir.Get_Radius()))
 			{
-				Actual_Ennemy.Set_Life(0);
-				Actual_Tir.Set_Destruct(true);
+				Actual_Ennemy.Set_Life(Actual_Ennemy.Get_Life() - 1);
+
+				if (Actual_Tir.Get_Type() == 1)
+					Actual_Tir.Set_Destruct(true);
+				else if (Actual_Tir.Get_Activation() == false)
+					Actual_Tir.Set_Activation(true);
 
 				for (SI_Joueur& Actual_Joueur : V_joueur)
 				{
 					Actual_Joueur = Incrementation_Tir_Special(Actual_Ennemy, Actual_Tir, Actual_Joueur);
 				}
+
+				Actual_Ennemy.Timer_degat = 0;
+				break;
+			}
+		}
+
+		for (SI_Joueur& Actual_Joueur : V_joueur)
+		{
+			string Sprite_Name2 = "Perso";
+			Sprite_Name2 += to_string(Actual_Joueur.Get_Numero());
+			if (Circle_Collision(Actual_Ennemy.Get_Position(), Actual_Joueur.Get_Position(), getSprite(Sprite_Name).getGlobalBounds().width / 2, getSprite(Sprite_Name2).getGlobalBounds().width / 2) && Actual_Joueur.ColiJ == false)
+			{
+				Actual_Joueur.ColiJ = true;
+				Actual_Joueur.Set_Life(0);
+				Actual_Ennemy.Set_Life(0);
+				break;
+			}
+		}
+	}
+
+	for (SI_Joueur& Actual_Joueur : V_joueur)
+	{
+		string Sprite_Name2 = "Perso";
+		Sprite_Name2 += to_string(Actual_Joueur.Get_Numero());
+		for (SI_Tir& Actual_Tir : Tir_Ennemi)
+		{
+			if (Circle_Collision(Actual_Tir.Get_Position(), Actual_Joueur.Get_Position(), Actual_Tir.Get_Radius(), getSprite(Sprite_Name2).getGlobalBounds().width / 2) && Actual_Joueur.ColiJ == false)
+			{
+				Actual_Tir.Set_Destruct(true);
+				Actual_Joueur.Set_Life(Actual_Joueur.Get_Life() - 1);
+				if (Actual_Joueur.Get_Life() > 0)
+					Actual_Joueur.ColiJ = true;
+				break;
 			}
 		}
 	}
@@ -36,6 +74,17 @@ void Suppression()
 		if (Actual_Ennemy.Get_Life() == 0)
 		{
 			EnnemyList.erase(EnnemyList.begin() + i);
+			break;
+		}
+		i++;
+	}
+
+	i = 0;
+	for (SI_Tir& Actual_Tir : Tir_Ennemi)
+	{
+		if (Actual_Tir.Get_Destruct() == true)
+		{
+			Tir_Ennemi.erase(Tir_Ennemi.begin() + i);
 			break;
 		}
 		i++;
@@ -60,11 +109,22 @@ void Suppression()
 		}
 		i++;
 	}
+
+	i = 0;
+	for (SI_Joueur& Actual_Joueur : V_joueur)
+	{
+		if (Actual_Joueur.Get_Life() == 0)
+		{
+			V_joueur.erase(V_joueur.begin() + i);
+			break;
+		}
+		i++;
+	}
 }
 
 SI_Joueur Incrementation_Tir_Special(SI_Ennemi _ennemi, SI_Tir _tir, SI_Joueur _joueur)
 {
-	if (_tir.Ball.getFillColor() == _joueur.Get_Color())
+	if (_tir.Ball.getFillColor() == _joueur.Get_Color() && _tir.Get_Type() == 1)
 	{
 		switch (_ennemi.Get_Type())
 		{

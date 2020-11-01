@@ -8,6 +8,11 @@ private :
 	int Limite_Tir;
 	int Nombre_Tir;
 	Color Couleur;
+	bool Tir_Special;
+	float Timer_col;
+
+	RectangleShape PV;
+	RectangleShape Encadré;
 
 	int Special_Jaune;
 	int Special_Bleu;
@@ -24,11 +29,13 @@ public :
 	RectangleShape Special;
 	string sTir_Special;
 	Text tSpecial;
+	bool ColiJ;
 
 	inline int Get_Numero() { return Numero_Joueur; };
 	inline int Get_NombreTir() { return Nombre_Tir; };
 	inline int Get_Limit() { return Limite_Tir; };
 	inline Color Get_Color() { return Couleur; };
+	inline bool Get_Tir() { return Tir_Special; };
 
 	inline int Get_Special_Jaune() { return Special_Jaune; };
 	inline int Get_Special_Bleu() { return Special_Bleu; };
@@ -43,6 +50,7 @@ public :
 	inline void Set_Special_Bleu(int _special) { Special_Bleu = _special; };
 	inline void Set_Special_Violet(int _special) { Special_Violet = _special; };
 	inline void Set_Special_Vert(int _special) { Special_Vert = _special; };
+	inline void Set_TirSpecial(bool _bool) { Tir_Special = _bool; };
 	
 	void Update();
 	void Draw();

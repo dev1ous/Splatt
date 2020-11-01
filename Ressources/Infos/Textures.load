@@ -5,17 +5,21 @@ Aste_Explosion | Asteroid
 Moon | Asteroid
 aste_shield | Asteroid
 lunarPlayer | All
-PersoBase | SpaceInvaders
+
 Perso1 | SpaceInvaders
 Perso2 | SpaceInvaders
 Ennemi1 | SpaceInvaders
 Ennemi2 | SpaceInvaders
 Ennemi3 | SpaceInvaders
 Ennemi4 | SpaceInvaders
+Ennemi5 | SpaceInvaders
+Ennemi6 | SpaceInvaders
+Ennemi7 | SpaceInvaders
 Menu | SpaceInvaders
 Niveau1 | SpaceInvaders
 Niveau2 | SpaceInvaders
 Niveau3 | SpaceInvaders
+
 PacMap | PacMan
 Pac | PacMan
 
