@@ -13,7 +13,7 @@
 
 State state = State::MENU;
 
-Lunar_manager l_manager(App);
+Lunar_manager* l_manager;
 bool Pause = false;
 
 void EventsManager()
@@ -48,6 +48,13 @@ void ChangeState(State NextState)
 
 void UpdateManager()
 {
+	static bool one = false;
+	if (!one)
+	{
+		l_manager = new Lunar_manager(App);
+		one = true;
+	}
+
 	//restart of the clock (time per frame)
 	MainTime.RestartClock();
 
@@ -71,7 +78,7 @@ void UpdateManager()
 		Pac_Update();
 		break;
 	case State::LUNAR_LANDER:
-		l_manager.Lunar_update(App);
+		l_manager->Lunar_update(App);
 		break;
 	case State::ASTEROID:
 		if (!Pause)
@@ -111,7 +118,7 @@ void DisplayManager()
 		Pac_Display();
 		break;
 	case State::LUNAR_LANDER:
-		l_manager.Lunar_display(App);
+		l_manager->Lunar_display(App);
 		break;
 	case State::ASTEROID:
 		Aste_Display();
