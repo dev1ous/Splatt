@@ -3,6 +3,7 @@
 #include "SI_Joueur.h"
 #include "SI_Ennemi.h"
 #include "SI_Tir.h"
+#include "SoundManager.hpp"
 
 vector <SI_Joueur> V_joueur;
 vector <SI_Ennemi> EnnemyList;
@@ -25,6 +26,11 @@ Text Play("Play", font, 100);
 Text Quit("Quit", font, 100);
 Text Game_Over("Game_Over", font, 200);
 Text tNb_Joueur;
+
+Shader* SI_Shaders;
+Sprite SI_sShaders;
+RenderTexture SI_rtShaders;
+RenderStates SI_rsShaders;
 
 void reset()
 {
@@ -75,6 +81,10 @@ void SI_Update()
 		reset();
 		Load = true;
 	}
+
+	getMusic("space_walk").setLoop(true);
+	if (getMusic("space_walk").getStatus() != Music::Playing)
+		getMusic("space_walk").play();
 
 	if (Etat == State_SI::Niveau1 || Etat == State_SI::Niveau2 || Etat == State_SI::Niveau3)
 	{
@@ -196,6 +206,28 @@ void SI_Display()
 
 	else if (Etat == State_SI::Menu)
 	{
+		static float timer_shaders = 0;
+		timer_shaders += MainTime.GetTimeDeltaF();
+
+		static bool onepass = true;
+		if (onepass == true)
+		{
+			SI_rtShaders.create(1920, 1080);
+			SI_rtShaders.setSmooth(true);
+			SI_sShaders.setTexture(SI_rtShaders.getTexture());
+			SI_rtShaders.clear();
+
+			SI_Shaders = new Shader;
+			SI_Shaders->loadFromFile("../Ressources/Space Invaders/SpaceInvaderShader.frag", Shader::Fragment);
+			SI_Shaders->setUniform("u_resolution", Vector3f(1920, 1080, 0));
+			SI_rtShaders.display();
+			onepass = false;
+		}
+
+		SI_Shaders->setUniform("u_time", timer_shaders);
+		SI_rsShaders.shader = SI_Shaders;
+
+		App.draw(SI_sShaders, SI_rsShaders);
 		App.draw(getSprite("Menu"));
 		App.draw(Play);
 		App.draw(tNb_Joueur);
@@ -206,6 +238,7 @@ void SI_Display()
 void Menu()
 {
 	static int select = 0;
+
 	static float timer = 0;
 	timer += MainTime.GetTimeDeltaF();
 

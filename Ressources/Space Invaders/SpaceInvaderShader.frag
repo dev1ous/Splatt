@@ -1,7 +1,7 @@
 uniform float u_time;
 uniform vec3 u_resolution;
 
-vec3 color = vec3(0.6, 0.1, 0.3);
+vec3 color = vec3(0.3, 0.1, 0.6);
 
 float invader()
 {

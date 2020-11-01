@@ -94,8 +94,8 @@ void TronMenuDisplay()
 		TronMenuShad = new sf::Shader;
 		TronMenuShad->loadFromFile("../Ressources/Tron/ShaderMenu.frag", sf::Shader::Fragment);
 		TronMenuShad->setUniform("u_resolution", sf::Vector3f(1920, 1080, 0));
-		TronMenuShad->setUniform("u_time", TutoTimer);
-		TronMShadStates.shader = TronMenuShad;
+		tTronMShad.display();
+		one_pass = true;
 	}
 	
 	if (isButtonPressed(Action::Interact) && TimerTronMenu > 0.5f)
@@ -121,7 +121,9 @@ void TronMenuDisplay()
 		TimerTronMenu = 0.f;
 	}
 
-	tTronMShad.display();
+	TronMenuShad->setUniform("u_time", TutoTimer);
+	TronMShadStates.shader = TronMenuShad;
+	
 	App.draw(sTronMShad, TronMShadStates);
 	App.draw(TronBienvenue);
 	App.draw(TronMiseEnGarde);
