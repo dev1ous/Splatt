@@ -18,8 +18,9 @@ void GroundContainer::Update(RenderWindow& _window)
 
 void GroundContainer::GoToNextLvl(RenderWindow& _window)
 {
-	mNbLvl++;
-	mLvlCanChange = true;
+		mNbLvl++;
+		mLvlCanChange = true;
+	
 
 	ChangeLevel(_window);
 }
@@ -80,11 +81,17 @@ void GroundContainer::DeathScreen(RenderWindow& _window)
 	mMySprite.setPosition(mPosition);
 
 	mLvlCanChange = true;
+
+	if (isButtonPressed(Action::Lunar_ReturnMenu))
+		ChangeState(State::MENU);
+
+	if (isButtonPressed(Action::Lunar_Select))
+		mNbLvl = 1;
 }
 
 void GroundContainer::ResetLevel()
 {
-	mNbLvl = 0;
+	mNbLvl = 1;
 	mIsOnDS = false;
 	mStartNewGame = true;
 }
