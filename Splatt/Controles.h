@@ -41,6 +41,7 @@ enum class Action
 	Lunar_Droite,
 	Lunar_Space,
 	Lunar_Pause,
+	Lunar_Select,
 	Lunar_Reset,
 	Lunar_ReturnMenu
 };
