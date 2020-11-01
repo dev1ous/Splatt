@@ -16,7 +16,7 @@ Lander::Lander(RenderWindow& _window)
 	mSprite.setPosition(mPosition);
 	mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	mSprite.setOrigin(mSprite.getLocalBounds().width / 2, mSprite.getLocalBounds().height / 2);
-	
+
 	mSpeed = 3;
 	mScore = 0;
 	mIsAlive = true;
@@ -61,20 +61,20 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 
 void Lander::MoveRight()
 {
-	if (Keyboard::isKeyPressed(Keyboard::Right))
+	if (isButtonPressed(Action::Lunar_Droite))
 	{
 		if (!mIsHardMode)
 			mVelocity.x += .4f * MainTime.GetTimeDeltaF();
 		else
 			mAngle += 90 * MainTime.GetTimeDeltaF();
-				
+
 		mFuel -= 1.5f;
 	}
 }
 
 void Lander::MoveLeft()
 {
-	if (Keyboard::isKeyPressed(Keyboard::Left))
+	if (isButtonPressed(Action::Lunar_Gauche))
 	{
 		if (!mIsHardMode)
 			mVelocity.x -= .4f * MainTime.GetTimeDeltaF();
@@ -87,9 +87,9 @@ void Lander::MoveLeft()
 
 void Lander::Inpulse()
 {
-	if (Keyboard::isKeyPressed(Keyboard::Up))
+	if (isButtonPressed(Action::Lunar_Impulse))
 	{
-		if(!mIsHardMode)
+		if (!mIsHardMode)
 			mVelocity.y -= .4f * MainTime.GetTimeDeltaF();
 		else
 		{
@@ -99,7 +99,7 @@ void Lander::Inpulse()
 			float forceY = sin(angle_rad) * (mSpeed * MainTime.GetTimeDeltaF());
 
 			mVelocity.x += forceX;
-			mVelocity.y += forceY;		
+			mVelocity.y += forceY;
 		}
 
 		mEngineOn = true;
@@ -107,7 +107,7 @@ void Lander::Inpulse()
 		mFuel -= 1.5f;
 	}
 
-	if (mEngineOn && !Keyboard::isKeyPressed(Keyboard::Up))
+	if (mEngineOn && !isButtonPressed(Action::Lunar_Impulse))
 	{
 		mEngineOn = false;
 
@@ -124,7 +124,7 @@ void Lander::Landing(RenderWindow& _window, GroundContainer& _myContainer)
 	mVelocity.y = 0.0f;
 
 	if (_myContainer.GetLvl() == 5)
-		_myContainer.SetNbLvl(0);		
+		_myContainer.SetNbLvl(1);
 	else
 		_myContainer.GoToNextLvl(_window);
 }
@@ -182,10 +182,19 @@ bool Lander::HasFuel()
 	return true;
 }
 
-void Lander::ChangeMode()
+//void Lander::ChangeMode()
+//{
+//	if (Keyboard::isKeyPressed(Keyboard::M))
+//		mIsHardMode = !mIsHardMode;
+//}
+
+void Lander::PlaySound(string _sound)
 {
-	if (Keyboard::isKeyPressed(Keyboard::M))
-		mIsHardMode = !mIsHardMode;
+	if (!mSb.loadFromFile("../ressources/Lunar_lander/" + _sound))
+		exit(EXIT_FAILURE);
+
+	mSound.setBuffer(mSb);
+	mSound.play();
 }
 
 #pragma endregion
@@ -197,6 +206,8 @@ void Lander::Display(RenderWindow& _window, Shader& _myShader)
 
 void Lander::Explode()
 {
+	//PlaySound("Lunar_explode");
+
 	mVelocity.x = 0.0f;
 	mVelocity.y = 0.0f;
 

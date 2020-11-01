@@ -35,6 +35,14 @@ enum class Action
 	SIJ2_Droite,
 	SIJ2_Tir,
 	SIJ2_TirSpe,
+
+	Lunar_Impulse,
+	Lunar_Gauche,
+	Lunar_Droite,
+	Lunar_Space,
+	Lunar_Pause,
+	Lunar_Reset,
+	Lunar_ReturnMenu
 };
 
 

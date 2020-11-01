@@ -1,5 +1,6 @@
 #pragma once
 #include "Lunar_GroundContainer.h"
+#include "Controles.h"
 #include "Tools.hpp"
 
 #include "pch.h"
@@ -7,6 +8,8 @@
 class Lander
 {
 protected:
+	SoundBuffer mSb;
+	Sound mSound;
 
 	Texture mTexture;
 	Sprite mSprite;
@@ -34,7 +37,8 @@ public:
 	void Collide(RenderWindow& _window, GroundContainer &_myContainer);
 	void ResetPlayer();
 	bool HasFuel();
-	void ChangeMode();
+	//void ChangeMode();
+	void PlaySound(string _sound);
 
 #pragma endregion
 

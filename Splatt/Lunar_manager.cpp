@@ -100,7 +100,7 @@ void Lunar_manager::Lunar_update(RenderWindow& _window)
 		{
 			TextUpdate();
 
-			if (myContainer->GetNewGame() || Keyboard::isKeyPressed(Keyboard::R))
+			if (myContainer->GetNewGame() || isButtonPressed(Action::Lunar_Reset))
 			{
 				delete player;
 				player = new Lander(App);
@@ -170,19 +170,17 @@ void Lunar_manager::DisplayPauseMenu()
 
 	App.draw(mMySprite);
 
-	if (Keyboard::isKeyPressed(Keyboard::Space))
+	if (isButtonPressed(Action::Lunar_Pause))
 		mPause = false;
 }
 
 void Lunar_manager::IsOnPause()
 {
-	if (Keyboard::isKeyPressed(Keyboard::Escape))
-		mPause = !mPause;
+	if (isButtonPressed(Action::Lunar_Pause))
+		mPause = true;
 
-	if (Keyboard::isKeyPressed(Keyboard::Q))
-	{
+	if (isButtonPressed(Action::Lunar_ReturnMenu) && mPause)
 		ChangeState(State::MENU);
-	}
 }
 
 void Lunar_manager::LunarMenuPause()

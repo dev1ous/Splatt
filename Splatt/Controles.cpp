@@ -141,4 +141,12 @@ void InitControles()
 	controles.push_back(Controle(Action::SIJ2_Gauche, sf::Keyboard::Left, false, gamepadPS4::StickLX, -1, 1));
 	controles.push_back(Controle(Action::SIJ2_Tir, sf::Keyboard::Numpad0, false, gamepadPS4::R1, 1, 1));
 	controles.push_back(Controle(Action::SIJ2_TirSpe, sf::Keyboard::Numpad1, false, gamepadPS4::L1, -1, 1));
+
+	controles.push_back(Controle(Action::Lunar_Impulse, sf::Keyboard::Up, true, gamepadPS4::A));
+	controles.push_back(Controle(Action::Lunar_Droite, sf::Keyboard::Right, false, gamepadPS4::StickLX, 1, 0));
+	controles.push_back(Controle(Action::Lunar_Gauche, sf::Keyboard::Left, false, gamepadPS4::StickLX, -1, 0));
+	controles.push_back(Controle(Action::Lunar_Reset, sf::Keyboard::R, true, gamepadPS4::Y));
+	controles.push_back(Controle(Action::Lunar_Pause, sf::Keyboard::Escape, true, gamepadPS4::Start));
+
+	controles.push_back(Controle(Action::Lunar_ReturnMenu, sf::Keyboard::Q, true, gamepadPS4::B));
 }

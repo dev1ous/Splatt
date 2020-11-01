@@ -1,6 +1,7 @@
 #pragma once
 #include "Lunar_GroundContainer.h"
 #include "Lunar_player.h"
+#include "Controles.h"
 #include "StateManager.hpp"
 
 #include "Tools.hpp"
@@ -8,6 +9,8 @@
 class Lunar_manager
 {
 private:
+	SoundBuffer mBuffer;
+
 	Shader mShader;
 	RenderStates Rstate;
 	Texture mTextureLastPass;
@@ -47,5 +50,4 @@ public:
 	void IsOnPause();
 	void LunarMenuPause();
 	~Lunar_manager();
-
 };
