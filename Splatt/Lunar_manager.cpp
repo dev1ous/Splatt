@@ -1,4 +1,5 @@
 #include "Lunar_manager.h"
+#include "Texture_SpriteManager.hpp"
 
 Lander* player;
 GroundContainer* myContainer;
@@ -185,15 +186,14 @@ void Lunar_manager::IsOnPause()
 
 void Lunar_manager::LunarMenuPause()
 {
-	Texture lunarMenu;
-	lunarMenu.loadFromFile("../Ressources/Lunar_lander/Lunar_Lander_petitMenu.png");
-
-	Sprite lunarSprite(lunarMenu);
-	lunarSprite.setPosition(750, 0);
-
-	App.draw(lunarSprite);
+	getSprite("Lunar_Lander_petitMenu").setPosition(750, 0);
+	App.draw(getSprite("Lunar_Lander_petitMenu"));
 }
 
 Lunar_manager::~Lunar_manager()
 {
+	delete myContainer;
+	delete player;
+	myContainer = 0;
+	player = 0;
 }

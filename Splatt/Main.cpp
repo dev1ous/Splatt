@@ -24,6 +24,7 @@ int main(int argc, char** argv)
 	RessourcesLoad("../Ressources/PacMan/");
 	RessourcesLoad("../Ressources/Menu/");
 	RessourcesLoad("../Ressources/Tron/");
+	RessourcesLoad("../Ressources/Lunar_lander/");
 	LaunchArguments(argc, argv);
 
 	OptionRead();
