@@ -173,6 +173,21 @@ void Menu_Display()
 	sf::Text TMenu("", font, 60);
 
 	int i = 0;
+	static int SecondChoice = 1;
+	static float Rolltimer = 0.f;
+	Rolltimer += MainTime.GetTimeDeltaF();
+
+	if (choice > SecondChoice && Rolltimer >= 0.05f)
+	{
+		SecondChoice++;
+		Rolltimer = 0.f;
+	}
+	else if (choice < SecondChoice && Rolltimer >= 0.05f)
+	{
+		SecondChoice--;
+		Rolltimer = 0.f;
+	}
+
 	for (std::string& actu : VecMenu)
 	{
 		i++;
@@ -183,9 +198,9 @@ void Menu_Display()
 			TMenu.setFillColor(sf::Color::White);
 			
 		TMenu.setString(actu);
-		TMenu.setCharacterSize(60.f + (5.f * -abs(i - choice)));
+		TMenu.setCharacterSize(60.f + (5.f * -abs(i - SecondChoice)));
 		TMenu.setOrigin(getMidle(TMenu));
-		TMenu.setPosition(375.f, 540.f + ((50.f - abs((i - choice)) * 2.75f) * (i - choice)));
+		TMenu.setPosition(375.f, 540.f + ((50.f - abs((i - SecondChoice)) * 2.75f) * (i - SecondChoice)));
 		App.draw(TMenu);
 	}
 
