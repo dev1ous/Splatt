@@ -34,6 +34,11 @@ Image Image_Masque;
 
 State_Pac State_PacMan;
 
+RenderTexture Texture_PacShade;
+Sprite Sprite_PacShade;
+RenderStates State_PacShade;
+Shader* Shade_Pac;
+
 void Pac_Update()
 {
 	if (Keyboard::isKeyPressed(Keyboard::Escape))
@@ -69,15 +74,15 @@ void Pac_Display()
 	static bool one_pass = true;
 	if (one_pass == true)
 	{
-		State_PacMan = State_Pac::Niveau1;
+		State_PacMan = State_Pac::Menu;
 
 		Image_Masque.loadFromFile("../Ressources/PacMan/PacMasque.png");
 		one_pass = false;
 	}
 
 
-	float PosX = 30;
-	float PosY = 30;
+	float PosX_Gum = 30;
+	float PosY_Gum = 30;
 	static Color Pix;
 
 	switch (State_PacMan)
@@ -96,38 +101,37 @@ void Pac_Display()
 				if (Gums[i][j].Get_Mort() == false)
 				{
 
-					Pix = Image_Masque.getPixel(PosX, PosY);
+					Pix = Image_Masque.getPixel(PosX_Gum, PosY_Gum);
 
 					if (Pix == Color::White || Pix == Color::Red)
 					{
-						if (Gums[i][j].Get_Mort() == false)
-						{
-							Gums[i][j].Set_PosX(PosX);
-							Gums[i][j].Set_PosY(PosY);
+							Gums[i][j].Set_PosX(PosX_Gum);
+							Gums[i][j].Set_PosY(PosY_Gum);
 
-							getSprite("Gums").setPosition(PosX, PosY);
+							getSprite("Gums").setPosition(PosX_Gum, PosY_Gum);
 							Gums[i][j].Set_Rect(getSprite("Gums").getGlobalBounds());
 							Gums[i][j].Display();
-						}
+						
 						if (Pac.Get_Rect().intersects(Gums[i][j].Get_Rect()))
 						{
+							
 							score += 10;
 							Sco += to_string(score);
 							Gums[i][j].Set_Mort();
-							getSprite("Gums").setPosition(-500, -500);
+							getSprite("Gums").setPosition(0, 4000);
 							win++;
 						}
 
 
 					}
 				}
-				PosX += 60;
+				PosX_Gum += 60;
 
 			}
-			if (PosX == 1890)
+			if (PosX_Gum == 1890)
 			{
-				PosX = 30;
-				PosY += 60;
+				PosX_Gum = 30;
+				PosY_Gum += 60;
 			}
 
 		}
@@ -157,7 +161,8 @@ void Pac_Display()
 		}
 		break;
 	case State_Pac::Menu:
-		App.draw(getSprite("PacMenu"));
+		
+		Affichage_Shader();
 		App.draw(Jouer);
 		App.draw(Quitter);
 		break;
@@ -331,14 +336,10 @@ void PacMenu()
 	static float timer = 0;
 	timer += MainTime.GetTimeDeltaF();
 
-	static bool one_pass = false;
-	if (!one_pass)
-	{
-		Jouer.setPosition(860, 540);
-		Quitter.setPosition(860, 800);
 
-		one_pass = true;
-	}
+	Jouer.setPosition(1400, 540);
+	Quitter.setPosition(1400, 800);
+
 
 	if (Keyboard::isKeyPressed(Keyboard::Z) && timer > 0.2f)
 	{
@@ -385,14 +386,10 @@ void PacPause()
 	static float timer = 0;
 	timer += MainTime.GetTimeDeltaF();
 
-	static bool one_pass = false;
-	if (!one_pass)
-	{
-		Jouer.setPosition(860, 540);
-		Quitter.setPosition(860, 800);
 
-		one_pass = true;
-	}
+	Jouer.setPosition(860, 540);
+	Quitter.setPosition(860, 800);
+
 
 	if (Keyboard::isKeyPressed(Keyboard::Z) && timer > 0.2f)
 	{
@@ -487,4 +484,39 @@ void Pac_Explications()
 {
 	getSprite("Explications").setPosition(1000, 300);
 	App.draw(getSprite("Explications"));
+}
+
+void Affichage_Shader()
+{
+	static float timer2;
+	timer2 += MainTime.GetTimeDeltaF();
+
+	static int timer = 0;
+
+	if (timer2 > 0.01f)
+	{
+		timer++;
+		timer2 = 0;
+	}
+	
+
+	static bool one_pass = true;
+
+	if (one_pass == true)
+	{
+		Texture_PacShade.create(1920, 1080);
+		Sprite_PacShade.setTexture(Texture_PacShade.getTexture());
+		Texture_PacShade.clear();
+
+		Shade_Pac = new sf::Shader;
+		Shade_Pac->loadFromFile("../Ressources/Pacman/pacmanShader.frag", sf::Shader::Fragment);
+		Shade_Pac->setUniform("u_resolution", sf::Vector3f(1920, 1080, 0));
+		Texture_PacShade.display();
+		one_pass = false;
+	}
+
+	Shade_Pac->setUniform("u_frame", timer);
+	State_PacShade.shader = Shade_Pac;
+	App.draw(Sprite_PacShade, State_PacShade);
+
 }

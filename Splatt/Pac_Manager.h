@@ -10,6 +10,7 @@ void PacMenu();
 void PacPause();
 void Pac_Reset();
 void Pac_GameOver();
+void Affichage_Shader();
 
 enum Direction {
 
