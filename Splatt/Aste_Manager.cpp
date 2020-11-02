@@ -313,7 +313,6 @@ void Aste_Display()
 
 	// shader
 	_spriteFond.setTexture(_textureFond);
-	App.draw(_spriteFond);
 
 	_textureLastPass.update(App);
 	_textureDiffuse.update(App);
