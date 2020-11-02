@@ -3,6 +3,10 @@
 
 Lander* player;
 GroundContainer* myContainer;
+Shader* LunarMenuShad;
+Sprite sLunarShad;
+RenderTexture tLunarShad;
+RenderStates LunarShadStates;
 
 Lunar_manager::Lunar_manager(RenderWindow& _window)
 {
@@ -162,12 +166,37 @@ bool Lunar_manager::PlayerHasNoFuel()
 
 void Lunar_manager::DisplayPauseMenu()
 {
+	static float TutoTimer = 0.f;
+
+	TutoTimer += MainTime.GetTimeDeltaF();
+
+	static bool one_pass = false;
+	if (!one_pass)
+	{
+		tLunarShad.create(1920, 1080);
+		sLunarShad.setTexture(tLunarShad.getTexture());
+		tLunarShad.clear();
+
+		LunarMenuShad = new Shader;
+		LunarMenuShad->loadFromFile("../Ressources/Lunar_lander/LunarLanderShader.frag", sf::Shader::Fragment);
+		LunarMenuShad->setUniform("u_resolution", sf::Vector3f(1920, 1080, 0));
+		tLunarShad.display();
+		one_pass = true;
+	}
+
+	LunarMenuShad->setUniform("u_time", TutoTimer);
+	LunarShadStates.shader = LunarMenuShad;
+
 	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_pause_menu.png"))
 		exit(EXIT_FAILURE);
 
 	mMyTexture.loadFromImage(mMyImage);
 	mMySprite.setTexture(mMyTexture);
 
+	mMySprite.setOrigin(sf::Vector2f(mMySprite.getLocalBounds().left + mMySprite.getLocalBounds().width / 2, mMySprite.getLocalBounds().top + mMySprite.getLocalBounds().height / 2));
+	mMySprite.setPosition(960, 540);
+
+	App.draw(sLunarShad, LunarShadStates);
 	App.draw(mMySprite);
 
 	if (isButtonPressed(Action::Lunar_Select))
