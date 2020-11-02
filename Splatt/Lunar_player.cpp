@@ -154,10 +154,10 @@ void Lander::Collide(RenderWindow& _window, GroundContainer& _myContainer)
 			float x = mSprite.getPosition().x - mSprite.getOrigin().x + i;
 			float y = mSprite.getPosition().y - mSprite.getOrigin().y + j;
 
-			if (_myContainer.GetImage().getPixel(x, y) == Color::White || _myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y > .5f)
+			if (_myContainer.GetImage().getPixel(x, y) == Color::White || _myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y > .15f)
 				Explode();
 
-			if (_myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y < .5f && mIsAlive)
+			if (_myContainer.GetImage().getPixel(x, y) == Color::Green && mVelocity.y < .15f && mIsAlive)
 				Landing(_window, _myContainer);
 		}
 	}
