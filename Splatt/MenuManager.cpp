@@ -49,9 +49,9 @@ void Menu_Init()
 	VecMenu.push_back("PacMan");
 	VecMenu.push_back("Lunar Lander");
 	VecMenu.push_back("Asteroids");
-	VecMenu.push_back("Tetris");
+	//VecMenu.push_back("Tetris");
 	VecMenu.push_back("Tron");
-	VecMenu.push_back("KingKong");
+	//VecMenu.push_back("KingKong");
 	VecMenu.push_back("Option");
 	VecMenu.push_back("Credits");
 	VecMenu.push_back("Quit");
@@ -110,24 +110,24 @@ void Menu_Update()
 			case 4:
 				ChangeState(State::ASTEROID);
 				break;
-			case 5:
+			//case 5:
 				//ChangeState(State::TETRIS);
-				break;
-			case 6:
+				//break;
+			case 5:
 				ChangeState(State::TRON);
 				Pause = true;
 				break;
-			case 7:
+			//case 7:
 				//ChangeState(State::);  KingKong
-				break;
-			case 8:
+				//break;
+			case 6:
 				isOption = true;
 				PrevWindowchoice = Windowchoice;
 				break;
-			case 9:
+			case 7:
 				// credits
 				break;
-			case 10:
+			case 8:
 				App.close();
 				break;
 
@@ -214,7 +214,7 @@ void Menu_Display()
 		Display_Controle(BaseX);
 		break;
 	case 2:
-		// pacman
+		Pac_Explications();
 		break;
 	case 3:
 		// lunar
@@ -223,23 +223,23 @@ void Menu_Display()
 	case 4:
 		Aste_Infos(BaseX);
 		break;
-	case 5:
+	//case 5:
 		// tetris
-		break;
-	case 6:
+		//break;
+	case 5:
 		// tron
 		TronTuto();
 		break;
-	case 7:
+	//case 7:
 		// KingKong
-		break;
-	case 8:
+		//break;
+	case 6:
 		MenuOptionDisplay(BaseX);
 		break;
-	case 9:
+	case 7:
 		Menu_Credits(BaseX);
 		break;
-	case 10:
+	case 8:
 		// idk what to do 
 		break;
 

@@ -9,3 +9,4 @@ void MenuOptionUpdate();
 void MenuOptionDisplay(const int& x);
 void OptionSave();
 void OptionRead();
+void Pac_Explications();
