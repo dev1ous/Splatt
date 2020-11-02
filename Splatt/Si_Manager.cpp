@@ -46,7 +46,10 @@ void reset()
 	Vitesse = 50;
 	
 	EnnemyList.clear();
-	Tir_Joueur.clear();
+	for (SI_Tir& Actual_Tir : Tir_Joueur)
+	{
+		Actual_Tir.Set_Destruct(true);
+	}
 	Tir_Ennemi.clear();
 	reset_Joueur(1, 1);
 }
@@ -299,6 +302,7 @@ void Menu()
 		{
 			Etat = State_SI::Niveau1;
 			select = 0;
+			reset_Joueur(1, 1);
 		}
 
 		if (select == 1)
@@ -467,7 +471,10 @@ void Niveau1()
 				break;
 			}
 			Vitesse += 1.5;
-			Tir_Joueur.clear();
+			for (SI_Tir& Actual_Tir : Tir_Joueur)
+			{
+				Actual_Tir.Set_Destruct(true);
+			}
 			Tir_Ennemi.clear();
 			app = false;
 			if (Wave < 10)
@@ -537,7 +544,10 @@ void Niveau2()
 				Debut_Niveau = true;
 			}
 			Vitesse += 1.5;
-			Tir_Joueur.clear();
+			for (SI_Tir& Actual_Tir : Tir_Joueur)
+			{
+				Actual_Tir.Set_Destruct(true);
+			}
 			Tir_Ennemi.clear();
 			app = false;
 			if (Wave < 10)
@@ -578,7 +588,10 @@ void Niveau3()
 				reset();
 			Vitesse += 1.5;
 			app = false;
-			Tir_Joueur.clear();
+			for (SI_Tir& Actual_Tir : Tir_Joueur)
+			{
+				Actual_Tir.Set_Destruct(true);
+			}
 			Tir_Ennemi.clear();
 			if (Wave < 10)
 				Wave++;

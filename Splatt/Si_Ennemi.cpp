@@ -190,7 +190,7 @@ void SI_Ennemi::Update()
 		Encadré.setPosition(Position.x, Position.y - 165);
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Numpad1) && EnnemyList.size() > 1)
+	if (Keyboard::isKeyPressed(Keyboard::Numpad2) && EnnemyList.size() > 1)
 		for (SI_Ennemi& Actual_Ennemy : EnnemyList)
 		{
 			Actual_Ennemy.life = 0;

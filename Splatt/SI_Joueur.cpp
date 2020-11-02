@@ -117,7 +117,7 @@ void SI_Joueur::Update()
 		else
 			Set_Droite(false);
 
-		if (isButtonPressed(Action::SIJ2_Tir) && Timer > 0.25f && Nombre_Tir < Limite_Tir && app == true)
+		if (isButtonPressed(Action::SIJ2_Tir) && Timer > 0.25f && Nombre_Tir < Limite_Tir && app == true && Debut_Niveau == false)
 		{
 			Set_Tir(true);
 			Nombre_Tir++;
@@ -126,7 +126,7 @@ void SI_Joueur::Update()
 		else
 			Set_Tir(false);
 
-		if (isButtonPressed(Action::SIJ2_TirSpe) && (Special_Jaune == 4 || Special_Bleu == 4 || Special_Violet == 4 || Special_Vert == 4) && app == true)
+		if (isButtonPressed(Action::SIJ2_TirSpe) && (Special_Jaune == 4 || Special_Bleu == 4 || Special_Violet == 4 || Special_Vert == 4) && app == true && Debut_Niveau == false)
 		{
 			Set_TirSpecial(true);
 			Timer = 0;
