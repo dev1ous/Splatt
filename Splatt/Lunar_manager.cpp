@@ -136,9 +136,7 @@ void Lunar_manager::Lunar_display(RenderWindow& _window)
 
 			if (player->GetHard())
 				_window.draw(mAngleText);
-		}
-		else
-			_window.draw(mEscText);
+		}		
 	}
 	else
 		DisplayPauseMenu();
