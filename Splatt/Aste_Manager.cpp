@@ -360,13 +360,23 @@ void Aste_Display()
 
 
 	// Hud
-	sf::Text Tscore("", font, 30);
+	sf::Text Tscore("Score :", font, 30);
+	App.draw(Tscore);
+	Tscore.setPosition(Tscore.getLocalBounds().left + Tscore.getLocalBounds().width + 10, 0);
 	Tscore.setString(std::to_string(aste_player->getScore()));
 	App.draw(Tscore);
 
-	Tscore.setPosition(0, Tscore.getGlobalBounds().height + 10);
-	Tscore.setString(std::to_string(aste_player->getLives() - 1));
-	App.draw(Tscore);
+	for (int i = 0; i < aste_player->getLives(); i++)
+	{
+		getSprite("astePlayer").setRotation(0.f);
+		getSprite("astePlayer").setTextureRect(sf::IntRect(0, 0, 40, 60));
+		getSprite("astePlayer").setOrigin(0, 0);
+		getSprite("astePlayer").setPosition(i * 60, Tscore.getGlobalBounds().height + 20);
+		App.draw(getSprite("astePlayer"));
+	}
+	//Tscore.setPosition(0, Tscore.getGlobalBounds().height + 10);
+	//Tscore.setString(std::to_string(aste_player->getLives() - 1));
+	//App.draw(Tscore);
 
 
 	// debug infos
