@@ -22,6 +22,15 @@ Niveau3 | SpaceInvaders
 
 PacMap | PacMan
 Pac | PacMan
+Fantome0 | PacMan
+Fantome1 | PacMan
+Fantome2 | PacMan
+Fantome3 | PacMan
+Vie | PacMan
+Gums | PacMan
+Bonus | PacMan
+PacMenu | PacMan
+GameOver | PacMan
 
 Main | Menu
 OptionBack | Menu
