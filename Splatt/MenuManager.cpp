@@ -31,7 +31,7 @@ void Menu_Credits(const int& x)
 	Credies.setPosition(x + ((1920 - x) / 2), 450 + (60 * 1));
 	App.draw(Credies);
 
-	Credies.setString("       Maillard Martin\tPelegrin Quentin (?)");
+	Credies.setString("  Maillard Martin\tPelegrin Quentin");
 	Credies.setOrigin(getMidle(Credies));
 	Credies.setPosition(x + ((1920 - x) / 2), 450 + (60 * 2));
 	App.draw(Credies);
