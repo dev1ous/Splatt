@@ -166,9 +166,9 @@ bool Lunar_manager::PlayerHasNoFuel()
 
 void Lunar_manager::DisplayPauseMenu()
 {
-	static float TutoTimer = 0.f;
+	static float Timer = 0.f;
 
-	TutoTimer += MainTime.GetTimeDeltaF();
+	Timer += MainTime.GetTimeDeltaF();
 
 	static bool one_pass = false;
 	if (!one_pass)
@@ -184,7 +184,7 @@ void Lunar_manager::DisplayPauseMenu()
 		one_pass = true;
 	}
 
-	LunarMenuShad->setUniform("u_time", TutoTimer);
+	LunarMenuShad->setUniform("u_time", Timer);
 	LunarShadStates.shader = LunarMenuShad;
 
 	if (!mMyImage.loadFromFile("../ressources/Lunar_lander/Lunar_pause_menu.png"))

@@ -37,6 +37,9 @@ void Lander::Update(RenderWindow& _window, GroundContainer& _myContainer)
 
 	if (mIsAlive && HasFuel())
 	{
+
+		getSound("engine1").stop();
+
 		//ChangeMode();
 
 		mVelocity.y += .1f * MainTime.GetTimeDeltaF();
@@ -70,6 +73,8 @@ void Lander::MoveRight()
 {
 	if (isButtonPressed(Action::Lunar_Droite))
 	{
+		getSound("engine1").play();
+
 		if (!mIsHardMode)
 			mVelocity.x += .4f * MainTime.GetTimeDeltaF();
 		else
@@ -83,6 +88,7 @@ void Lander::MoveLeft()
 {
 	if (isButtonPressed(Action::Lunar_Gauche))
 	{
+		getSound("engine1").play();
 		if (!mIsHardMode)
 			mVelocity.x -= .4f * MainTime.GetTimeDeltaF();
 		else
@@ -94,8 +100,11 @@ void Lander::MoveLeft()
 
 void Lander::Inpulse()
 {
+
 	if (isButtonPressed(Action::Lunar_Impulse))
 	{
+		getSound("engine1").play();
+
 		if (!mIsHardMode)
 			mVelocity.y -= .4f * MainTime.GetTimeDeltaF();
 		else
@@ -117,7 +126,7 @@ void Lander::Inpulse()
 	if (mEngineOn && !isButtonPressed(Action::Lunar_Impulse))
 	{
 		mEngineOn = false;
-
+		
 		mSprite.setTextureRect(IntRect(0, 0, mTexture.getSize().x / 3, mTexture.getSize().y));
 	}
 }
@@ -197,11 +206,12 @@ bool Lander::HasFuel()
 
 void Lander::PlaySound(string _sound)
 {
-	if (!mSb.loadFromFile("../ressources/Lunar_lander/" + _sound))
+	if (!mSb.loadFromFile("../ressources/Lunar_lander/" + _sound + ".wav"))
 		exit(EXIT_FAILURE);
 
 	mSound.setBuffer(mSb);
 	mSound.play();
+	mSound.stop();
 }
 
 #pragma endregion
