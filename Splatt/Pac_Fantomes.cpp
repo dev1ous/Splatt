@@ -279,27 +279,33 @@ void Pac_Fantomes::Display()
 
 }
 
-void Pac_Fantomes::Path(Image _Image)
+void Pac_Fantomes::Path(Image& _Image)
 {
 
-	Masque = _Image.getPixel(PosX, PosY);
+	if (PosX > 0 && PosX < 1920 && PosY > 0 && PosY < 1080)
+		Masque = _Image.getPixel(PosX, PosY);
 
 
 	NextPosOnMap.y = PosY;
 	NextPosOnMap.x = (PosX - 30 - (210 * MainTime.GetTimeDeltaF()));
-	MasqueGAUCHE = _Image.getPixel(NextPosOnMap.x - 15, NextPosOnMap.y);
+	if (NextPosOnMap.x - 15 > 0 && NextPosOnMap.x - 15 < 1920 && NextPosOnMap.y > 0 && NextPosOnMap.y < 1080)
+		MasqueGAUCHE = _Image.getPixel(NextPosOnMap.x - 15, NextPosOnMap.y);
 
 	NextPosOnMap.x = PosX;
 	NextPosOnMap.y = (PosY + 30 + (210 * MainTime.GetTimeDeltaF()));
-	MasqueBAS = _Image.getPixel(NextPosOnMap.x, NextPosOnMap.y + 15);
+	if (NextPosOnMap.x > 0 && NextPosOnMap.x < 1920 && NextPosOnMap.y + 15 > 0 && NextPosOnMap.y + 15 < 1080)
+		MasqueBAS = _Image.getPixel(NextPosOnMap.x, NextPosOnMap.y + 15);
 
 	NextPosOnMap.y = PosY;
 	NextPosOnMap.x = (PosX + 30 + (210 * MainTime.GetTimeDeltaF()));
-	MasqueDROITE = _Image.getPixel(NextPosOnMap.x + 15, NextPosOnMap.y);
+	if (NextPosOnMap.x + 15 > 0 && NextPosOnMap.x + 15 < 1920 && NextPosOnMap.y > 0 && NextPosOnMap.y < 1080)
+		MasqueDROITE = _Image.getPixel(NextPosOnMap.x + 15, NextPosOnMap.y);
 
 	NextPosOnMap.x = PosX;
 	NextPosOnMap.y = (PosY - 30 - (210 * MainTime.GetTimeDeltaF()));
-	MasqueHAUT = _Image.getPixel(NextPosOnMap.x, NextPosOnMap.y - 15);
+	
+	if (NextPosOnMap.x > 0 && NextPosOnMap.x < 1920 && NextPosOnMap.y - 15 > 0 && NextPosOnMap.y - 15 < 1080)
+		MasqueHAUT = _Image.getPixel(NextPosOnMap.x, NextPosOnMap.y - 15);
 
 	if (Masque == Color::Red && timer > 0.1f)
 	{

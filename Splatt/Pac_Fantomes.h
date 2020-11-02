@@ -14,7 +14,7 @@ public:
 	void Deplacement();
 	void Update();
 	void Display();
-	void Path(Image _Image);
+	void Path(Image& _Image);
 
 	FloatRect Get_Rect();
 	void Set_Anim(int _rec);
