@@ -100,15 +100,6 @@ void Pac_Display()
 
 					if (Pix == Color::White || Pix == Color::Red)
 					{
-						if (Pac.Get_Rect().intersects(Gums[i][j].Get_Rect()))
-						{
-							score += 10;
-							Sco += to_string(score);
-							Gums[i][j].Set_Mort();
-							getSprite("Gums").setPosition(-500, -500);
-							win++;
-						}
-
 						if (Gums[i][j].Get_Mort() == false)
 						{
 							Gums[i][j].Set_PosX(PosX);
@@ -118,6 +109,16 @@ void Pac_Display()
 							Gums[i][j].Set_Rect(getSprite("Gums").getGlobalBounds());
 							Gums[i][j].Display();
 						}
+						if (Pac.Get_Rect().intersects(Gums[i][j].Get_Rect()))
+						{
+							score += 10;
+							Sco += to_string(score);
+							Gums[i][j].Set_Mort();
+							getSprite("Gums").setPosition(-500, -500);
+							win++;
+						}
+
+
 					}
 				}
 				PosX += 60;
@@ -480,4 +481,10 @@ void Pac_GameOver()
 
 
 
+}
+
+void Pac_Explications()
+{
+	getSprite("Explications").setPosition(1000, 300);
+	App.draw(getSprite("Explications"));
 }

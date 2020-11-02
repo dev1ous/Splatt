@@ -214,7 +214,7 @@ void Menu_Display()
 		Display_Controle(BaseX);
 		break;
 	case 2:
-		// pacman
+		Pac_Explications();
 		break;
 	case 3:
 		// lunar
