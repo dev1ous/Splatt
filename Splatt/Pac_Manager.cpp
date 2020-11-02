@@ -108,7 +108,8 @@ void Pac_Display()
 							getSprite("Gums").setPosition(-500, -500);
 							win++;
 						}
-						else
+
+						if (Gums[i][j].Get_Mort() == false)
 						{
 							Gums[i][j].Set_PosX(PosX);
 							Gums[i][j].Set_PosY(PosY);
@@ -369,7 +370,7 @@ void PacMenu()
 		}
 		if (Choix == true)
 		{
-			state = State::MENU;
+			ChangeState(State::MENU);
 		}
 
 		Choix = false;
@@ -423,7 +424,7 @@ void PacPause()
 		}
 		if (Choix == true)
 		{
-			state = State::MENU;
+			State_PacMan = State_Pac::Menu;
 			Pac_Reset();
 		}
 
@@ -435,7 +436,6 @@ void PacPause()
 void Pac_Reset()
 {
 	win = 0;
-	State_PacMan = State_Pac::Menu;
 	score = 0;
 	score -= 10;
 	Pac.Reset();
@@ -462,6 +462,8 @@ void Pac_Reset()
 			Gums[i][j].Reset();
 		}
 	}
+	ChangeState(State::MENU);
+
 }
 
 void Pac_GameOver()
@@ -472,7 +474,6 @@ void Pac_GameOver()
 
 	if (timer > 5.f)
 	{
-		state = State::MENU;
 		Pac_Reset();
 		timer = 0;
 	}

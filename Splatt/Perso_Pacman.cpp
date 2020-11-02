@@ -233,8 +233,8 @@ bool Perso_Pacman::Collision(Image _Image, Direction _direction)
 		NextPosOnMap.x = (PosX + _player.width / 2 + (200 * MainTime.GetTimeDeltaF()));
 		if (NextPosOnMap.y > 0 && NextPosOnMap.y < 1080)
 		{
-			Masque = _Image.getPixel(NextPosOnMap.x, (NextPosOnMap.y - _player.height / 2) + 5);
-			Masque2 = _Image.getPixel(NextPosOnMap.x, (NextPosOnMap.y + _player.height / 2) - 5);
+			Masque = _Image.getPixel(NextPosOnMap.x, (NextPosOnMap.y - _player.height / 2) + 4);
+			Masque2 = _Image.getPixel(NextPosOnMap.x, (NextPosOnMap.y + _player.height / 2) - 4);
 		}
 		else
 		{
@@ -248,8 +248,8 @@ bool Perso_Pacman::Collision(Image _Image, Direction _direction)
 		NextPosOnMap.x = (PosX - _player.width / 2 - (200 * MainTime.GetTimeDeltaF()));
 		if (NextPosOnMap.y > 0 && NextPosOnMap.y < 1080)
 		{
-			Masque = _Image.getPixel(NextPosOnMap.x, (NextPosOnMap.y - _player.height / 2) + 5);
-			Masque2 = _Image.getPixel(NextPosOnMap.x, (NextPosOnMap.y + _player.height / 2) - 5);
+			Masque = _Image.getPixel(NextPosOnMap.x, (NextPosOnMap.y - _player.height / 2) + 4);
+			Masque2 = _Image.getPixel(NextPosOnMap.x, (NextPosOnMap.y + _player.height / 2) - 4);
 		}
 		else
 		{
@@ -263,8 +263,8 @@ bool Perso_Pacman::Collision(Image _Image, Direction _direction)
 		NextPosOnMap.y = (PosY - _player.height / 2 - (200 * MainTime.GetTimeDeltaF()));
 		if (NextPosOnMap.y > 0 && NextPosOnMap.y < 1080)
 		{
-			Masque = _Image.getPixel((NextPosOnMap.x - _player.width / 2) + 5, NextPosOnMap.y);
-			Masque2 = _Image.getPixel((NextPosOnMap.x + _player.width / 2) - 5, NextPosOnMap.y);
+			Masque = _Image.getPixel((NextPosOnMap.x - _player.width / 2) + 4, NextPosOnMap.y);
+			Masque2 = _Image.getPixel((NextPosOnMap.x + _player.width / 2) - 4, NextPosOnMap.y);
 		}
 		else
 		{
@@ -278,8 +278,8 @@ bool Perso_Pacman::Collision(Image _Image, Direction _direction)
 		NextPosOnMap.y = (PosY + _player.height / 2 + (200 * MainTime.GetTimeDeltaF()));
 		if (NextPosOnMap.y > 0 && NextPosOnMap.y < 1080)
 		{
-			Masque = _Image.getPixel((NextPosOnMap.x - _player.width / 2) + 5, NextPosOnMap.y);
-			Masque2 = _Image.getPixel((NextPosOnMap.x + _player.width / 2) - 5, NextPosOnMap.y);
+			Masque = _Image.getPixel((NextPosOnMap.x - _player.width / 2) + 4, NextPosOnMap.y);
+			Masque2 = _Image.getPixel((NextPosOnMap.x + _player.width / 2) - 4, NextPosOnMap.y);
 		}
 		else
 		{
